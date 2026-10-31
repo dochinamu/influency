@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Influency - Influencer Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display:wght@500&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/busy-load/dist/app.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/dinoqqq/simple-popup@master/dist/jquery.simple-popup.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/gh/dinoqqq/simple-popup@master/dist/jquery.simple-popup.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      input,
+      textarea,
+      button {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+  </head>
+
+  <body class="wm-body">
+    <style>
+      /* ===== 오늘 뭐 먹지 랜딩 · design.md + Apron Books Club 요소 ===== */
+      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono&display=swap");
+      @font-face {
+        font-family: "GmarketSans";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff");
+        font-weight: 700;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "D2Coding";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff") format("woff");
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      /* 1. 토큰 */
+      body.wm-body { margin: 0; background: #fffef9; color: #111111; }
+      html { scroll-behavior: smooth; }
+      .wm {
+        --butter: #f9efb6;
+        --yolk: #f9d949;
+        --yolk-hover: #f2cc2e;
+        --paper: #ffffff;
+        --off: #fffef9;      /* Apron 페이지 바탕 */
+        --pale: #fdf5cf;     /* Apron 등급 카드 */
+        --gray: #f5f4ed;     /* Apron 기능 카드 */
+        --cream-2: #ecebe3;
+        --line: #dfddd3;
+        --ink: #111111;
+        --ink-soft: #5e5a48;
+        --error: #b42318;
+        --ok: #2f6b3a;
+        --f-display: "GmarketSans", "Pretendard", "Apple SD Gothic Neo", sans-serif;
+        --f-body: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        --f-label: "D2Coding", "DM Mono", ui-monospace, monospace;
+        --f-num: "DM Mono", "D2Coding", ui-monospace, monospace;
+        font-family: var(--f-body);
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--ink);
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wm [hidden] { display: none !important; }
+      .wm h1, .wm h2, .wm h3, .wm p, .wm figure { margin: 0; color: var(--ink); }
+      .wm ol, .wm ul { margin: 0; padding: 0; list-style: none; }
+      .wm a { color: var(--ink); }
+      .wm input, .wm textarea, .wm button { font-family: inherit; color: var(--ink); }
+      .wm .container { max-width: 1180px; padding-left: 20px; padding-right: 20px; }
+      .wm[data-layout="a"] .wm-only-b, .wm[data-layout="b"] .wm-only-a { display: none !important; }
+
+      /* 2. 타이포그래피 */
+      .wm-disp { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.03em; }
+      .wm-h1 { font-size: 36px; line-height: 1.12; }
+      .wm-h2 { font-size: 28px; line-height: 1.18; }
+      .wm-h3 { font-size: 20px; line-height: 1.3; }
+      .wm-sub { font-weight: 500; font-size: 17px; line-height: 1.55; max-width: 30em; }
+      .wm-p { font-size: 16px; line-height: 1.65; }
+      .wm-note { font-size: 15px; line-height: 1.6; color: var(--ink-soft) !important; }
+      .wm-eb { font-family: var(--f-label); font-size: 14px; letter-spacing: 0.06em; }
+      .wm-eb.is-soft { color: var(--ink-soft); }
+      .wm-label { font-family: var(--f-label); font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft) !important; }
+      .wm-num { font-family: var(--f-num); font-size: 13px; color: var(--ink-soft); }
+      .wm-num.is-ink { color: var(--ink); }
+
+      /* 3. 섹션 · 배경 (노랑은 히어로와 마지막 버튼 두 곳만) */
+      .wm-section { padding: 72px 0; background: var(--bg, var(--off)); }
+      #wm-hero, #wm-final { --bg: var(--butter); }
+      #wm-hero { padding: 0; overflow: hidden; }
+      .wm[data-layout="a"] #wm-how, .wm[data-layout="a"] #wm-who { padding-top: 0; }
+      .wm[data-layout="b"] #wm-story, .wm[data-layout="b"] #wm-who, .wm[data-layout="b"] #wm-faq { padding-top: 0; }
+
+      /* 상단 메뉴 */
+      .wm-nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+      .wm-brand { font-family: var(--f-display); font-weight: 700; font-size: 19px; letter-spacing: -0.03em; }
+      .wm-navlinks { display: none; gap: 32px; font-weight: 500; }
+      .wm-navlinks a { text-decoration: none; }
+      .wm-navlinks a:hover { color: var(--ink-soft); }
+
+      /* 4.1 버튼 — Apron처럼 노랑 버튼은 테두리 없이 */
+      .wm-btns { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 360px; }
+      .wm .wm-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 100%; height: 56px; padding: 0 36px; border: 0; border-radius: 999px;
+        font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
+        transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+      }
+      .wm .wm-btn-primary { background: var(--yolk); border: 0; color: var(--ink); }
+      .wm .wm-btn-primary:hover { background: var(--yolk-hover); }
+      .wm .wm-btn-ghost { background: transparent; border: 1px solid rgba(17, 17, 17, 0.2); color: var(--ink); }
+      .wm .wm-btn-ghost:hover { border-color: rgba(17, 17, 17, 0.6); color: var(--ink); }
+      .wm .wm-btn:active { transform: translateY(1px); }
+      .wm .wm-textbtn {
+        min-height: 48px; padding: 12px 8px; border: 0; border-radius: 8px; background: none;
+        color: var(--ink-soft); font-size: 16px; text-decoration: underline; text-underline-offset: 3px;
+      }
+      .wm .wm-btn:focus-visible, .wm .wm-input:focus-visible, .wm .wm-textarea:focus-visible,
+      .wm .wm-chip:focus-visible, .wm .wm-textbtn:focus-visible, .wm .wm-close:focus-visible,
+      .wm summary:focus-visible, .wm-navlinks a:focus-visible {
+        outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: none;
+      }
+
+      /* 4.2 종이 · 점선 */
+      .wm-lift { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.06)) drop-shadow(0 10px 28px rgba(70, 58, 0, 0.1)); }
+      .wm-paper { position: relative; background: var(--paper); border-radius: 2px; }
+      .wm-scallop { margin-bottom: 6px; }
+      .wm-scallop::after {
+        content: ""; position: absolute; left: 4px; right: 4px; bottom: -6px; height: 6px;
+        background: radial-gradient(circle 6px at 9px 0, var(--paper) 5.6px, transparent 6px) 0 0 / 18px 6px repeat-x;
+      }
+      .wm-spiral { padding-top: 38px !important; }
+      .wm-spiral::before {
+        content: ""; position: absolute; top: 12px; left: 16px; right: 16px; height: 8px;
+        background: radial-gradient(circle 4px at 4px 4px, var(--hole, var(--butter)) 3.5px, transparent 4px) 0 0 / 16px 8px repeat-x;
+      }
+      .wm-dots { height: 2px; background: radial-gradient(circle at 1px 1px, var(--ink-soft) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
+      .wm-caption { margin-top: 14px; font-family: var(--f-label); font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft); }
+
+      /* 식단 메모 */
+      .wm-memo { padding: 38px 22px 20px; text-align: left; }
+      .wm-memo-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; }
+      .wm-memo-row {
+        display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; column-gap: 12px; align-items: center;
+        padding: 11px 0; border-top: 1px dashed var(--line);
+      }
+      .wm-day { font-family: var(--f-label); font-size: 13px; }
+      .wm-dish { font-weight: 600; font-size: 15px; }
+      .wm-empty { font-size: 14px; color: var(--ink-soft); }
+      .wm-dish-sub { display: block; font-weight: 400; font-size: 12px; color: var(--ink-soft); }
+      .wm-tag {
+        display: inline-flex; align-items: center; gap: 4px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px;
+        font-size: 12px; line-height: 1; color: var(--ink-soft); white-space: nowrap;
+      }
+      .wm-tag.is-public { background: var(--cream-2); border-color: var(--cream-2); color: var(--ink); }
+      .wm-trow { display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 10px; padding: 9px 0; font-size: 14px; border-top: 1px dashed var(--line); }
+      .wm-check-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px; }
+      .wm-icon { flex: none; width: 18px; height: 18px; }
+
+      /* 히어로 */
+      .wm-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; padding: 28px 0 72px; justify-items: center; text-align: center; }
+      .wm-hero-copy { display: flex; flex-direction: column; align-items: center; }
+      .wm-desk { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; width: 100%; }
+      .wm-desk-mid { width: 100%; max-width: 420px; }
+      .wm-desk-side { display: none; text-align: left; }
+
+      /* 공감 → 관점 전환 */
+      .wm-story { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .wm-story-title { font-size: 20px; line-height: 1.3; }
+      .wm-story .wm-p { margin-top: 12px; }
+      .wm-join { display: flex; align-items: center; justify-content: center; height: 36px; font-family: var(--f-num); font-size: 28px; line-height: 1; }
+      .wm-join .is-row { display: none; }
+      .wm[data-layout="a"] .wm-story-now { background: var(--gray); border-radius: 20px; padding: 28px 22px; }
+      .wm[data-layout="a"] .wm-story-shift { background: var(--pale); border-radius: 20px; padding: 28px 22px; }
+      .wm[data-layout="a"] .wm-story .wm-eb + .wm-story-title { margin-top: 14px; }
+      .wm[data-layout="b"] .wm-story { gap: 40px; align-items: center; }
+      .wm[data-layout="b"] .wm-story-now .wm-story-title { font-size: 28px; line-height: 1.18; }
+      .wm[data-layout="b"] .wm-story-now .wm-p { margin-top: 20px; }
+      .wm[data-layout="b"] .wm-story-shift { background: var(--pale); border-radius: 20px; padding: 40px 20px 36px; }
+      .wm[data-layout="b"] .wm-receipt { margin-top: 12px; padding: 30px 24px; transform: rotate(-2deg); }
+      .wm[data-layout="b"] .wm-receipt::before {
+        content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px;
+        background:
+          linear-gradient(-45deg, var(--paper) 6px, transparent 0) 0 100% / 12px 12px repeat-x,
+          linear-gradient(45deg, var(--paper) 6px, transparent 0) 0 100% / 12px 12px repeat-x;
+      }
+      .wm[data-layout="b"] .wm-receipt .wm-story-title { font-size: 22px; }
+      .wm[data-layout="b"] .wm-receipt .wm-dots { margin: 20px 0; }
+      .wm[data-layout="b"] .wm-receipt .wm-p { margin-top: 0; }
+      .wm[data-layout="a"] .wm-receipt-wrap { filter: none; }
+      .wm[data-layout="a"] .wm-receipt { background: none; }
+
+      /* 4.4 단계 — 안 A: 연노랑 등급 카드 / 안 B: 회색 기능 카드 + 화살표 */
+      .wm-how-title { text-align: center; }
+      .wm-steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 40px !important; }
+      .wm-step { border-radius: 20px; padding: 26px 22px 24px; }
+      .wm-step-txt { display: flex; flex-direction: column; }
+      .wm-step-txt .wm-p { margin-top: 10px; }
+      .wm-step-txt .wm-note { margin-top: 10px; }
+      .wm-step-fig { margin-top: 22px !important; text-align: left; }
+      .wm-mock { padding: 18px; }
+      .wm-step-join { display: none; }
+      .wm[data-layout="a"] .wm-step { background: var(--pale); text-align: center; }
+      .wm[data-layout="a"] .wm-step-txt { align-items: center; }
+      .wm[data-layout="a"] .wm-step-txt .wm-dots { width: 100%; margin: 16px 0 6px; }
+      .wm[data-layout="a"] .wm-mock.wm-spiral { --hole: var(--pale); }
+      .wm[data-layout="b"] .wm-steps { gap: 8px; }
+      .wm[data-layout="b"] .wm-step { background: var(--gray); }
+      .wm[data-layout="b"] .wm-step.is-lead { background: var(--pale); }
+      .wm[data-layout="b"] .wm-step-txt .wm-dots { display: none; }
+      .wm[data-layout="b"] .wm-step-join { display: flex; }
+      .wm[data-layout="b"] .wm-mock-wrap { filter: none; }
+      .wm[data-layout="b"] .wm-mock { margin-bottom: 0; border-radius: 4px; padding: 14px 16px !important; }
+      .wm[data-layout="b"] .wm-mock::before, .wm[data-layout="b"] .wm-mock::after { display: none; }
+
+      /* 누구 */
+      .wm-who { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+      .wm[data-layout="a"] .wm-who { max-width: 900px; margin: 0 auto; text-align: center; }
+      .wm[data-layout="a"] .wm-who .wm-p { max-width: 36em; margin: 0 auto; }
+      .wm[data-layout="a"] .wm-who .wm-eb + .wm-h2 { margin-top: 16px; }
+      .wm[data-layout="b"] .wm-who .wm-dots { margin-bottom: 20px; }
+
+      /* 마지막 버튼 */
+      #wm-final { position: relative; overflow: hidden; }
+      .wm-lineart { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+      /* 4.6 FAQ */
+      .wm-faq-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .wm[data-layout="a"] .wm-faq-grid { gap: 40px; }
+      .wm[data-layout="a"] .wm-faq-grid > .wm-h2 { text-align: center; }
+      .wm[data-layout="a"] .wm-faqbox { width: 100%; max-width: 760px; margin: 0 auto; }
+      .wm-faqbox { background: var(--pale); border-radius: 20px; padding: 6px 24px; }
+      .wm-faqbox details + details { background: radial-gradient(circle at 1px 1px, var(--ink-soft) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
+      .wm-faqbox summary {
+        display: flex; justify-content: space-between; align-items: center; gap: 16px;
+        min-height: 64px; padding: 18px 0; list-style: none; cursor: pointer; font-weight: 600; font-size: 17px; line-height: 1.4;
+      }
+      .wm-faqbox summary::-webkit-details-marker { display: none; }
+      .wm-faqbox .wm-pm { font-family: var(--f-num); font-size: 22px; line-height: 1; }
+      .wm-faqbox .wm-pm .is-minus, .wm-faqbox details[open] .wm-pm .is-plus { display: none; }
+      .wm-faqbox details[open] .wm-pm .is-minus { display: inline; }
+      .wm-faqbox .wm-p { padding-bottom: 20px; }
+
+      /* 푸터 (Apron처럼 검정) */
+      .wm-foot { background: var(--ink); color: var(--off); padding: 40px 0 48px; }
+      .wm-foot .wm-brand, .wm-foot .wm-eb { color: var(--off); }
+      .wm-foot .wm-dots { margin-top: 24px; opacity: 0.6; background-image: radial-gradient(circle at 1px 1px, var(--off) 1px, transparent 1.4px); }
+
+      /* 4.5 입력 · 안내 창 */
+      .wm .wm-field-label { display: block; margin: 0 0 8px 4px; font-weight: 600; font-size: 16px; }
+      .wm .wm-input {
+        display: block; width: 100%; height: 56px; padding: 0 24px;
+        border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: 16px;
+      }
+      .wm .wm-textarea {
+        display: block; width: 100%; min-height: 96px; padding: 14px 20px;
+        border: 1.5px solid var(--ink); border-radius: 16px; background: var(--paper); font-size: 16px; resize: vertical;
+      }
+      .wm .wm-input::placeholder, .wm .wm-textarea::placeholder { color: var(--ink-soft); opacity: 1; }
+      .wm .wm-input[aria-invalid="true"] { border-color: var(--error); }
+      .wm-error { margin: 8px 0 0 20px !important; font-size: 14px; color: var(--error) !important; }
+      .wm-ok { color: var(--ok) !important; }
+      .wm .wm-chip {
+        height: 48px; padding: 0 24px; border: 1.5px solid var(--ink); border-radius: 999px;
+        background: var(--paper); font-weight: 600; font-size: 16px; cursor: pointer;
+      }
+      .wm .wm-chip:hover { background: var(--off); }
+      .wm .wm-chip[aria-pressed="true"] { background: var(--yolk); }
+      .wm .modal-dialog { max-width: 440px; margin: 20px; }
+      .wm .modal-content { background: transparent; border: 0; filter: drop-shadow(0 8px 24px rgba(70, 58, 0, 0.18)); }
+      .wm-modal-paper { padding: 28px 24px 30px; }
+      .wm .wm-close {
+        position: absolute; top: 6px; right: 6px; display: flex; align-items: center; justify-content: center;
+        width: 48px; height: 48px; padding: 0; border: 0; border-radius: 999px; background: transparent;
+      }
+      .modal-backdrop.show { opacity: 1; background: rgba(17, 17, 17, 0.4); }
+
+      /* 태블릿 768px+ */
+      @media (min-width: 768px) {
+        .wm .container { padding-left: 40px; padding-right: 40px; }
+        .wm-section { padding: 96px 0; }
+        .wm-h1 { font-size: 60px; }
+        .wm-h2 { font-size: 44px; }
+        .wm-h3 { font-size: 22px; }
+        .wm-sub { font-size: 19px; }
+        .wm, .wm-p { font-size: 18px; }
+        .wm-nav { height: 76px; }
+        .wm-navlinks { display: flex; }
+        .wm-btns { flex-direction: row; justify-content: center; width: auto; max-width: none; }
+        .wm .wm-btn { width: auto; min-width: 208px; height: 64px; }
+        .wm .modal-dialog { margin: 1.75rem auto; }
+        .wm .modal-dialog .wm-btn { width: 100%; }
+        .wm-desk-mid { max-width: 460px; }
+        .wm-story-title { font-size: 22px; }
+        .wm[data-layout="a"] .wm-story { grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr); gap: 8px; }
+        .wm[data-layout="a"] .wm-join .is-col { display: none; }
+        .wm[data-layout="a"] .wm-join .is-row { display: inline; }
+        .wm[data-layout="a"] .wm-join { height: auto; }
+        .wm[data-layout="b"] .wm-story-now .wm-story-title { font-size: 44px; }
+        .wm[data-layout="b"] .wm-story-shift { padding: 56px 48px 52px; }
+        .wm[data-layout="b"] .wm-receipt-wrap { max-width: 520px; margin: 0 auto; }
+        .wm[data-layout="b"] .wm-receipt .wm-story-title { font-size: 26px; }
+        .wm-step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); column-gap: 28px; align-items: center; }
+        .wm-step-fig { margin-top: 0 !important; }
+        .wm[data-layout="a"] .wm-step { text-align: left; }
+        .wm[data-layout="a"] .wm-step-txt { align-items: flex-start; }
+      }
+
+      /* 데스크톱 1100px+ */
+      @media (min-width: 1100px) {
+        .wm .container { padding-left: 56px; padding-right: 56px; }
+        .wm-section { padding: 120px 0; }
+        .wm-h1 { font-size: 64px; }
+        .wm-h2 { font-size: 60px; }
+        .wm-h3 { font-size: 24px; }
+        .wm-sub { font-size: 20px; }
+        .wm, .wm-p { font-size: 19px; }
+        .wm-label, .wm-num, .wm-caption { font-size: 14px; }
+        .wm .wm-btn { font-size: 17px; }
+        .wm-story-title { font-size: 24px; }
+        .wm-step { align-items: stretch; }
+
+        /* 안 A: 히어로 문구 | 식단 메모 */
+        .wm[data-layout="a"] .wm-hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 72px; align-items: center; justify-items: stretch; text-align: left; padding: 56px 0 120px; }
+        .wm[data-layout="a"] .wm-hero-copy { align-items: flex-start; }
+        .wm[data-layout="a"] .wm-btns { justify-content: flex-start; }
+        .wm[data-layout="a"] #wm-final .wm-btns { justify-content: center; }
+        .wm[data-layout="a"] .wm-desk { justify-items: end; }
+        .wm[data-layout="a"] .wm-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .wm[data-layout="a"] .wm-step { display: flex; flex-direction: column; text-align: center; }
+        .wm[data-layout="a"] .wm-step-txt { align-items: center; }
+        .wm[data-layout="a"] .wm-step-fig { margin-top: 24px !important; }
+
+        /* 안 B: 가운데 큰 문구 + 종이 메모 세 장, 단계 가로, 두 칸 */
+        .wm[data-layout="b"] .wm-h1 { font-size: 72px; }
+        .wm[data-layout="b"] .wm-hero { padding: 56px 0 96px; }
+        .wm[data-layout="b"] .wm-desk { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; gap: 24px; margin-top: 16px; }
+        .wm[data-layout="b"] .wm-desk-mid { grid-column: 2; grid-row: 1; max-width: none; }
+        .wm[data-layout="b"] .wm-desk-side { display: block; width: 100%; max-width: 300px; }
+        .wm[data-layout="b"] .wm-desk-left { grid-column: 1; grid-row: 1; justify-self: end; margin-top: 80px !important; transform: rotate(-5deg); }
+        .wm[data-layout="b"] .wm-desk-right { grid-column: 3; grid-row: 1; justify-self: start; margin-top: 120px !important; transform: rotate(4deg); }
+        .wm[data-layout="b"] .wm-steps { grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1fr); align-items: stretch; }
+        .wm[data-layout="b"] .wm-step { display: flex; flex-direction: column; }
+        .wm[data-layout="b"] .wm-step-fig { margin-top: 20px !important; }
+        .wm[data-layout="b"] .wm-step-join .is-col { display: none; }
+        .wm[data-layout="b"] .wm-step-join .is-row { display: inline; }
+        .wm[data-layout="b"] .wm-step-join { height: auto; }
+        .wm[data-layout="b"] .wm-story { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 72px; }
+        .wm[data-layout="b"] .wm-story-now .wm-story-title { font-size: 60px; }
+        .wm[data-layout="b"] .wm-receipt .wm-story-title { font-size: 30px; }
+        .wm[data-layout="b"] .wm-who, .wm[data-layout="b"] .wm-faq-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .wm *, .wm *::before, .wm *::after { transition: none !important; }
+      }
+    </style>
+
+    <!-- ===== 랜딩 본문 · 섹션 순서는 아래 스크립트가 안(A/B)에 맞게 정렬 ===== -->
+    <main id="wm-main" class="wm" data-layout="a" data-hero="a">
+      <!-- 1. 히어로 -->
+      <section id="wm-hero" class="wm-section" aria-labelledby="wm-hero-title">
+        <div class="container">
+          <nav class="wm-nav" aria-label="페이지 안 이동">
+            <span class="wm-brand">[서비스 이름]</span>
+            <div class="wm-navlinks"><a href="#wm-how">사용법</a><a href="#wm-faq">자주 묻는 질문</a></div>
+          </nav>
+          <div class="wm-hero">
+            <div class="wm-hero-copy">
+              <p class="wm-eb">** 출시 준비 중 **</p>
+              <h1 id="wm-hero-title" class="wm-disp wm-h1 mt-3">오늘 뭐 먹지,<br />미리 정해 두기</h1>
+              <p id="wm-hero-sub" class="wm-sub mt-3">새로 찾지 말고, 이미 저장해 둔 레시피 중에서 고르게 해 드릴게요</p>
+              <div class="wm-btns mt-4">
+                <button id="cta_primary" type="button" class="wm-btn wm-btn-primary" data-bs-toggle="modal" data-bs-target="#wm-modal">출시 알림 받기</button>
+                <a class="wm-btn wm-btn-ghost" href="#wm-how">사용법 보기</a>
+              </div>
+            </div>
+
+            <div class="wm-desk">
+              <figure class="wm-desk-side wm-desk-left">
+                <div class="wm-lift">
+                  <div class="wm-paper wm-scallop wm-mock" role="img" aria-label="출시 예정 화면 예시: 공개 레시피 닭볶음탕의 영상 요약 쪽지">
+                    <span class="wm-label">공개 레시피 · 영상 요약</span>
+                    <p class="fw-bold mt-2 mb-1" style="font-size: 15px">닭볶음탕</p>
+                    <div class="wm-trow"><span class="wm-num is-ink">01:05</span><span>닭을 한 번 데치기</span></div>
+                    <div class="wm-trow"><span class="wm-num is-ink">03:20</span><span>양념을 넣고 끓이기</span></div>
+                  </div>
+                </div>
+              </figure>
+
+              <figure class="wm-desk-mid">
+                <div class="wm-lift">
+                  <div
+                    class="wm-paper wm-spiral wm-scallop wm-memo"
+                    role="img"
+                    aria-label="출시 예정 화면 예시: 이번 주 식단 메모. 일곱 칸 중 네 칸만 채워져 있고 세 칸은 내가 저장한 레시피, 한 칸은 공개 레시피 영상 요약이다."
+                  >
+                    <div class="wm-memo-head"><span class="wm-label">이번 주</span><span class="wm-num">4 / 7</span></div>
+                    <div class="wm-memo-row"><span class="wm-day">월</span><span class="wm-dish">된장찌개</span><span class="wm-tag">내 레시피</span></div>
+                    <div class="wm-memo-row"><span class="wm-day">화</span><span class="wm-empty">비어 있음</span><span></span></div>
+                    <div class="wm-memo-row"><span class="wm-day">수</span><span class="wm-dish">간장 계란밥</span><span class="wm-tag">내 레시피</span></div>
+                    <div class="wm-memo-row"><span class="wm-day">목</span><span class="wm-empty">비어 있음</span><span></span></div>
+                    <div class="wm-memo-row">
+                      <span class="wm-day">금</span>
+                      <span class="wm-dish">닭볶음탕<span class="wm-dish-sub">영상 요약 · 단계별 장면</span></span>
+                      <span class="wm-tag is-public"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>공개 레시피</span>
+                    </div>
+                    <div class="wm-memo-row"><span class="wm-day">토</span><span class="wm-dish">김치볶음밥</span><span class="wm-tag">내 레시피</span></div>
+                    <div class="wm-memo-row pb-1"><span class="wm-day">일</span><span class="wm-empty">비어 있음</span><span></span></div>
+                  </div>
+                </div>
+                <figcaption class="wm-caption text-center">출시 예정 화면 예시</figcaption>
+              </figure>
+
+              <figure class="wm-desk-side wm-desk-right">
+                <div class="wm-lift">
+                  <div class="wm-paper wm-scallop wm-mock" role="img" aria-label="출시 예정 화면 예시: 장보기 체크리스트 쪽지">
+                    <span class="wm-label">장보기</span>
+                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M7 12l3.5 3.5L17 9" /></svg><span class="text-decoration-line-through" style="color: var(--ink-soft)">닭 한 마리</span></div>
+                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /></svg>감자</div>
+                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /></svg>대파</div>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2·3. 공감 → 관점 전환 -->
+      <section id="wm-story" class="wm-section" aria-labelledby="wm-story-title">
+        <div class="container">
+          <div class="wm-story">
+            <div class="wm-story-now">
+              <p class="wm-eb is-soft wm-only-a">** 지금 **</p>
+              <h2 id="wm-story-title" class="wm-disp wm-story-title">끼니마다 그 자리에서 메뉴를 정하고 있다면</h2>
+              <p class="wm-p">
+                냉장고를 열었다 닫았다 하다가, 결국 늘 먹던 메뉴로 돌아가는 날이 있죠. 해 보고 싶은 레시피를 분명
+                어딘가 저장해 뒀는데, 막상 끼니 앞에서는 잘 떠오르지 않고요.
+              </p>
+            </div>
+            <div class="wm-join wm-only-a" aria-hidden="true"><span class="is-col">↓</span><span class="is-row">→</span></div>
+            <div class="wm-story-shift">
+              <div class="wm-lift wm-receipt-wrap">
+                <div class="wm-paper wm-receipt">
+                  <p class="wm-eb is-soft wm-only-a">** 이렇게 **</p>
+                  <h2 class="wm-disp wm-story-title">해 보고 싶던 레시피, 이미 저장해 두셨잖아요</h2>
+                  <div class="wm-dots wm-only-b" aria-hidden="true"></div>
+                  <p class="wm-p">
+                    저장해 둔 레시피는 한 번 마음에 들어 고른 메뉴예요. 새로 검색하는 대신 그 안에서 고를 수 있게
+                    만들고 있어요. 저장한 게 적거나 지겨울 때는 유튜브 등에 공개된 레시피를 둘러보며 채울 수 있게 할
+                    거예요.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 이렇게 쓰게 될 거예요 -->
+      <section id="wm-how" class="wm-section" aria-labelledby="wm-how-title">
+        <div class="container">
+          <h2 id="wm-how-title" class="wm-disp wm-h2 wm-how-title">이렇게 쓰게 될 거예요</h2>
+          <p class="wm-caption text-center">아래 화면은 모두 출시 예정 화면 예시예요</p>
+          <ol class="wm-steps">
+            <li class="wm-step">
+              <div class="wm-step-txt">
+                <p class="wm-eb is-soft">** 01 **</p>
+                <h3 class="wm-disp wm-h3 mt-2">담아 두기</h3>
+                <div class="wm-dots" aria-hidden="true"></div>
+                <p class="wm-p">레시피를 링크나 글, 캡처로 담으면 재료와 조리 순서로 정리해 드릴 예정이에요.</p>
+              </div>
+              <figure class="wm-step-fig">
+                <div class="wm-lift wm-mock-wrap">
+                  <div class="wm-paper wm-scallop wm-mock" role="img" aria-label="출시 예정 화면 예시: 링크나 글, 캡처로 담은 간장 계란밥 레시피가 재료 다섯 가지와 순서 세 단계로 정리된 화면">
+                    <div class="d-flex align-items-center gap-2" style="color: var(--ink-soft)">
+                      <svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5" /><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" /></svg>
+                      <svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9" /></svg>
+                      <svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" /><circle cx="9" cy="10" r="2" /><path d="M21 17l-5-5-9 8" /></svg>
+                      <span class="wm-label">링크 · 글 · 캡처</span>
+                    </div>
+                    <p class="fw-bold mt-3 pt-3" style="font-size: 15px; border-top: 1px dashed var(--line)">간장 계란밥</p>
+                    <p class="mt-1" style="font-size: 14px; line-height: 1.6">달걀 · 밥 · 간장 · 참기름 · 쪽파</p>
+                    <div class="d-flex gap-3 mt-1"><span class="wm-label">재료 <span class="wm-num is-ink">5</span></span><span class="wm-label">순서 <span class="wm-num is-ink">3</span></span></div>
+                  </div>
+                </div>
+              </figure>
+            </li>
+
+            <li class="wm-step-join wm-join" aria-hidden="true"><span class="is-col">↓</span><span class="is-row">→</span></li>
+
+            <li class="wm-step is-lead">
+              <div class="wm-step-txt">
+                <p class="wm-eb is-soft">** 02 **</p>
+                <h3 class="wm-disp wm-h3 mt-2">이번 주 메뉴 정하기</h3>
+                <div class="wm-dots" aria-hidden="true"></div>
+                <p class="wm-p">저장한 레시피 중에서 몇 끼만 골라 요일에 넣어 둘 수 있게 할 거예요.</p>
+                <p class="wm-note">
+                  유튜브 등에 공개된 레시피는 영상 요약처럼 정리되고, 단계마다 원본 영상의 그 장면으로 바로 갈 수
+                  있게 할 거예요.
+                </p>
+              </div>
+              <figure class="wm-step-fig">
+                <div class="wm-lift wm-mock-wrap">
+                  <div class="wm-paper wm-spiral wm-scallop wm-mock" role="img" aria-label="출시 예정 화면 예시: 공개 레시피 닭볶음탕의 영상 요약. 세 단계마다 원본 영상의 시간이 붙어 있고 금요일 식단에 들어가 있다.">
+                    <div class="d-flex justify-content-between align-items-baseline"><span class="wm-label">공개 레시피 · 영상 요약</span><span class="wm-tag">금요일</span></div>
+                    <p class="fw-bold mt-2 mb-1" style="font-size: 15px">닭볶음탕</p>
+                    <div class="wm-trow"><span class="wm-num is-ink">01:05</span><span>닭을 한 번 데치기</span></div>
+                    <div class="wm-trow"><span class="wm-num is-ink">03:20</span><span>양념을 넣고 끓이기</span></div>
+                    <div class="wm-trow"><span class="wm-num is-ink">07:45</span><span>채소를 넣고 졸이기</span></div>
+                  </div>
+                </div>
+              </figure>
+            </li>
+
+            <li class="wm-step-join wm-join" aria-hidden="true"><span class="is-col">↓</span><span class="is-row">→</span></li>
+
+            <li class="wm-step">
+              <div class="wm-step-txt">
+                <p class="wm-eb is-soft">** 03 **</p>
+                <h3 class="wm-disp wm-h3 mt-2">장보기</h3>
+                <div class="wm-dots" aria-hidden="true"></div>
+                <p class="wm-p">정한 메뉴의 재료는 체크리스트로 정리되고, 필요한 재료는 장바구니로 이어지도록 준비하고 있어요.</p>
+              </div>
+              <figure class="wm-step-fig">
+                <div class="wm-lift wm-mock-wrap">
+                  <div class="wm-paper wm-scallop wm-mock" role="img" aria-label="출시 예정 화면 예시: 재료 체크리스트 세 줄과 장바구니로 이어 담기 표시">
+                    <span class="wm-label">장보기</span>
+                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M7 12l3.5 3.5L17 9" /></svg><span class="text-decoration-line-through" style="color: var(--ink-soft)">닭 한 마리</span></div>
+                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /></svg>감자</div>
+                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /></svg>대파</div>
+                    <p class="mt-3 pt-2" style="font-size: 13px; color: var(--ink-soft); border-top: 1px dashed var(--line)">장바구니로 이어 담기 →</p>
+                  </div>
+                </div>
+              </figure>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 5. 누구를 위한 서비스인가 -->
+      <section id="wm-who" class="wm-section" aria-labelledby="wm-who-title">
+        <div class="container">
+          <div class="wm-who">
+            <div>
+              <p class="wm-eb is-soft wm-only-a">** 혼자 · 가족과 **</p>
+              <h2 id="wm-who-title" class="wm-disp wm-h2">혼자 먹든, 가족과 먹든</h2>
+            </div>
+            <div>
+              <div class="wm-dots wm-only-b" aria-hidden="true"></div>
+              <p class="wm-p">
+                집에서 직접 해 먹고 싶은 날을 위한 서비스예요. 요리를 대신해 주지는 않아요. 줄여 드리려는 건 ‘뭘 할지
+                정하는 수고’예요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 마지막 버튼 -->
+      <section id="wm-final" class="wm-section" aria-labelledby="wm-final-title">
+        <svg class="wm-lineart" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="56" stroke-linecap="round">
+            <path d="M-80 330 h440 a220 220 0 0 1 -440 0" />
+            <path d="M60 230 c0 -50 40 -60 40 -110" />
+            <path d="M180 230 c0 -50 40 -60 40 -110" />
+            <path d="M900 -40 l-120 520" />
+            <path d="M1010 -40 l-60 300 a70 70 0 1 1 -40 0" />
+          </g>
+        </svg>
+        <div class="container text-center position-relative">
+          <p class="wm-eb">** 아직 준비 중이에요 **</p>
+          <h2 id="wm-final-title" class="wm-disp wm-h2 mt-3">출시되면 알려 드릴게요</h2>
+          <p class="wm-p mt-3">이메일을 남겨 주시면 출시 소식을 보내 드릴게요.</p>
+          <div class="wm-btns mx-auto mt-4">
+            <button id="cta_final" type="button" class="wm-btn wm-btn-primary" data-bs-toggle="modal" data-bs-target="#wm-modal">출시 알림 받기</button>
+          </div>
+          <p class="wm-label mt-3">이메일은 출시 알림에만 써요.</p>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section id="wm-faq" class="wm-section" aria-labelledby="wm-faq-title">
+        <div class="container">
+          <div class="wm-faq-grid">
+            <h2 id="wm-faq-title" class="wm-disp wm-h2">자주 묻는 질문</h2>
+            <div class="wm-faqbox">
+              <details>
+                <summary>지금 바로 쓸 수 있나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+                <p class="wm-p">아직은 준비 중이에요. 이메일을 남겨 주시면 출시할 때 알려 드릴게요.</p>
+              </details>
+              <details>
+                <summary>저장해 둔 레시피가 없어도 쓸 수 있나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+                <p class="wm-p">네. 유튜브 등에 공개된 레시피를 둘러보며 시작할 수 있게 준비하고 있어요. 마음에 드는 레시피는 바로 이번 주 메뉴에 넣을 수 있게 할 거예요.</p>
+              </details>
+              <details>
+                <summary>어떤 레시피를 담을 수 있나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+                <p class="wm-p">영상, 블로그, SNS 게시물 속 레시피를 링크나 글, 캡처로 담을 수 있게 준비하고 있어요.</p>
+              </details>
+              <details>
+                <summary>남긴 이메일은 어디에 쓰이나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+                <p class="wm-p">출시 소식을 보내는 데만 써요. 원하지 않으면 언제든 수신을 그만둘 수 있어요.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wm wm-foot">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+          <span class="wm-brand">[서비스 이름]</span>
+          <span class="wm-eb">** 출시 준비 중 **</span>
+        </div>
+        <div class="wm-dots" aria-hidden="true"></div>
+      </div>
+    </footer>
+
+    <!-- 안내 창: 버튼 클릭 뒤 → 이메일 제출(waitlist_submit) → 가구 질문(household_select) -->
+    <div class="modal fade wm" id="wm-modal" tabindex="-1" aria-labelledby="wm-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="wm-paper wm-scallop wm-modal-paper">
+            <button type="button" class="wm-close" data-bs-dismiss="modal" aria-label="닫기">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+
+            <div data-wm-state="form">
+              <p class="wm-eb is-soft mb-2">** 출시 준비 중 **</p>
+              <h2 id="wm-modal-title" class="wm-h3 mb-2" style="font-family: var(--f-body); font-weight: 700; font-size: 18px">아직 준비 중인 서비스예요.</h2>
+              <p class="mb-4">이메일을 남겨 주시면 출시할 때 알려 드릴게요.</p>
+              <label for="submit-email" class="wm-field-label">이메일 주소</label>
+              <input
+                id="submit-email"
+                class="wm-input"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="이메일 주소"
+                aria-describedby="wm-email-note"
+              />
+              <p id="wm-email-error" class="wm-error" role="alert" hidden>이메일 주소를 다시 확인해 주세요.</p>
+              <label for="submit-advice" class="wm-field-label mt-3">서비스에 바라는 점 (선택)</label>
+              <textarea id="submit-advice" class="wm-textarea" rows="3" placeholder="자유롭게 남겨 주세요"></textarea>
+              <button id="submit" type="button" class="wm-btn wm-btn-primary w-100 mt-4">알림 신청</button>
+              <p id="wm-email-note" class="wm-label mt-3 mb-0">이메일은 출시 알림에만 써요.</p>
+            </div>
+
+            <div data-wm-state="done" hidden>
+              <p class="wm-label wm-ok mb-2">신청 완료</p>
+              <h2 id="wm-done-title" class="mb-2" style="font-weight: 700; font-size: 18px; line-height: 1.4" tabindex="-1">신청해 주셔서 고마워요.</h2>
+              <p class="mb-4">출시되면 이 주소로 알려 드릴게요.</p>
+              <div role="group" aria-labelledby="wm-q-label" class="pt-3" style="border-top: 1px dashed var(--line)">
+                <p id="wm-q-label" class="fw-semibold mb-3">주로 누구와 식사하세요?</p>
+                <div class="d-flex flex-wrap gap-2">
+                  <button type="button" class="wm-chip" data-household="solo" aria-pressed="false">혼자</button>
+                  <button type="button" class="wm-chip" data-household="family" aria-pressed="false">가족과</button>
+                </div>
+                <button type="button" class="wm-textbtn mt-2" data-bs-dismiss="modal">건너뛰기</button>
+              </div>
+              <p class="wm-q-thanks mt-2 mb-0" aria-live="polite" hidden>답해 주셔서 고마워요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 안(A/B) 정하기 · 섹션 순서 · 이벤트 함수 -->
+    <script>
+      (function () {
+        // 이메일·이벤트를 받는 Google Apps Script 주소 (한 곳에서만 관리)
+        var ENDPOINT =
+          "https://script.google.com/macros/s/AKfycbxJKXlJcpuN4F3jTYEl0fzspwziUp8y2Qd7rTvMeh8ShW93nJjHslVtiLq2T45cbTGdEg/exec";
+        // true면 URL 파라미터가 없을 때 50:50으로 무작위 배정(쿠키로 180일 유지)
+        var SPLIT = { layout: true, hero: false };
+
+        var params = new URLSearchParams(location.search);
+        function readCookie(name) {
+          var m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([ab])"));
+          return m ? m[1] : null;
+        }
+        function saveCookie(name, value) {
+          document.cookie = name + "=" + value + "; path=/; max-age=" + 60 * 60 * 24 * 180;
+        }
+        function pick(param, cookie, split) {
+          var v = (params.get(param) || "").toLowerCase();
+          if (v === "a" || v === "b") {
+            saveCookie(cookie, v);
+            return v;
+          }
+          if (!split) return "a";
+          v = readCookie(cookie);
+          if (v) return v;
+          v = Math.random() < 0.5 ? "a" : "b";
+          saveCookie(cookie, v);
+          return v;
+        }
+
+        var layout = pick("layout", "wm_layout", SPLIT.layout);
+        var hero = pick("hero", "wm_hero", SPLIT.hero);
+
+        // 섹션 순서: 화면 순서와 DOM 순서를 같게 맞춰 스크린리더·키보드 순서도 일치
+        var ORDER = {
+          a: ["wm-hero", "wm-story", "wm-how", "wm-who", "wm-final", "wm-faq"],
+          b: ["wm-hero", "wm-how", "wm-story", "wm-who", "wm-faq", "wm-final"],
+        };
+        var main = document.getElementById("wm-main");
+        ORDER[layout].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) main.appendChild(el);
+        });
+        main.setAttribute("data-layout", layout);
+        main.setAttribute("data-hero", hero);
+
+        // 히어로 카피 2버전
+        var HERO = {
+          a: {
+            title: "오늘 뭐 먹지,<br />미리 정해 두기",
+            sub: "새로 찾지 말고, 이미 저장해 둔 레시피 중에서 고르게 해 드릴게요",
+          },
+          b: {
+            title: "오늘 메뉴는<br />저장해 둔 레시피로",
+            sub: "내가 저장한 레시피에 유튜브 공개 레시피를 더해 이번 주 식단을 짤 수 있게 돼요",
+          },
+        };
+        document.getElementById("wm-hero-title").innerHTML = HERO[hero].title;
+        document.getElementById("wm-hero-sub").textContent = HERO[hero].sub;
+
+        var WM = {
+          endpoint: ENDPOINT,
+          layout: layout,
+          hero: hero,
+          utm: params.get("utm"),
+          utm_source: params.get("utm_source"),
+          utm_campaign: params.get("utm_campaign"),
+        };
+
+        // 이벤트 기록: dataLayer(GA/GTM용) + Apps Script의 events 시트
+        WM.track = function (name, props) {
+          var payload = Object.assign(
+            {
+              event: name,
+              layout_variant: WM.layout,
+              headline_variant: WM.hero,
+              utm: WM.utm,
+              utm_source: WM.utm_source,
+              utm_campaign: WM.utm_campaign,
+            },
+            props || {}
+          );
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push(payload);
+          try {
+            var row = Object.assign(
+              {
+                id: typeof getUVfromCookie === "function" ? getUVfromCookie() : null,
+                time_stamp: typeof getTimeStamp === "function" ? getTimeStamp() : new Date().toISOString(),
+              },
+              payload
+            );
+            if (window.axios) {
+              axios
+                .get(WM.endpoint + "?action=insert&table=events&data=" + encodeURIComponent(JSON.stringify(row)))
+                .catch(function () {});
+            }
+          } catch (e) {}
+        };
+
+        // 안내 창 상태 전환: form ↔ done
+        WM.showState = function (state) {
+          document.querySelectorAll("[data-wm-state]").forEach(function (el) {
+            el.hidden = el.getAttribute("data-wm-state") !== state;
+          });
+          if (state === "done") {
+            var t = document.getElementById("wm-done-title");
+            if (t) t.focus();
+          }
+        };
+
+        window.WM = WM;
+      })();
+    </script>
+
+
+    <!-- JavaScript Libraries -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script type="application/javascript">
+      var ip = "null";
+      function getIP(json) {
+        console.log(json);
+        try {
+          ip = json.ip;
+        } catch (e) {
+          ip = "unknown";
+        }
+        return;
+      }
+    </script>
+    <script
+      type="application/javascript"
+      src="https://jsonip.com?format=jsonp&callback=getIP"
+    ></script>
+
+    <script>
+      var mobile = "desktop";
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent,
+        )
+      ) {
+        // true for mobile device
+        mobile = "mobile";
+      }
+
+      var queryString = location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const utm = urlParams.get("utm");
+
+      // Sam pading value to start with 0. eg: 01, 02, .. 09, 10, ..
+      function padValue(value) {
+        return value < 10 ? "0" + value : value;
+      }
+
+      function getTimeStamp() {
+        const date = new Date();
+
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        const formattedDate = `${padValue(year)}-${padValue(month)}-${padValue(day)} ${padValue(hours)}:${padValue(minutes)}:${padValue(seconds)}`;
+
+        return formattedDate;
+      }
+
+      // 쿠키에서 값을 가져오는 함수
+      function getCookieValue(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) {
+          return parts.pop().split(";").shift();
+        }
+      }
+
+      // 쿠키에 값을 저장하는 함수
+      function setCookieValue(name, value, days) {
+        let expires = "";
+        if (days) {
+          const date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+      function getUVfromCookie() {
+        // 6자리 임의의 문자열 생성
+        const hash = Math.random().toString(36).substring(2, 8).toUpperCase();
+        // 쿠키에서 기존 해시 값을 가져옴
+        const existingHash = getCookieValue("user");
+        // 기존 해시 값이 없으면, 새로운 해시 값을 쿠키에 저장
+        if (!existingHash) {
+          setCookieValue("user", hash, 180); // 쿠키 만료일은 6개월
+          return hash;
+        } else {
+          // 기존 해시 값이 있으면, 기존 값을 반환
+          return existingHash;
+        }
+      }
+
+      var data = JSON.stringify({
+        id: getUVfromCookie(),
+        landingUrl: window.location.href,
+        ip: ip,
+        referer: document.referrer,
+        time_stamp: getTimeStamp(),
+        utm: utm,
+        device: mobile,
+      });
+      $(document).ready(function () {
+        console.log("Document Ready");
+
+        var addrScript = window.WM.endpoint;
+
+        /* axios request */
+        axios
+          .get(addrScript + "?action=insert&table=visitors&data=" + encodeURIComponent(data))
+          .then((response) => {
+            console.log(JSON.stringify(response));
+          });
+        $("#submit").on("click", function () {
+          const email = $("#submit-email").val();
+          const advice = $("#submit-advice").val();
+
+          function validateEmail(email) {
+            var re =
+              /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            return re.test(email);
+          }
+
+          if (email == "" || !validateEmail(email)) {
+            $("#wm-email-error").prop("hidden", false);
+            $("#submit-email").attr("aria-invalid", "true").trigger("focus");
+            return;
+          }
+
+          $.busyLoadFull("show");
+          var finalData = JSON.stringify({
+            id: getUVfromCookie(),
+            email: email,
+            advice: advice,
+          });
+
+          axios
+            .get(
+              addrScript + "?action=insert&table=tab_final&data=" + encodeURIComponent(finalData),
+            )
+            .then((response) => {
+              $.busyLoadFull("hide");
+              console.log(response.data.data);
+              WM.track("waitlist_submit");
+              WM.showState("done");
+              $("#submit-email").val("");
+              $("#submit-advice").val("");
+            })
+            .catch(() => {
+              $.busyLoadFull("hide");
+              $("#wm-email-error").text("잠시 후 다시 시도해 주세요.").prop("hidden", false);
+            });
+        });
+      });
+    </script>
+    <!-- 랜딩 이벤트: hero_cta_click · household_select 등 (waitlist_submit은 위 제출 스크립트에서 기록) -->
+    <script>
+      $(function () {
+        var DEFAULT_ERROR = "이메일 주소를 다시 확인해 주세요.";
+        var modalEl = document.getElementById("wm-modal");
+
+        WM.track("page_view");
+
+        $("#cta_primary").on("click", function () {
+          WM.track("hero_cta_click", { position: "hero" });
+        });
+        $("#cta_final").on("click", function () {
+          WM.track("hero_cta_click", { position: "final" });
+        });
+
+        // 이메일 칸에서 Enter → 제출
+        $("#submit-email").on("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            $("#submit").trigger("click");
+          }
+        });
+        $("#submit-email").on("input", function () {
+          $("#wm-email-error").text(DEFAULT_ERROR).prop("hidden", true);
+          $(this).removeAttr("aria-invalid");
+        });
+
+        // 제출 뒤 가구 질문
+        $(".wm-chip").on("click", function () {
+          var value = $(this).data("household");
+          $(".wm-chip").attr("aria-pressed", "false");
+          $(this).attr("aria-pressed", "true");
+          WM.track("household_select", { value: value });
+          $(".wm-q-thanks").prop("hidden", false);
+          setTimeout(function () {
+            var m = bootstrap.Modal.getInstance(modalEl);
+            if (m) m.hide();
+          }, 1200);
+        });
+
+        modalEl.addEventListener("shown.bs.modal", function () {
+          if (!document.querySelector('[data-wm-state="form"]').hidden) {
+            document.getElementById("submit-email").focus();
+          }
+        });
+        modalEl.addEventListener("hidden.bs.modal", function () {
+          WM.showState("form");
+          $(".wm-chip").attr("aria-pressed", "false");
+          $(".wm-q-thanks").prop("hidden", true);
+          $("#wm-email-error").text(DEFAULT_ERROR).prop("hidden", true);
+          $("#submit-email").removeAttr("aria-invalid");
+        });
+      });
+    </script>
+  </body>
+</html>
