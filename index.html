@@ -6,9 +6,19 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요." name="description" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:url" content="https://lively-platypus-e38b4c.netlify.app/" />
+    <meta property="og:title" content="매일 하는 아이 반찬 고민, 고르기 쉽게" />
+    <meta property="og:description" content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요." />
+    <meta property="og:image" content="https://lively-platypus-e38b4c.netlify.app/img/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+    <link href="img/favicon.svg" rel="icon" type="image/svg+xml" />
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -163,13 +173,14 @@
   .kb-nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .brand { font-family: var(--f-display); font-weight: 700; font-size: 18px; letter-spacing: -0.03em; }
   .navlinks { display: none; gap: 32px; font-weight: 500; }
-  .navlinks a { color: var(--ink); text-decoration: none; }
+  .navlinks a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; color: var(--ink); text-decoration: none; }
   .navlinks a:hover { color: var(--ink-soft); }
   .hero { display: grid; grid-template-columns: minmax(0,1fr); gap: 36px; padding-top: 20px; text-align: center; justify-items: center; }
   .hero-copy { display: flex; flex-direction: column; align-items: center; gap: 16px; }
   .hero-copy .kb-btn { margin-top: 8px; width: 100%; max-width: 340px; }
   .collage { position: relative; width: 100%; max-width: 420px; height: 300px; }
   .collage .card-note { position: absolute; left: 4%; top: 22px; width: 58%; padding: 38px 18px 18px 40px; transform: rotate(-4deg); --hole: var(--butter); }
+  .collage .card-note { text-align: left; }
   .card-note .hand-title { font-size: 24px; line-height: 1.1; }
   .card-note ul { margin-top: 8px; font-family: var(--f-hand); font-size: 18px; line-height: 30px; color: #3a3a3a; }
   .stamp {
@@ -178,7 +189,7 @@
     font-family: var(--f-hand); font-weight: 700; font-size: 16px; transform: rotate(-3deg);
   }
   .stamp svg { width: 14px; height: 14px; }
-  .collage .card-polar { position: absolute; right: 0; top: 104px; width: 40%; padding: 10px 10px 34px; background: var(--paper); transform: rotate(5deg); }
+  .collage .card-polar { position: absolute; right: 0; top: 112px; width: 36%; padding: 10px 10px 34px; background: var(--paper); transform: rotate(5deg); }
   .card-polar .ph { aspect-ratio: 1; background: var(--pale); display: grid; place-items: center; }
   .card-polar .ph svg { width: 78%; height: 78%; }
   .card-polar figcaption { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; font-family: var(--f-hand); font-weight: 700; font-size: 19px; }
@@ -307,6 +318,71 @@
   .detail .pick { min-height: 44px; font-size: 14px; }
   .detail .like { min-height: 44px; padding: 0 14px; }
   .liked-badge { position: absolute; top: 8px; left: 8px; }
+  /* 재료 체크 → 장바구니 */
+  .d-ing-list li { border-top: 1px dashed var(--line); }
+  .d-ing-list li:first-child { border-top: 0; }
+  .ing-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; font-size: 15px; }
+  .ing-add { flex: none; display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 0 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .ing-add svg { width: 15px; height: 15px; }
+  .ing-add[aria-pressed="true"] { background: var(--yolk); border-color: var(--yolk); }
+  .h4row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+  .h4row h4 { margin: 0; }
+  .add-all { min-height: 36px; padding: 0 8px; border: 0; background: none; font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; color: var(--ink); }
+  .cart-bar { position: sticky; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 5; display: flex; justify-content: center; margin-top: 16px; pointer-events: none; }
+  .cart-open { pointer-events: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 52px; padding: 0 22px 0 16px; border: 0; border-radius: 999px; background: var(--ink); color: var(--off); font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 8px 22px rgba(17,17,17,.22); }
+  .cart-open svg { width: 30px; height: 24px; }
+  .cart-open b { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 7px; border-radius: 999px; background: var(--yolk); color: var(--ink); font-family: var(--f-label); font-size: 13px; font-weight: 400; }
+  .cart-open.bump b { animation: bump .5s ease; }
+  .ing-pick { display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; font-size: 15px; }
+  .ing-pick input { flex: none; width: 20px; height: 20px; margin: 0; padding: 0; accent-color: var(--ink); }
+  .detail h4 span { margin-left: 6px; letter-spacing: 0; font-family: var(--f-body); font-size: 12px; }
+  .cook-btn { flex: 1; min-width: 0; min-height: 44px; border: 0; border-radius: 999px; background: var(--ink); color: var(--off); font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+  .cook-btn svg { width: 16px; height: 16px; }
+  /* 요리 모드 */
+  .cook { display: flex; flex-direction: column; gap: 14px; }
+  .cook-bar { height: 8px; border-radius: 999px; background: var(--gray); overflow: hidden; }
+  .cook-bar span { display: block; height: 100%; background: var(--yolk); border-radius: 999px; transition: width .35s ease; }
+  .cook-step { min-height: 7.5em; padding: 20px; border-radius: 16px; background: var(--pale); font-size: 20px; font-weight: 600; line-height: 1.5; }
+  .cook-step b { display: block; margin-bottom: 6px; font-family: var(--f-label); font-weight: 400; font-size: 13px; color: var(--ink-soft); }
+  .cook .acts { display: flex; gap: 8px; }
+  .cook .ghost { flex: 1; min-height: 48px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .cook .ghost:disabled { opacity: .35; cursor: default; }
+  .cook .next { flex: 1.4; min-height: 48px; border: 0; border-radius: 999px; background: var(--ink); color: var(--off); font-weight: 600; font-size: 15px; cursor: pointer; }
+  /* 03 탭 개수 · 장바구니 */
+  .tab .tcount { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--yolk); color: var(--ink); font-family: var(--f-label); font-size: 12px; font-weight: 400; }
+  .tab .tcount:empty { display: none; }
+  .tab.bump .tcount { animation: bump .5s ease; }
+  @keyframes bump { 0% { transform: scale(1); } 35% { transform: scale(1.45) rotate(-8deg); } 100% { transform: scale(1); } }
+  #demo-shop { align-items: start; }
+  .basket-box { display: flex; flex-direction: column; align-items: center; gap: 10px; background: var(--pale); border-color: var(--pale); }
+  .basket-stage { position: relative; width: 100%; max-width: 300px; aspect-ratio: 4 / 3; }
+  .basket-items { position: absolute; left: 14%; right: 14%; top: 8%; height: 46%; display: flex; flex-wrap: wrap-reverse; align-content: flex-start; justify-content: center; gap: 4px; overflow: hidden; }
+  .bitem { padding: 3px 9px; border-radius: 999px; background: var(--paper); font-family: var(--f-hand); font-weight: 700; font-size: 16px; line-height: 1.2; box-shadow: 0 1px 0 rgba(0,0,0,.08); transform: rotate(var(--r, 0deg)); }
+  .bitem.drop { animation: drop .55s cubic-bezier(.3,1.4,.5,1) both; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-60px) rotate(-20deg); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+  .basket-stage svg.basket { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 72%; }
+  .basket-total { font-family: var(--f-hand); font-weight: 700; font-size: 22px; }
+  .cart-group + .cart-group { margin-top: 14px; }
+  .cart-group h5 { margin: 0 0 6px; font-family: var(--f-hand); font-weight: 700; font-size: 20px; }
+  .cart-item { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 4px 4px 4px 12px; margin-bottom: 6px; border-radius: 12px; background: var(--paper); border: 1px solid var(--line); font-size: 15px; }
+  .cart-item .grow b { font-weight: 600; }
+  .shop { display: inline-flex; align-items: center; min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .shop:hover { background: var(--pale); }
+  .rm { flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 999px; background: none; color: var(--ink-soft); font-size: 20px; line-height: 1; cursor: pointer; }
+  .rm:hover { background: var(--gray); }
+  .shop-note { margin-top: 10px; font-size: 12px; color: var(--ink-soft); }
+  /* 390px 근처: 데모 카드를 한 줄짜리 목록으로 */
+  @media (max-width: 480px) {
+    .cards { grid-template-columns: minmax(0,1fr); }
+    .rcard .open { display: flex; align-items: center; gap: 12px; padding: 10px 12px 0; }
+    .rcard .thumb { flex: none; width: 60px; height: 60px; border-radius: 12px; }
+    .rcard .thumb svg { width: 46px; height: 46px; }
+    .rcard .open .title { padding: 0; }
+    .rcard .acts { flex-wrap: nowrap; }
+    .rcard .like, .rcard .pick { flex: 1 1 auto; }
+    .cart-item { flex-wrap: wrap; }
+    .cart-item .grow { flex-basis: 40%; }
+  }
   .empty-msg { padding: 18px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 14px; }
 
   .ing { display: flex; align-items: center; gap: 12px; min-height: 48px; border-bottom: 1px dashed var(--line); cursor: pointer; font-size: 15px; }
@@ -355,6 +431,21 @@
   .ok { color: var(--ok); }
 
   footer { background: var(--ink); color: var(--off); padding-block: 36px 44px; }
+  .foot-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+  .policy summary { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; cursor: pointer; color: var(--off); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; list-style: none; }
+  .policy summary::-webkit-details-marker { display: none; }
+  .policy-body { margin-top: 10px; max-width: 44em; font-size: 14px; line-height: 1.75; color: #d8d4c4; }
+  .policy-body li { padding-left: 12px; position: relative; }
+  .policy-body li::before { content: "·"; position: absolute; left: 0; }
+  /* 개인정보 동의 */
+  .consent { margin-top: 16px; padding: 12px 16px 8px; border-radius: 14px; background: var(--gray); font-size: 14px; line-height: 1.6; }
+  .consent > label { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; cursor: pointer; }
+  .consent input { flex: none; width: 20px; height: 20px; margin: 0; padding: 0; accent-color: var(--ink); }
+  .consent summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; list-style: none; }
+  .consent summary::-webkit-details-marker { display: none; }
+  .consent ul { padding: 0 0 8px; color: var(--ink-soft); }
+  .consent li { padding-left: 12px; position: relative; }
+  .consent li::before { content: "·"; position: absolute; left: 0; }
   footer .brand { color: var(--off); }
   footer .dots { margin-top: 20px; height: 2px; opacity: .6; background: radial-gradient(circle at 1px 1px, var(--off) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
 
@@ -490,6 +581,13 @@
       </g>
       <circle cx="50" cy="50" r="5" fill="var(--c-tomato)"/>
     </symbol>
+    <symbol id="d-basket" viewBox="0 0 200 150">
+      <path d="M58 54C58 18 142 18 142 54" fill="none" stroke="#a5652a" stroke-width="7" stroke-linecap="round"/>
+      <path d="M18 56h164l-18 84H36z" fill="#d9a05b" stroke="#a5652a" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M30 78h140M34 98h132M38 118h124" stroke="#a5652a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M62 58l8 80M100 58v80M138 58l-8 80" stroke="#b97a3b" stroke-width="4" stroke-linecap="round"/>
+      <path d="M12 50h176v12H12z" fill="#c4874a" stroke="#a5652a" stroke-width="4" stroke-linejoin="round"/>
+    </symbol>
     <symbol id="d-heart" viewBox="0 0 24 24">
       <path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
     </symbol>
@@ -582,7 +680,7 @@
         <div class="tabs" role="tablist" aria-label="예시 단계">
           <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"><span>01</span>레시피 모으기</button>
           <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1"><span>02</span>고민될 때 열어 보기</button>
-          <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span>03</span>바로 장 보기</button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span>03</span>바로 장 보기<b class="tcount" id="demo-tcount" aria-label="장바구니 재료 수"></b></button>
         </div>
 
         <div id="panel-0" class="panel" role="tabpanel" aria-labelledby="tab-0">
@@ -608,21 +706,30 @@
             <div class="cards" id="demo-cards"></div>
             <aside class="box detail" id="demo-detail" aria-live="polite" aria-label="레시피 보기"></aside>
           </div>
+          <div class="cart-bar">
+            <button type="button" class="cart-open" id="demo-open-cart">
+              <svg class="doodle" viewBox="0 0 200 150" aria-hidden="true"><use href="#d-basket"/></svg>
+              장바구니 열기 <b id="demo-bar-count">0</b>
+            </button>
+          </div>
         </div>
 
         <div id="panel-2" class="panel" role="tabpanel" aria-labelledby="tab-2" hidden>
           <div id="demo-shop-empty" class="empty-msg">
-            02에서 오늘 메뉴를 골라 보세요.
-            <div style="margin-top:12px"><button class="sbtn" id="demo-go-pick" type="button">메뉴 고르러 가기</button></div>
+            02에서 재료를 체크하거나 메뉴를 고르면 여기 장바구니에 담겨요.
+            <div style="margin-top:12px"><button class="sbtn" id="demo-go-pick" type="button">메뉴 보러 가기</button></div>
           </div>
           <div id="demo-shop" class="panel-grid two" hidden>
-            <div class="box">
-              <div class="box-h"><b id="demo-shop-title"></b><span class="count">집에 있는 건 체크</span></div>
-              <ul id="demo-ings"></ul>
+            <div class="box basket-box">
+              <div class="basket-stage" aria-hidden="true">
+                <div class="basket-items" id="basket-items"></div>
+                <svg class="doodle basket" viewBox="0 0 200 150" preserveAspectRatio="xMidYMax meet"><use href="#d-basket"/></svg>
+              </div>
+              <p class="basket-total" id="basket-total"></p>
             </div>
-            <div class="box cart">
+            <div class="box">
               <div class="box-h"><b>장 볼 재료</b><span class="count" id="demo-cart-count"></span></div>
-              <ul class="cartlist" id="demo-cart" aria-live="polite"></ul>
+              <div id="demo-cart" aria-live="polite"></div>
             </div>
           </div>
         </div>
@@ -679,7 +786,20 @@
 
 <footer>
   <div class="wrap">
-    <span class="brand">[서비스 이름]</span>
+    <div class="foot-row">
+      <span class="brand">[서비스 이름]</span>
+      <details class="policy">
+        <summary>개인정보 처리방침</summary>
+        <ul class="policy-body">
+          <li>수집 목적: 출시 알림 발송, 서비스 수요 조사</li>
+          <li>수집 항목: 이메일, 의견(선택), 방문 기록(IP, 쿠키 ID, 기기 정보, 유입 경로)</li>
+          <li>보유·이용 기간: 출시 알림 발송을 마치거나 동의를 철회하면 바로 파기해요</li>
+          <li>보관 위치: Google LLC의 스프레드시트(국외 서버)</li>
+          <li>동의를 거부할 권리가 있으며, 거부하면 출시 알림을 받을 수 없어요</li>
+          <li>문의·동의 철회: [문의 이메일]</li>
+        </ul>
+      </details>
+    </div>
     <div class="dots"></div>
   </div>
 </footer>
@@ -700,6 +820,20 @@
           <p id="wm-email-error" class="error" role="alert" hidden>이메일 주소를 다시 확인해 주세요.</p>
           <label for="submit-advice" class="field-label" style="margin-top:16px">서비스에 바라는 점 (선택)</label>
           <textarea id="submit-advice" class="textarea" rows="3" placeholder="자유롭게 남겨 주세요"></textarea>
+          <div class="consent">
+            <label for="wm-consent"><input id="wm-consent" type="checkbox"><span>[필수] 개인정보 수집·이용에 동의해요</span></label>
+            <details>
+              <summary>자세히 보기</summary>
+              <ul>
+                <li>수집 목적: 출시 알림 발송, 서비스 수요 조사</li>
+                <li>수집 항목: 이메일, 의견(선택), 방문 기록(IP, 쿠키 ID, 기기 정보, 유입 경로)</li>
+                <li>보유·이용 기간: 출시 알림 발송을 마치거나 동의를 철회하면 바로 파기해요</li>
+                <li>보관 위치: Google LLC의 스프레드시트(국외 서버)</li>
+                <li>동의하지 않을 수 있어요. 동의하지 않으면 출시 알림을 받을 수 없어요.</li>
+              </ul>
+            </details>
+          </div>
+          <p id="wm-consent-error" class="error" role="alert" hidden>개인정보 수집·이용에 동의해 주세요.</p>
           <button id="submit" type="button" class="kb-btn kb-btn-primary" style="width:100%;margin-top:20px">출시 알림 신청</button>
           <p id="wm-email-note" class="note" style="margin-top:14px">이메일은 출시 소식을 보내는 데만 써요. 원하지 않으면 언제든 수신을 그만둘 수 있어요.</p>
         </div>
@@ -923,6 +1057,12 @@
             return;
           }
 
+          if (!$("#wm-consent").is(":checked")) {
+            $("#wm-consent-error").prop("hidden", false);
+            $("#wm-consent").trigger("focus");
+            return;
+          }
+
           $.busyLoadFull("show");
           var finalData = JSON.stringify({
             id: getUVfromCookie(),
@@ -1047,7 +1187,7 @@
       { id: "broc", title: "브로콜리 치즈전", d: "d-broc", kind: "hot", liked: false, dur: "00:55", ings: ["브로콜리", "치즈", "달걀"],
         steps: ["브로콜리를 데쳐 잘게 다져요.", "달걀을 풀어 브로콜리와 섞어요.", "잘게 찢은 치즈를 넣어요.", "한 숟갈씩 떠서 팬에 올려요.", "약불에서 앞뒤로 노릇하게 익혀요."] },
     ];
-    var state = { filter: "all", chosen: null, have: {}, view: "tofu" };
+    var state = { filter: "all", view: "tofu", cook: null, cart: [] };
 
     function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
     function doodle(id) {
@@ -1109,8 +1249,20 @@
         var t = el("span", "tile"); t.appendChild(doodle(r.d)); li.appendChild(t);
         var g = el("span", "grow"); g.appendChild(el("b", "hand", r.title)); g.lastChild.style.fontSize = "20px";
         g.appendChild(el("span", "src", "재료 " + r.ings.length + " · 순서 " + r.steps.length)); li.appendChild(g);
+        var ob = el("button", "sbtn", "열어 보기"); ob.type = "button"; ob.setAttribute("aria-label", r.title + " 열어 보기");
+        ob.addEventListener("click", function () { openRecipe(r.id); });
+        li.appendChild(ob);
         ul.appendChild(r.id === newId ? anim(li) : li);
       });
+    }
+
+    // 01 → 02: 내 레시피에서 고른 레시피를 02에서 바로 열기
+    function openRecipe(id) {
+      state.view = id; state.cook = null; state.filter = "all";
+      document.querySelectorAll("#panel-1 .chip").forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-filter") === "all" ? "true" : "false"); });
+      selectTab(1, true);
+      var d = document.getElementById("demo-detail");
+      if (d) d.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
     }
 
     // 02 고민될 때 열어 보기
@@ -1131,11 +1283,25 @@
     function pickBtn(r) {
       var pk = el("button", "pick", "고르기"); pk.type = "button"; pk.setAttribute("aria-label", r.title + " 고르기");
       pk.addEventListener("click", function () {
-          if (window.WM) WM.track("demo_pick", { recipe: r.id, filter: state.filter });
-          state.chosen = r.id; state.have = {}; selectTab(2, true);
-        });
+        if (window.WM) WM.track("demo_pick", { recipe: r.id, filter: state.filter });
+        r.ings.forEach(function (n) { addCart(r.id, n); });
+        updateCount(true); selectTab(2, true);
+      });
       return pk;
     }
+    // 장바구니
+    function inCart(rid, ing) { return state.cart.some(function (c) { return c.rid === rid && c.ing === ing; }); }
+    function addCart(rid, ing) { if (!inCart(rid, ing)) state.cart.push({ rid: rid, ing: ing, fresh: true }); }
+    function removeCart(rid, ing) { state.cart = state.cart.filter(function (c) { return !(c.rid === rid && c.ing === ing); }); }
+    function updateCount(bump) {
+      var n = state.cart.length;
+      document.getElementById("demo-tcount").textContent = n ? String(n) : "";
+      document.getElementById("demo-bar-count").textContent = String(n);
+      if (bump && !reduce) {
+        ["tab-2", "demo-open-cart"].forEach(function (id) { var t = document.getElementById(id); t.classList.remove("bump"); void t.offsetWidth; t.classList.add("bump"); });
+      }
+    }
+    function findR(id) { return R.find(function (x) { return x.id === id; }); }
     function renderCards() {
       var box = document.getElementById("demo-cards"); box.textContent = "";
       var list = R.filter(function (r) {
@@ -1145,7 +1311,7 @@
         return true;
       });
       if (!list.length) { box.appendChild(el("p", "empty-msg", "아직 표시한 반찬이 없어요. 카드의 하트를 눌러 보세요.")); renderDetail(); return; }
-      if (!list.some(function (r) { return r.id === state.view; })) state.view = list[0].id;
+      if (!list.some(function (r) { return r.id === state.view; })) { state.view = list[0].id; state.cook = null; }
       list.forEach(function (r) {
         var c = el("article", "rcard" + (r.id === state.view ? " is-sel" : ""));
         var op = el("button", "open"); op.type = "button"; op.setAttribute("aria-label", r.title + " 레시피 보기");
@@ -1153,7 +1319,7 @@
         var th = el("div", "thumb"); th.appendChild(doodle(r.d)); op.appendChild(th);
         op.appendChild(el("p", "title", r.title));
         op.addEventListener("click", function () {
-          state.view = r.id; renderCards();
+          state.view = r.id; state.cook = null; renderCards();
           if (!window.matchMedia("(min-width: 768px)").matches) {
             document.getElementById("demo-detail").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
           }
@@ -1169,63 +1335,133 @@
       });
       renderDetail();
     }
+    function svgEl(tag, attrs) {
+      var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); }); return n;
+    }
     function renderDetail() {
       var d = document.getElementById("demo-detail"); d.textContent = "";
-      var r = R.find(function (x) { return x.id === state.view; });
+      var r = findR(state.view);
       if (!r) { d.appendChild(el("p", "empty-msg", "카드를 누르면 레시피가 여기에 보여요.")); return; }
-      var ns = "http://www.w3.org/2000/svg";
+      if (state.cook && state.cook.rid === r.id) { renderCook(d, r); return; }
       var v = el("div", "video"); v.setAttribute("aria-label", "원본 영상 미리보기");
       v.appendChild(doodle(r.d));
-      var pl = el("span", "play"); var ps = document.createElementNS(ns, "svg"); ps.setAttribute("viewBox", "0 0 24 24"); ps.setAttribute("aria-hidden", "true");
-      var pp = document.createElementNS(ns, "path"); pp.setAttribute("d", "M7 4l13 8-13 8z"); pp.setAttribute("fill", "#fff"); ps.appendChild(pp); pl.appendChild(ps); v.appendChild(pl);
+      var pl = el("span", "play"); var ps = svgEl("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" });
+      ps.appendChild(svgEl("path", { d: "M7 4l13 8-13 8z", fill: "#fff" })); pl.appendChild(ps); v.appendChild(pl);
       v.appendChild(el("span", "dur", r.dur));
       d.appendChild(v);
       var head = el("div");
       head.appendChild(el("p", "d-title", r.title));
       var src = el("p", "d-src");
-      var ig = document.createElementNS(ns, "svg"); ig.setAttribute("viewBox", "0 0 24 24"); ig.setAttribute("aria-hidden", "true");
-      var rr = document.createElementNS(ns, "rect"); rr.setAttribute("x", "3"); rr.setAttribute("y", "3"); rr.setAttribute("width", "18"); rr.setAttribute("height", "18"); rr.setAttribute("rx", "5");
-      var cc = document.createElementNS(ns, "circle"); cc.setAttribute("cx", "12"); cc.setAttribute("cy", "12"); cc.setAttribute("r", "4");
-      [rr, cc].forEach(function (n) { n.setAttribute("fill", "none"); n.setAttribute("stroke", "currentColor"); n.setAttribute("stroke-width", "1.8"); ig.appendChild(n); });
+      var ig = svgEl("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" });
+      ig.appendChild(svgEl("rect", { x: 3, y: 3, width: 18, height: 18, rx: 5, fill: "none", stroke: "currentColor", "stroke-width": 1.8 }));
+      ig.appendChild(svgEl("circle", { cx: 12, cy: 12, r: 4, fill: "none", stroke: "currentColor", "stroke-width": 1.8 }));
       src.appendChild(ig); src.appendChild(document.createTextNode(SRC));
       head.appendChild(src); d.appendChild(head);
-      var s1 = el("div"); s1.appendChild(el("h4", null, "재료"));
-      var ul = el("ul", "d-ings"); r.ings.forEach(function (n) { ul.appendChild(el("li", null, n)); }); s1.appendChild(ul); d.appendChild(s1);
+      var s1 = el("div"); var hr = el("div", "h4row"); hr.appendChild(el("h4", null, "재료"));
+      var all = el("button", "add-all", "모두 담기"); all.type = "button";
+      all.addEventListener("click", function () { r.ings.forEach(function (n) { addCart(r.id, n); }); updateCount(true); renderDetail(); });
+      hr.appendChild(all); s1.appendChild(hr);
+      var ul = el("ul", "d-ing-list");
+      r.ings.forEach(function (n) {
+        var li = el("li", "ing-row"); li.appendChild(el("span", null, n));
+        var bt = el("button", "ing-add"); bt.type = "button";
+        function paint() {
+          var on = inCart(r.id, n);
+          bt.setAttribute("aria-pressed", on ? "true" : "false");
+          bt.setAttribute("aria-label", n + (on ? " 장바구니에서 빼기" : " 장바구니에 담기"));
+          bt.textContent = on ? "담았어요" : "+ 담기";
+        }
+        bt.addEventListener("click", function () {
+          if (inCart(r.id, n)) { removeCart(r.id, n); updateCount(false); } else { addCart(r.id, n); updateCount(true); }
+          paint();
+        });
+        paint(); li.appendChild(bt); ul.appendChild(li);
+      });
+      s1.appendChild(ul); d.appendChild(s1);
       var s2 = el("div"); s2.appendChild(el("h4", null, "조리법"));
       var ol = el("ol", "d-steps"); r.steps.forEach(function (t) { ol.appendChild(el("li", null, t)); }); s2.appendChild(ol); d.appendChild(s2);
-      var a = el("div", "acts"); a.appendChild(likeBtn(r)); a.appendChild(pickBtn(r)); d.appendChild(a);
+      var a = el("div", "acts"); a.appendChild(likeBtn(r));
+      var ck = el("button", "cook-btn"); ck.type = "button";
+      var cs = svgEl("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" });
+      cs.appendChild(svgEl("path", { d: "M4 13h16M6 13v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5M9 9c0-2 2-2 2-4M14 9c0-2 2-2 2-4", fill: "none", stroke: "currentColor", "stroke-width": 1.8, "stroke-linecap": "round" }));
+      ck.appendChild(cs); ck.appendChild(document.createTextNode("요리 모드"));
+      ck.addEventListener("click", function () { state.cook = { rid: r.id, i: 0 }; renderDetail(); focusIn(".next"); });
+      a.appendChild(ck); d.appendChild(a);
+    }
+    function focusIn(sel) { var n = document.querySelector("#demo-detail " + sel); if (n) n.focus({ preventScroll: true }); }
+    function renderCook(d, r) {
+      var i = state.cook.i, total = r.steps.length;
+      var c = el("div", "cook");
+      c.appendChild(el("p", "eb", "요리 모드 · " + (i + 1) + " / " + total));
+      c.appendChild(el("p", "d-title", r.title));
+      var bar = el("div", "cook-bar"); var fill = el("span"); fill.style.width = ((i + 1) / total * 100) + "%"; bar.appendChild(fill); c.appendChild(bar);
+      var st = el("p", "cook-step"); st.appendChild(el("b", null, (i + 1) + "단계")); st.appendChild(document.createTextNode(r.steps[i]));
+      st.setAttribute("aria-live", "polite"); c.appendChild(st);
+      var a = el("div", "acts");
+      var prev = el("button", "ghost", "이전"); prev.type = "button"; prev.disabled = i === 0;
+      prev.addEventListener("click", function () { state.cook.i--; renderDetail(); focusIn(i - 1 === 0 ? ".next" : ".ghost"); });
+      var last = i === total - 1;
+      var next = el("button", "next", last ? "다 만들었어요" : "다음"); next.type = "button";
+      next.addEventListener("click", function () {
+        if (last) { state.cook = null; renderDetail(); focusIn(".like"); }
+        else { state.cook.i++; renderDetail(); focusIn(".next"); }
+      });
+      a.appendChild(prev); a.appendChild(next); c.appendChild(a);
+      var back = el("button", "textbtn", "레시피로 돌아가기"); back.type = "button";
+      back.addEventListener("click", function () { state.cook = null; renderDetail(); focusIn(".cook-btn"); });
+      c.appendChild(back);
+      d.appendChild(c);
     }
 
     // 03 바로 장 보기
     document.getElementById("demo-go-pick").addEventListener("click", function () { selectTab(1, true); });
+    document.getElementById("demo-open-cart").addEventListener("click", function () {
+      selectTab(2, true);
+      document.getElementById("wm-demo").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    });
     function renderShop() {
-      var r = R.find(function (x) { return x.id === state.chosen; });
-      document.getElementById("demo-shop-empty").hidden = !!r;
-      document.getElementById("demo-shop").hidden = !r;
-      if (!r) return;
-      document.getElementById("demo-shop-title").textContent = r.title;
-      var ul = document.getElementById("demo-ings"); ul.textContent = "";
-      r.ings.forEach(function (name, i) {
-        var li = el("li");
-        var lab = el("label", "ing" + (state.have[i] ? " is-have" : ""));
-        var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!state.have[i];
-        var g = el("span", "grow"); g.appendChild(el("b", null, name)); var sm = el("small", null, state.have[i] ? " 집에 있어요" : ""); g.appendChild(sm);
-        cb.addEventListener("change", function () {
-          state.have[i] = cb.checked;
-          lab.classList.toggle("is-have", cb.checked);
-          sm.textContent = cb.checked ? " 집에 있어요" : "";
-          renderCart(r);
-        });
-        lab.appendChild(cb); lab.appendChild(g); li.appendChild(lab); ul.appendChild(li);
+      var has = state.cart.length > 0;
+      document.getElementById("demo-shop-empty").hidden = has;
+      document.getElementById("demo-shop").hidden = !has;
+      if (!has) return;
+      // 손그림 장바구니 안의 재료
+      var bi = document.getElementById("basket-items"); bi.textContent = "";
+      state.cart.slice(-10).forEach(function (c, k) {
+        var t = el("span", "bitem" + (c.fresh && !reduce ? " drop" : ""), c.ing);
+        t.style.setProperty("--r", ((k * 37) % 13 - 6) + "deg");
+        if (c.fresh && !reduce) t.style.animationDelay = (k % 4) * 60 + "ms";
+        bi.appendChild(t);
       });
-      renderCart(r);
+      document.getElementById("basket-total").textContent = "재료 " + state.cart.length + "개 담김";
+      document.getElementById("demo-cart-count").textContent = state.cart.length + "개";
+      // 요리별 목록
+      var box = document.getElementById("demo-cart"); box.textContent = "";
+      var order = [];
+      state.cart.forEach(function (c) { if (order.indexOf(c.rid) < 0) order.push(c.rid); });
+      order.forEach(function (rid) {
+        var r = findR(rid); var g = el("div", "cart-group");
+        g.appendChild(el("h5", null, r.title));
+        state.cart.filter(function (c) { return c.rid === rid; }).forEach(function (c) {
+          var row = el("div", "cart-item");
+          var gr = el("span", "grow"); gr.appendChild(el("b", null, c.ing)); row.appendChild(gr);
+          var q = encodeURIComponent(c.ing);
+          var a1 = el("a", "shop", "쿠팡"); a1.href = "https://www.coupang.com/np/search?q=" + q; a1.target = "_blank"; a1.rel = "noopener"; a1.setAttribute("aria-label", c.ing + " 쿠팡에서 찾기");
+          var a2 = el("a", "shop", "컬리"); a2.href = "https://www.kurly.com/search?sword=" + q; a2.target = "_blank"; a2.rel = "noopener"; a2.setAttribute("aria-label", c.ing + " 컬리에서 찾기");
+          var rm = el("button", "rm", "×"); rm.type = "button"; rm.setAttribute("aria-label", c.ing + " 빼기");
+          rm.addEventListener("click", function () { removeCart(c.rid, c.ing); updateCount(false); renderShop(); });
+          row.appendChild(a1); row.appendChild(a2); row.appendChild(rm); g.appendChild(row);
+        });
+        box.appendChild(g);
+      });
+      state.cart.forEach(function (c) { c.fresh = false; });
     }
-    function renderCart(r) {
-      var cart = document.getElementById("demo-cart"); cart.textContent = "";
-      var need = r.ings.filter(function (_, i) { return !state.have[i]; });
-      document.getElementById("demo-cart-count").textContent = need.length + "개";
-      need.forEach(function (n) { cart.appendChild(el("li", null, n)); });
-    }
+
+    // 개인정보 동의 체크 시 오류 숨김
+    var consent = document.getElementById("wm-consent");
+    if (consent) consent.addEventListener("change", function () {
+      var e = document.getElementById("wm-consent-error"); if (e && consent.checked) e.hidden = true;
+    });
 
     renderShares(); renderMine();
   })();
