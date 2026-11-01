@@ -1,0 +1,985 @@
+<title>아이 반찬 레시피 랜딩</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700;800&family=Noto+Sans+KR:wght@400;500;600;700&family=Gaegu:wght@400;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  /* index.html의 원래 서체. 배포한 사이트에서는 그대로 불러오고, 불러오지 못하면 아래 Google 서체로 대신함 */
+  @font-face { font-family: "GmarketSans"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff"); font-weight: 700; font-display: swap; }
+
+  /* 배치: 한 열 흐름. 넓은 화면에서는 히어로·공감·FAQ·신청을 두 칸으로, 이용 방법은 세 칸 + 넓은 예시 패널 */
+  :root {
+    /* index.html 토큰 */
+    --butter: #f9efb6; --yolk: #f9d949; --yolk-hover: #f2cc2e;
+    --paper: #ffffff; --off: #fffef9; --pale: #fdf5cf; --gray: #f5f4ed;
+    --cream-2: #ecebe3; --line: #dfddd3; --ink: #111111; --ink-soft: #5e5a48;
+    --error: #b42318; --ok: #2f6b3a;
+    /* 무드보드: 크레파스 색 (그림에만 사용) */
+    --c-tomato: #d8432f; --c-cobalt: #2c48b5; --c-leaf: #4e9a3a; --c-plum: #7d4fb3; --c-orange: #ef9a1d; --c-pink: #e0569a;
+    --f-display: "GmarketSans", "Gothic A1", "Apple SD Gothic Neo", sans-serif;
+    --f-body: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --f-label: "D2Coding", "DM Mono", ui-monospace, monospace;
+    --f-hand: "Gaegu", "Nanum Pen Script", cursive;
+    color-scheme: light;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--off); color: var(--ink);
+    font-family: var(--f-body); font-size: 16px; line-height: 1.65;
+    word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased;
+  }
+  /* 종이 결: 아주 옅은 노이즈 */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .35; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .3  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  h1, h2, h3, p, figure { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button, input, textarea { font: inherit; color: var(--ink); }
+  [hidden] { display: none !important; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .section { padding-block: 72px; position: relative; overflow-x: clip; }
+
+  .disp { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.03em; text-wrap: balance; }
+  .h1 { font-size: 34px; line-height: 1.16; }
+  .h2 { font-size: 28px; line-height: 1.2; }
+  .sub { font-weight: 500; font-size: 17px; line-height: 1.6; max-width: 30em; color: var(--ink); }
+  .note { font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .eb { font-family: var(--f-label); font-size: 13px; letter-spacing: .06em; color: var(--ink-soft); }
+  .hand { font-family: var(--f-hand); font-weight: 700; letter-spacing: 0; }
+
+  /* 버튼 (index.html 4.1) */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 56px; padding: 0 36px; border: 0; border-radius: 999px;
+    font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
+    transition: background-color .15s ease, transform .05s ease;
+  }
+  .btn-primary { background: var(--yolk); color: var(--ink); }
+  .btn-primary:hover { background: var(--yolk-hover); }
+  .btn-ink { background: var(--ink); color: var(--off); }
+  .btn-ink:hover { background: #333; }
+  .btn:active { transform: translateY(1px); }
+  .btn[aria-busy="true"] { opacity: .7; cursor: progress; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  /* 종이 카드 (index.html 4.2: 그림자·물결 아랫단·스프링 구멍) + 무드보드: 줄 노트·마스킹 테이프 */
+  .lift { filter: drop-shadow(0 1px 0 rgba(0,0,0,.06)) drop-shadow(0 10px 28px rgba(70,58,0,.1)); }
+  .paper { position: relative; background: var(--paper); border-radius: 2px; }
+  .ruled {
+    background:
+      linear-gradient(90deg, transparent 0 30px, rgba(216,67,47,.28) 30px 31px, transparent 31px),
+      repeating-linear-gradient(180deg, var(--paper) 0 29px, #e9e5d8 29px 30px);
+  }
+  .spiral { padding-top: 38px !important; }
+  .spiral::before {
+    content: ""; position: absolute; top: 12px; left: 16px; right: 16px; height: 8px;
+    background: radial-gradient(circle 4px at 4px 4px, var(--hole, var(--butter)) 3.5px, transparent 4px) 0 0 / 16px 8px repeat-x;
+  }
+  .scallop { margin-bottom: 6px; }
+  .scallop::after {
+    content: ""; position: absolute; left: 4px; right: 4px; bottom: -6px; height: 6px;
+    background: radial-gradient(circle 6px at 9px 0, var(--paper) 5.6px, transparent 6px) 0 0 / 18px 6px repeat-x;
+  }
+  .tape {
+    position: absolute; width: 92px; height: 26px; top: -12px; left: 50%; margin-left: -46px; transform: rotate(-4deg);
+    background: rgba(249,217,73,.62);
+    clip-path: polygon(0 8%, 6% 0, 12% 10%, 20% 2%, 30% 9%, 42% 1%, 55% 8%, 68% 0, 80% 9%, 92% 2%, 100% 10%, 100% 92%, 94% 100%, 84% 90%, 72% 99%, 60% 91%, 47% 100%, 34% 92%, 22% 100%, 10% 91%, 0 98%);
+  }
+  .tape.is-lilac { background: rgba(125,79,179,.28); }
+  .tape.is-pink { background: rgba(224,86,154,.26); }
+
+  /* 크레파스 낙서 */
+  .doodle { display: block; overflow: visible; }
+  .doodle use { filter: url(#crayon); }
+
+  /* 히어로 */
+  #wm-hero { background: var(--butter); padding-block: 0 56px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-family: var(--f-display); font-weight: 700; font-size: 18px; letter-spacing: -0.03em; }
+  .navlinks { display: none; gap: 32px; font-weight: 500; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .navlinks a:hover { color: var(--ink-soft); }
+  .hero { display: grid; grid-template-columns: minmax(0,1fr); gap: 36px; padding-top: 20px; text-align: center; justify-items: center; }
+  .hero-copy { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .hero-copy .btn { margin-top: 8px; width: 100%; max-width: 340px; }
+  .collage { position: relative; width: 100%; max-width: 420px; height: 300px; }
+  .collage .card-note { position: absolute; left: 4%; top: 22px; width: 58%; padding: 38px 18px 18px 40px; transform: rotate(-4deg); --hole: var(--butter); }
+  .card-note .hand-title { font-size: 24px; line-height: 1.1; }
+  .card-note ul { margin-top: 8px; font-family: var(--f-hand); font-size: 18px; line-height: 30px; color: #3a3a3a; }
+  .stamp {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; padding: 3px 10px 3px 8px;
+    border: 1.5px solid var(--c-tomato); border-radius: 999px; color: var(--c-tomato);
+    font-family: var(--f-hand); font-weight: 700; font-size: 16px; transform: rotate(-3deg);
+  }
+  .stamp svg { width: 14px; height: 14px; }
+  .collage .card-polar { position: absolute; right: 0; top: 104px; width: 40%; padding: 10px 10px 34px; background: var(--paper); transform: rotate(5deg); }
+  .card-polar .ph { aspect-ratio: 1; background: var(--pale); display: grid; place-items: center; }
+  .card-polar .ph svg { width: 78%; height: 78%; }
+  .card-polar figcaption { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; font-family: var(--f-hand); font-weight: 700; font-size: 19px; }
+  .collage .float { position: absolute; width: 54px; height: 54px; }
+  .collage .f1 { left: -2%; bottom: 8px; transform: rotate(-12deg); }
+  .collage .f2 { right: 4%; top: -2px; width: 46px; height: 46px; }
+  .collage .f3 { left: 46%; bottom: -6px; width: 60px; height: 60px; transform: rotate(10deg); }
+
+  /* 공감 */
+  .story { display: grid; grid-template-columns: minmax(0,1fr); gap: 32px; }
+  .story-notes { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .strip { position: relative; padding: 18px 20px 18px 44px; font-size: 16px; line-height: 1.6; min-width: 0; }
+  .strip::before {
+    content: ""; position: absolute; left: 18px; top: 23px; width: 12px; height: 12px; border-radius: 50%;
+    border: 2px solid var(--c-dot, var(--c-tomato)); filter: url(#crayon);
+  }
+  .strip:nth-child(odd) { transform: rotate(-.8deg); }
+  .strip:nth-child(even) { transform: rotate(.7deg); }
+  .strip:nth-child(2) { --c-dot: var(--c-cobalt); }
+  .strip:nth-child(3) { --c-dot: var(--c-leaf); }
+  .strip:nth-child(4) { --c-dot: var(--c-plum); }
+  .strip:nth-child(5) { --c-dot: var(--c-orange); }
+  .closing { margin-top: 8px; padding: 22px 22px; border-radius: 20px; background: var(--pale); font-weight: 700; font-size: 18px; line-height: 1.5; }
+  .story-head .doodle { width: 72px; height: 72px; margin-top: 20px; }
+
+  /* 이용 방법 (index.html 4.4: 연노랑 등급 카드 / 회색 기능 카드) */
+  #wm-how { background: var(--paper); }
+  .how-head { text-align: center; }
+  .steps { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; margin-top: 36px; counter-reset: step; }
+  .step { position: relative; border-radius: 20px; padding: 26px 22px 24px; background: var(--gray); min-width: 0; }
+  .step:first-child { background: var(--pale); }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px;
+    border-radius: 999px; background: var(--paper); font-family: var(--f-label); font-size: 15px;
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+  }
+  .step h3 { font-size: 20px; line-height: 1.3; font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; }
+  .step p { margin-top: 10px; font-size: 16px; }
+  .step .doodle { position: absolute; right: 16px; top: 16px; width: 48px; height: 48px; }
+
+  /* 예시 데모 */
+  .demo { position: relative; margin-top: 48px; padding: 22px 16px 20px; border: 1px solid var(--line); border-radius: 24px; background: var(--off); }
+  .demo-badge {
+    position: absolute; top: 16px; right: 16px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px;
+    font-family: var(--f-label); font-size: 12px; color: var(--ink-soft); background: var(--paper);
+  }
+  .tabs { display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 4px; margin-right: 44px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: none; min-height: 44px; padding: 0 14px; border: 1px solid rgba(17,17,17,.2); border-radius: 999px;
+    background: var(--paper); font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap;
+  }
+  .tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--off); }
+  .tab span { font-family: var(--f-label); font-weight: 400; margin-right: 4px; }
+  .panel { margin-top: 18px; }
+  .panel-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .box { padding: 18px; border-radius: 16px; background: var(--paper); border: 1px solid var(--line); min-width: 0; }
+  .box-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .box-h b { font-family: var(--f-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+  .count { font-family: var(--f-label); font-size: 13px; color: var(--ink-soft); }
+
+  .share-row, .mini-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); }
+  .share-row:first-child, .mini-row:first-child { border-top: 0; }
+  .src { font-family: var(--f-label); font-size: 12px; color: var(--ink-soft); }
+  .grow { flex: 1; min-width: 0; }
+  .grow b { display: block; font-weight: 600; }
+  .sbtn {
+    flex: none; min-height: 40px; padding: 0 14px; border: 1.5px solid var(--ink); border-radius: 999px;
+    background: var(--paper); font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+  .sbtn:hover { background: var(--pale); }
+  .sbtn.is-done { border-color: var(--line); color: var(--ink-soft); cursor: default; background: var(--gray); }
+  .tile { flex: none; width: 48px; height: 48px; border-radius: 12px; background: var(--pale); display: grid; place-items: center; }
+  .tile svg { width: 36px; height: 36px; }
+  .tag { display: inline-block; margin-top: 2px; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: var(--cream-2); color: var(--ink); }
+  .tag.is-hot { background: #fde3d6; color: #8a2c1a; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip {
+    min-height: 40px; padding: 0 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper);
+    font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--yolk); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .rcard { position: relative; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); overflow: hidden; min-width: 0; }
+  .rcard .thumb { height: 84px; display: grid; place-items: center; background: var(--pale); }
+  .rcard .thumb svg { width: 64px; height: 64px; }
+  .rcard .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .rcard .title { font-family: var(--f-hand); font-weight: 700; font-size: 21px; line-height: 1.1; }
+  .rcard .meta { font-size: 12px; color: var(--ink-soft); }
+  .rcard .acts { display: flex; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .like {
+    flex: none; white-space: nowrap;
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: 36px; padding: 0 10px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--paper); font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink-soft);
+  }
+  .like svg { width: 14px; height: 14px; }
+  .like[aria-pressed="true"] { border-color: var(--c-tomato); color: var(--c-tomato); background: #fff3ef; }
+  .like[aria-pressed="true"] svg path { fill: var(--c-tomato); }
+  .pick { flex: 1; min-width: 0; white-space: nowrap; min-height: 36px; border: 0; border-radius: 999px; background: var(--ink); color: var(--off); font-size: 13px; font-weight: 600; cursor: pointer; }
+  .rcard .tag { align-self: flex-start; }
+  .rcard .acts { flex-wrap: wrap; }
+  .rcard .like { flex: 1 0 auto; }
+  .rcard .pick { flex: 1 0 auto; min-width: 64px; }
+  .rcard .open { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; }
+  .rcard .open .title { padding: 10px 12px 0; }
+  .rcard.is-sel { box-shadow: 0 0 0 2px var(--ink); border-color: var(--ink); }
+  .pick-grid { align-items: start; }
+  .detail { display: flex; flex-direction: column; gap: 14px; }
+  .video { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; background: var(--pale); display: grid; place-items: center; overflow: hidden; }
+  .video > svg { width: 38%; height: auto; max-height: 80%; }
+  .video .play { position: absolute; width: 52px; height: 52px; border-radius: 50%; background: rgba(17,17,17,.72); display: grid; place-items: center; }
+  .video .play svg { width: 20px; height: 20px; margin-left: 3px; }
+  .video .dur { position: absolute; right: 10px; bottom: 10px; padding: 2px 8px; border-radius: 6px; background: rgba(17,17,17,.8); color: #fff; font-family: var(--f-label); font-size: 12px; }
+  .detail .d-title { font-family: var(--f-hand); font-weight: 700; font-size: 28px; line-height: 1.1; }
+  .detail .d-src { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13px; color: var(--ink-soft); }
+  .detail .d-src svg { width: 15px; height: 15px; }
+  .detail h4 { margin: 0 0 8px; font-family: var(--f-label); font-size: 13px; font-weight: 400; letter-spacing: .06em; color: var(--ink-soft); }
+  .d-ings { display: flex; flex-wrap: wrap; gap: 6px; }
+  .d-ings li { padding: 4px 10px; border-radius: 999px; background: var(--gray); font-size: 14px; }
+  .d-steps { counter-reset: st; }
+  .d-steps li { counter-increment: st; display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 8px; padding: 8px 0; border-top: 1px dashed var(--line); font-size: 15px; line-height: 1.5; }
+  .d-steps li:first-child { border-top: 0; }
+  .d-steps li::before { content: counter(st); display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: var(--yolk); font-family: var(--f-label); font-size: 12px; }
+  .detail .acts { display: flex; gap: 8px; }
+  .detail .pick { min-height: 44px; font-size: 14px; }
+  .detail .like { min-height: 44px; padding: 0 14px; }
+  .liked-badge { position: absolute; top: 8px; left: 8px; }
+  .empty-msg { padding: 18px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 14px; }
+
+  .ing { display: flex; align-items: center; gap: 12px; min-height: 48px; border-bottom: 1px dashed var(--line); cursor: pointer; font-size: 15px; }
+  .ing input { width: 20px; height: 20px; margin: 0; accent-color: var(--ink); }
+  .ing .grow small { color: var(--ink-soft); font-size: 12px; }
+  .ing.is-have .grow b { text-decoration: line-through; color: var(--ink-soft); font-weight: 500; }
+  .cart { background: var(--pale); border-color: var(--pale); }
+  .cartlist li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 12px; background: var(--paper); font-size: 15px; }
+  .cartlist li::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--yolk); box-shadow: 0 0 0 1px rgba(17,17,17,.15); }
+
+  /* FAQ (index.html 4.6) */
+  .faq-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 28px; }
+  .faqbox { background: var(--pale); border-radius: 20px; padding: 6px 24px; }
+  .faqbox details + details { background: radial-gradient(circle at 1px 1px, var(--ink-soft) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
+  .faqbox summary {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; padding: 18px 0;
+    list-style: none; cursor: pointer; font-weight: 600; font-size: 17px; line-height: 1.4;
+  }
+  .faqbox summary::-webkit-details-marker { display: none; }
+  .pm { flex: none; font-family: var(--f-label); font-size: 22px; line-height: 1; }
+  .pm .is-minus, details[open] .pm .is-plus { display: none; }
+  details[open] .pm .is-minus { display: inline; }
+  .faqbox details p { padding-bottom: 20px; }
+
+  /* 신청 (index.html 4.5 입력) */
+  #wm-final { background: var(--butter); }
+  .final { display: grid; grid-template-columns: minmax(0,1fr); gap: 28px; align-items: start; }
+  .final-copy p { margin-top: 14px; }
+  .final-card { padding: 30px 22px 28px; }
+  .field-label { display: block; margin: 0 0 8px 4px; font-weight: 600; font-size: 15px; }
+  .input, .textarea {
+    display: block; width: 100%; box-sizing: border-box; border: 1.5px solid var(--ink); background: var(--paper); font-size: 16px;
+  }
+  .input { height: 56px; padding: 0 24px; border-radius: 999px; }
+  .textarea { min-height: 88px; padding: 14px 20px; border-radius: 16px; resize: vertical; }
+  .input::placeholder, .textarea::placeholder { color: var(--ink-soft); opacity: 1; }
+  .input[aria-invalid="true"] { border-color: var(--error); }
+  .error { margin: 8px 0 0 20px; font-size: 14px; color: var(--error); }
+  .final-card .btn { width: 100%; margin-top: 20px; }
+  .final-card .note { margin-top: 14px; }
+  .done-title { font-family: var(--f-display); font-weight: 700; font-size: 24px; letter-spacing: -0.02em; line-height: 1.3; }
+  .done-title:focus { outline: none; }
+  .hh { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--line); }
+  .hh .chips { margin: 12px 0 0; }
+  .textbtn { min-height: 44px; padding: 10px 6px; border: 0; background: none; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .ok { color: var(--ok); }
+
+  footer { background: var(--ink); color: var(--off); padding-block: 36px 44px; }
+  footer .brand { color: var(--off); }
+  footer .dots { margin-top: 20px; height: 2px; opacity: .6; background: radial-gradient(circle at 1px 1px, var(--off) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
+
+  /* 스크롤 등장: 첫 화면 아래에 있던 것만, 움직임 줄이기 사용자는 제외 (JS가 .is-pre를 붙임) */
+  .is-pre { opacity: 0; transform: translateY(22px); }
+  .is-pre[data-reveal="left"] { transform: translateX(-26px) rotate(-1deg); }
+  .is-pre[data-reveal="pop"] { transform: scale(.94) rotate(-2deg); }
+  .reveal-on [data-reveal] { transition: opacity .7s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal-on .doodle.draw use { stroke-dasharray: 400; stroke-dashoffset: 0; transition: stroke-dashoffset 1.4s ease .2s; }
+  .reveal-on .is-pre .doodle.draw use { stroke-dashoffset: 400; }
+  .fade-in { animation: rise .45s ease both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* 768px 이상 */
+  @media (min-width: 768px) {
+    .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); }
+    .section { padding-block: 96px; }
+    #wm-hero { padding-block: 0 72px; }
+    .h1 { font-size: 52px; }
+    .h2 { font-size: 40px; }
+    .sub { font-size: 19px; }
+    body { font-size: 17px; }
+    .nav { height: 76px; }
+    .navlinks { display: flex; }
+    .hero-copy .btn { width: auto; min-width: 220px; height: 64px; }
+    .collage { max-width: 560px; height: 360px; }
+    .collage .card-polar { right: 2%; top: 64px; width: 44%; }
+    .story-notes { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .story-notes .closing { grid-column: 1 / -1; }
+    .steps { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .demo { padding: 30px 28px; }
+    .panel-grid.two { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); }
+    .pick-grid .cards { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); }
+    .final-card { padding: 36px 32px; }
+  }
+  /* 1100px 이상: 넓은 화면은 두 칸 */
+  @media (min-width: 1100px) {
+    .wrap { padding-left: max(56px, env(safe-area-inset-left, 0px)); padding-right: max(56px, env(safe-area-inset-right, 0px)); }
+    .section { padding-block: 120px; }
+    .h1 { font-size: 66px; }
+    .h2 { font-size: 48px; }
+    .sub { font-size: 20px; }
+    body { font-size: 18px; }
+    .hero { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 56px; align-items: center; text-align: left; justify-items: stretch; padding-top: 48px; }
+    .hero-copy { align-items: flex-start; }
+    .collage { justify-self: end; height: 440px; }
+    .collage .card-note { width: 56%; top: 30px; }
+    .collage .card-polar { top: 96px; }
+    .story { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 64px; align-items: start; }
+    .story-head { position: sticky; top: 48px; }
+    .demo { padding: 40px; margin-top: 64px; }
+    .faq-grid { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 64px; align-items: start; }
+    .final { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 72px; align-items: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<!-- 크레파스 질감 필터와 직접 그린 반찬 낙서 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="crayon" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="1" seed="9" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="mask"/>
+      <feComposite in="d" in2="mask" operator="in"/>
+    </filter>
+    <symbol id="d-egg" viewBox="0 0 100 100">
+      <path d="M22 54c-4-14 8-28 24-30 12-2 20 4 30 2 10 6 8 22 2 32-8 14-30 18-44 12-8-4-10-10-12-16z" fill="#fffdf6" stroke="#d9c79a" stroke-width="3"/>
+      <circle cx="50" cy="50" r="14" fill="var(--c-orange)" stroke="var(--c-orange)" stroke-width="3"/>
+    </symbol>
+    <symbol id="d-carrot" viewBox="0 0 100 100">
+      <path d="M28 76 70 32c6-5 12 2 7 8L36 82c-7 5-13 0-8-6z" fill="var(--c-orange)" stroke="var(--c-orange)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M46 62l6 6M56 52l6 6M38 72l5 5" stroke="#c46f0f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M74 34c2-10 8-16 14-18M76 36c8-4 14-4 18 0M73 33c-2-8 0-14 4-18" fill="none" stroke="var(--c-leaf)" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-broc" viewBox="0 0 100 100">
+      <path d="M44 88c2-12 2-20-2-30M56 88c-1-12 1-22 6-30" fill="none" stroke="#7fb36a" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="34" cy="44" r="15" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="3"/>
+      <circle cx="56" cy="34" r="17" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="3"/>
+      <circle cx="70" cy="50" r="13" fill="#3f8a2e" stroke="#3f8a2e" stroke-width="3"/>
+    </symbol>
+    <symbol id="d-bowl" viewBox="0 0 100 100">
+      <path d="M30 46c6-12 34-12 40 0" fill="#fffdf6" stroke="#cfc7b0" stroke-width="3"/>
+      <path d="M38 40c4-4 8-4 10 0M52 38c4-4 8-3 10 1" fill="none" stroke="#bdb59f" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M16 48h68c-2 20-16 32-34 32S18 68 16 48z" fill="var(--c-cobalt)" stroke="var(--c-cobalt)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 58c8 4 40 4 48 0" fill="none" stroke="#fffdf6" stroke-width="3" stroke-linecap="round"/>
+      <path d="M40 82h20" stroke="var(--c-cobalt)" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-tofu" viewBox="0 0 100 100">
+      <path d="M22 40 50 26l30 12v30L50 82 22 68z" fill="#fffaf0" stroke="#cbbf9f" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M22 40 50 54l30-16M50 54v28" fill="none" stroke="#cbbf9f" stroke-width="3"/>
+      <path d="M30 60l12 6M58 66l12-6" stroke="var(--c-orange)" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-leaf" viewBox="0 0 100 100">
+      <path d="M20 82C34 60 52 40 82 18" fill="none" stroke="#2f6b24" stroke-width="4" stroke-linecap="round"/>
+      <path d="M40 60c-12-2-18-12-16-22 10 0 18 8 16 22zM54 46c-2-12 4-22 14-24 2 10-4 20-14 24zM60 40c10-6 20-4 26 2-8 6-18 6-26-2zM34 68c10-6 20-4 24 4-10 4-18 2-24-4z" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="d-riceball" viewBox="0 0 100 100">
+      <path d="M50 18c14 10 30 34 30 50 0 10-12 16-30 16S20 78 20 68c0-16 16-40 30-50z" fill="#fffdf6" stroke="#cfc7b0" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M28 62h44v20c-8 3-14 3-22 3s-16-1-22-4z" fill="#2c2a26" stroke="#2c2a26" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="44" cy="44" r="2.5" fill="#bdb59f"/><circle cx="56" cy="38" r="2.5" fill="#bdb59f"/><circle cx="52" cy="50" r="2.5" fill="#bdb59f"/>
+    </symbol>
+    <symbol id="d-spoon" viewBox="0 0 100 100">
+      <ellipse cx="34" cy="28" rx="11" ry="15" fill="none" stroke="var(--c-plum)" stroke-width="4" transform="rotate(-30 34 28)"/>
+      <path d="M40 40 76 86" stroke="var(--c-plum)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M62 14v20c0 6 8 6 8 0V14M66 36l-6 50" fill="none" stroke="var(--c-pink)" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-burst" viewBox="0 0 100 100">
+      <g stroke="var(--c-tomato)" stroke-width="5" stroke-linecap="round" fill="none">
+        <path d="M50 14v18M50 68v18M14 50h18M68 50h18M25 25l12 12M63 63l12 12M75 25 63 37M37 63 25 75"/>
+      </g>
+      <circle cx="50" cy="50" r="5" fill="var(--c-tomato)"/>
+    </symbol>
+    <symbol id="d-heart" viewBox="0 0 24 24">
+      <path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main id="wm-main" class="wm" data-layout="kids" data-hero="b">
+
+  <!-- 1. 히어로 (B 버전) -->
+  <section id="wm-hero" aria-labelledby="wm-hero-title">
+    <div class="wrap">
+      <nav class="nav" aria-label="페이지 안 이동">
+        <span class="brand">[서비스 이름]</span>
+        <div class="navlinks"><a href="#wm-how">사용법</a><a href="#wm-faq">자주 묻는 질문</a></div>
+      </nav>
+      <div class="hero">
+        <div class="hero-copy">
+          <h1 id="wm-hero-title" class="disp h1">매일 하는 아이 반찬 고민,<br>고르기 쉽게</h1>
+          <p id="wm-hero-sub" class="sub">마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요.</p>
+          <button id="cta_primary" type="button" class="btn btn-primary">먼저 만나 보기</button>
+        </div>
+
+        <div class="collage" aria-hidden="true">
+          <div class="card-note paper ruled spiral lift">
+            <span class="tape"></span>
+            <p class="hand hand-title">두부 스테이크</p>
+            <ul><li>두부 한 모</li><li>다진 소고기</li><li>양파, 달걀</li></ul>
+            <span class="stamp"><svg viewBox="0 0 24 24"><use href="#d-heart"/></svg>잘 먹었어요</span>
+          </div>
+          <figure class="card-polar lift">
+            <span class="tape is-lilac" style="left:60%"></span>
+            <div class="ph"><svg class="doodle" viewBox="0 0 100 100"><use href="#d-egg"/></svg></div>
+            <figcaption>애호박 달걀전</figcaption>
+          </figure>
+          <svg class="doodle float f1" viewBox="0 0 100 100"><use href="#d-carrot"/></svg>
+          <svg class="doodle float f2" viewBox="0 0 100 100"><use href="#d-burst"/></svg>
+          <svg class="doodle float f3" viewBox="0 0 100 100"><use href="#d-broc"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 공감 -->
+  <section id="wm-story" class="section" aria-labelledby="wm-story-title">
+    <div class="wrap story">
+      <div class="story-head" data-reveal="left">
+        <h2 id="wm-story-title" class="disp h2">아이와 같은 밥상에 앉기 시작하면서</h2>
+        <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-spoon"/></svg>
+      </div>
+      <ul class="story-notes">
+        <li class="strip paper scallop lift" data-reveal>아이랑 같이 밥을 먹기 시작하면서, 메뉴 걱정이 매일의 고민이 됐어요.</li>
+        <li class="strip paper scallop lift" data-reveal>냉장고 문을 한참 열어 두고 봐도, 오늘 저녁에 뭘 할지 쉽게 정해지지 않아요.</li>
+        <li class="strip paper scallop lift" data-reveal>반찬을 할 때마다 고민이에요. 맵지 않으면서 아이와 같이 먹을 수 있는 게 뭐가 있을지.</li>
+        <li class="strip paper scallop lift" data-reveal>하다 보면 결국 같은 반찬을 돌려막기 하게 돼요.</li>
+        <li class="strip paper scallop lift" data-reveal>이유식이 끝나고 나니, 아이 식사 챙기는 게 이렇게 부담일 줄 몰랐어요.</li>
+        <li class="closing" data-reveal>오늘 뭐 해 줄지, 모아 둔 레시피를 보고 고르기만 하면 돼요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. 이용 방법 + 예시 데모 -->
+  <section id="wm-how" class="section" aria-labelledby="wm-how-title">
+    <div class="wrap">
+      <div class="how-head" data-reveal>
+        <h2 id="wm-how-title" class="disp h2">이용 방법</h2>
+      </div>
+      <ol class="steps">
+        <li class="step" data-reveal>
+          <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-leaf"/></svg>
+          <span class="step-num" aria-hidden="true">01</span>
+          <h3>레시피 모으기</h3>
+          <p>어디에서든 마음에 드는 레시피를 보면 공유만 하세요. 나중에 다시 볼 때 재료와 순서가 보기 좋게 정리돼 있어요.</p>
+        </li>
+        <li class="step" data-reveal>
+          <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-burst"/></svg>
+          <span class="step-num" aria-hidden="true">02</span>
+          <h3>고민될 때 열어 보기</h3>
+          <p>오늘 뭐 해 줄지 고민될 때 열면, 모아 둔 레시피와 아이가 잘 먹었던 반찬, 요즘 많이 찾는 아이 반찬이 한눈에 보여요. 아이가 잘 먹은 날엔 표시해 두세요. 다음에 고민될 때 먼저 찾을 수 있어요.</p>
+        </li>
+        <li class="step" data-reveal>
+          <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-carrot"/></svg>
+          <span class="step-num" aria-hidden="true">03</span>
+          <h3>바로 장 보기</h3>
+          <p>메뉴를 정하면 필요한 재료를 한눈에 확인하고 바로 주문할 수 있어요.</p>
+        </li>
+      </ol>
+
+      <div id="wm-demo" class="demo" data-reveal="pop" aria-label="예시 데모">
+        <span class="demo-badge">예시</span>
+        <div class="tabs" role="tablist" aria-label="예시 단계">
+          <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"><span>01</span>레시피 모으기</button>
+          <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1"><span>02</span>고민될 때 열어 보기</button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span>03</span>바로 장 보기</button>
+        </div>
+
+        <div id="panel-0" class="panel" role="tabpanel" aria-labelledby="tab-0">
+          <div class="panel-grid two">
+            <div class="box">
+              <div class="box-h"><b>공유한 레시피</b></div>
+              <ul id="demo-shares"></ul>
+            </div>
+            <div class="box">
+              <div class="box-h"><b>내 레시피</b><span class="count" id="demo-mine-count"></span></div>
+              <ul id="demo-mine" aria-live="polite"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-1" class="panel" role="tabpanel" aria-labelledby="tab-1" hidden>
+          <div class="chips" role="group" aria-label="보기">
+            <button class="chip" data-filter="all" aria-pressed="true">전체</button>
+            <button class="chip" data-filter="liked" aria-pressed="false">잘 먹었어요</button>
+            <button class="chip" data-filter="hot" aria-pressed="false">인기 급상승</button>
+          </div>
+          <div class="panel-grid two pick-grid">
+            <div class="cards" id="demo-cards"></div>
+            <aside class="box detail" id="demo-detail" aria-live="polite" aria-label="레시피 보기"></aside>
+          </div>
+        </div>
+
+        <div id="panel-2" class="panel" role="tabpanel" aria-labelledby="tab-2" hidden>
+          <div id="demo-shop-empty" class="empty-msg">
+            02에서 오늘 메뉴를 골라 보세요.
+            <div style="margin-top:12px"><button class="sbtn" id="demo-go-pick" type="button">메뉴 고르러 가기</button></div>
+          </div>
+          <div id="demo-shop" class="panel-grid two" hidden>
+            <div class="box">
+              <div class="box-h"><b id="demo-shop-title"></b><span class="count">집에 있는 건 체크</span></div>
+              <ul id="demo-ings"></ul>
+            </div>
+            <div class="box cart">
+              <div class="box-h"><b>장 볼 재료</b><span class="count" id="demo-cart-count"></span></div>
+              <ul class="cartlist" id="demo-cart" aria-live="polite"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FAQ -->
+  <section id="wm-faq" class="section" aria-labelledby="wm-faq-title">
+    <div class="wrap faq-grid">
+      <div data-reveal="left">
+        <h2 id="wm-faq-title" class="disp h2">자주 묻는 질문</h2>
+      </div>
+      <div class="faqbox" data-reveal>
+        <details>
+          <summary>저장해 둔 레시피가 없어도 쓸 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>네. 인기 급상승 아이 반찬 레시피를 둘러보며 시작할 수 있어요. 마음에 드는 레시피는 바로 내 레시피에 담으면 돼요.</p>
+        </details>
+        <details>
+          <summary>어디서 본 레시피든 담을 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>네. 보던 앱에서 공유 버튼을 누르거나 캡처를 올리면 바로 담겨요. 담긴 레시피는 재료와 순서로 보기 좋게 정리돼요.</p>
+        </details>
+        <details>
+          <summary>아이가 잘 먹은 메뉴는 어떻게 기록하나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>해 먹은 뒤 레시피에서 "잘 먹었어요"를 한 번 누르면 돼요. 다음에 메뉴를 고를 때 아이가 잘 먹었던 레시피만 모아 볼 수 있어요.</p>
+        </details>
+        <details>
+          <summary>장보기도 같이 할 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>네. 메뉴를 고르면 필요한 재료가 한눈에 정리되고, 바로 살 수 있는 곳으로 이어져요.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 이메일 신청 · 6. 신청 뒤 안내 -->
+  <section id="wm-final" class="section" aria-labelledby="wm-final-title">
+    <div class="wrap final">
+      <div class="final-copy" data-reveal="left">
+        <h2 id="wm-final-title" class="disp h2">지금 출시를 준비하고 있어요</h2>
+        <p class="sub">이메일을 남겨 주시면 출시 소식을 가장 먼저 보내 드릴게요.</p>
+      </div>
+      <div class="final-card paper scallop lift" data-reveal>
+        <span class="tape is-pink"></span>
+        <div data-wm-state="form">
+          <label for="submit-email" class="field-label">이메일 주소</label>
+          <input id="submit-email" class="input" type="email" inputmode="email" autocomplete="email" placeholder="이메일 주소" aria-describedby="wm-email-note">
+          <p id="wm-email-error" class="error" role="alert" hidden>이메일 주소를 다시 확인해 주세요.</p>
+          <label for="submit-advice" class="field-label" style="margin-top:16px">서비스에 바라는 점 (선택)</label>
+          <textarea id="submit-advice" class="textarea" rows="3" placeholder="자유롭게 남겨 주세요"></textarea>
+          <button id="submit" type="button" class="btn btn-primary">출시 알림 신청</button>
+          <p id="wm-email-note" class="note">이메일은 출시 소식을 보내는 데만 써요. 원하지 않으면 언제든 수신을 그만둘 수 있어요.</p>
+        </div>
+        <div data-wm-state="done" hidden>
+          <h3 id="wm-done-title" class="done-title" tabindex="-1">신청이 완료됐어요</h3>
+          <p style="margin-top:10px">지금 출시를 준비하고 있어요. 출시되면 남겨 주신 주소로 가장 먼저 알려 드릴게요.</p>
+          <div class="hh" role="group" aria-labelledby="wm-q-label">
+            <p id="wm-q-label" style="font-weight:600">주로 누구와 식사하세요?</p>
+            <div class="chips">
+              <button type="button" class="chip wm-chip" data-household="solo" aria-pressed="false">혼자</button>
+              <button type="button" class="chip wm-chip" data-household="family" aria-pressed="false">가족과</button>
+            </div>
+            <p class="wm-q-thanks ok" aria-live="polite" hidden style="margin-top:10px">답해 주셔서 고마워요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">[서비스 이름]</span>
+    <div class="dots"></div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+
+<!-- index.html의 기록 방식: 방문(visitors) · 이메일(tab_final) · 이벤트(events) -->
+<script>
+  var ip = "null";
+  function getIP(json) { try { ip = json.ip; } catch (e) { ip = "unknown"; } }
+</script>
+<script src="https://jsonip.com?format=jsonp&callback=getIP"></script>
+<script>
+  (function () {
+    var ENDPOINT = "https://script.google.com/macros/s/AKfycbxJKXlJcpuN4F3jTYEl0fzspwziUp8y2Qd7rTvMeh8ShW93nJjHslVtiLq2T45cbTGdEg/exec";
+    var params = new URLSearchParams(location.search);
+    var WM = {
+      endpoint: ENDPOINT,
+      layout: "kids",   // 이번 디자인
+      hero: "b",        // 확정한 히어로 B
+      utm: params.get("utm"),
+      utm_source: params.get("utm_source"),
+      utm_campaign: params.get("utm_campaign"),
+    };
+    WM.track = function (name, props) {
+      var payload = Object.assign({
+        event: name, layout_variant: WM.layout, headline_variant: WM.hero,
+        utm: WM.utm, utm_source: WM.utm_source, utm_campaign: WM.utm_campaign,
+      }, props || {});
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(payload);
+      try {
+        var row = Object.assign({
+          id: typeof getUVfromCookie === "function" ? getUVfromCookie() : null,
+          time_stamp: typeof getTimeStamp === "function" ? getTimeStamp() : new Date().toISOString(),
+        }, payload);
+        if (window.axios) {
+          axios.get(WM.endpoint + "?action=insert&table=events&data=" + encodeURIComponent(JSON.stringify(row))).catch(function () {});
+        }
+      } catch (e) {}
+    };
+    WM.showState = function (state) {
+      document.querySelectorAll("[data-wm-state]").forEach(function (el) {
+        el.hidden = el.getAttribute("data-wm-state") !== state;
+      });
+      if (state === "done") {
+        var t = document.getElementById("wm-done-title");
+        if (t) t.focus();
+      }
+    };
+    window.WM = WM;
+  })();
+
+  var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "mobile" : "desktop";
+  var utm = new URLSearchParams(location.search).get("utm");
+  function padValue(v) { return v < 10 ? "0" + v : v; }
+  function getTimeStamp() {
+    var d = new Date();
+    return d.getFullYear() + "-" + padValue(d.getMonth() + 1) + "-" + padValue(d.getDate()) + " " +
+      padValue(d.getHours()) + ":" + padValue(d.getMinutes()) + ":" + padValue(d.getSeconds());
+  }
+  function getCookieValue(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+  function setCookieValue(name, value, days) {
+    var expires = "";
+    if (days) { var date = new Date(); date.setTime(date.getTime() + days * 864e5); expires = "; expires=" + date.toUTCString(); }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+  function getUVfromCookie() {
+    var hash = Math.random().toString(36).substring(2, 8).toUpperCase();
+    var existing = getCookieValue("user");
+    if (!existing) { setCookieValue("user", hash, 180); return hash; }
+    return existing;
+  }
+
+  $(function () {
+    var addrScript = window.WM.endpoint;
+    var DEFAULT_ERROR = "이메일 주소를 다시 확인해 주세요.";
+
+    // 방문 기록 (visitors)
+    var data = JSON.stringify({
+      id: getUVfromCookie(), landingUrl: window.location.href, ip: ip, referer: document.referrer,
+      time_stamp: getTimeStamp(), utm: utm, device: mobile,
+    });
+    axios.get(addrScript + "?action=insert&table=visitors&data=" + encodeURIComponent(data)).catch(function () {});
+
+    WM.track("page_view");
+
+    // 메인 버튼: 기록 후 신청 칸으로 이동
+    $("#cta_primary").on("click", function () {
+      WM.track("hero_cta_click", { position: "hero" });
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById("wm-final").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      setTimeout(function () { document.getElementById("submit-email").focus({ preventScroll: true }); }, reduce ? 0 : 500);
+    });
+
+    // 이메일 제출 (tab_final) → waitlist_submit
+    $("#submit").on("click", function () {
+      var email = $("#submit-email").val();
+      var advice = $("#submit-advice").val();
+      var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+      if (email == "" || !re.test(email)) {
+        $("#wm-email-error").text(DEFAULT_ERROR).prop("hidden", false);
+        $("#submit-email").attr("aria-invalid", "true").trigger("focus");
+        return;
+      }
+      var $btn = $(this).attr("aria-busy", "true");
+      if ($.busyLoadFull) $.busyLoadFull("show");
+      var finalData = JSON.stringify({ id: getUVfromCookie(), email: email, advice: advice });
+      axios.get(addrScript + "?action=insert&table=tab_final&data=" + encodeURIComponent(finalData))
+        .then(function () {
+          if ($.busyLoadFull) $.busyLoadFull("hide");
+          $btn.removeAttr("aria-busy");
+          WM.track("waitlist_submit");
+          WM.showState("done");
+          $("#submit-email").val("");
+          $("#submit-advice").val("");
+        })
+        .catch(function () {
+          if ($.busyLoadFull) $.busyLoadFull("hide");
+          $btn.removeAttr("aria-busy");
+          $("#wm-email-error").text("잠시 후 다시 시도해 주세요.").prop("hidden", false);
+        });
+    });
+    $("#submit-email").on("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); $("#submit").trigger("click"); }
+    });
+    $("#submit-email").on("input", function () {
+      $("#wm-email-error").text(DEFAULT_ERROR).prop("hidden", true);
+      $(this).removeAttr("aria-invalid");
+    });
+
+    // 신청 뒤 질문 → household_select
+    $(".wm-chip").on("click", function () {
+      $(".wm-chip").attr("aria-pressed", "false");
+      $(this).attr("aria-pressed", "true");
+      WM.track("household_select", { value: $(this).data("household") });
+      $(".wm-q-thanks").prop("hidden", false);
+    });
+  });
+</script>
+
+<!-- 스크롤 등장 · 예시 데모 -->
+<script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // 1) 스크롤 등장: 첫 화면 아래에 있는 것만 숨겼다가 보여 줌
+    if (!reduce && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.remove("is-pre"); io.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
+      var items = document.querySelectorAll("[data-reveal]");
+      items.forEach(function (el) {
+        if (el.getBoundingClientRect().top > window.innerHeight) {
+          el.classList.add("is-pre");
+          io.observe(el);
+        }
+      });
+      // 형제 카드는 조금씩 늦게
+      document.querySelectorAll(".story-notes, .steps").forEach(function (g) {
+        Array.prototype.forEach.call(g.children, function (c, i) { c.style.transitionDelay = (i * 80) + "ms"; });
+      });
+      requestAnimationFrame(function () { document.documentElement.classList.add("reveal-on"); });
+    }
+
+    // 2) 예시 데모 (가상의 레시피)
+    var SRC = "인스타그램 @kids_banchan";
+    var R = [
+      { id: "tofu", title: "두부 스테이크", d: "d-tofu", kind: "mine", liked: true, dur: "01:12", ings: ["두부 한 모", "다진 소고기", "양파", "달걀"],
+        steps: ["두부를 면포로 감싸 물기를 꼭 짜요.", "다진 소고기, 다진 양파, 달걀을 넣고 고루 섞어요.", "아이 손바닥만 하게 동그랗게 빚어요.", "약불에서 앞뒤로 노릇하게 구워요.", "한 김 식혀 먹기 좋게 잘라 담아요."] },
+      { id: "spinach", title: "시금치 무침", d: "d-leaf", kind: "mine", liked: false, dur: "00:48", ings: ["시금치", "참기름", "깨"],
+        steps: ["시금치를 뿌리째 깨끗이 씻어요.", "끓는 물에 30초만 데쳐요.", "찬물에 헹궈 물기를 꼭 짜요.", "아이가 먹기 좋게 짧게 잘라요.", "참기름과 깨를 넣고 조물조물 무쳐요."] },
+      { id: "zucchini", title: "애호박 달걀전", d: "d-egg", kind: "share", src: "영상 링크", liked: false, dur: "00:58", ings: ["애호박", "달걀", "부침가루"],
+        steps: ["애호박을 0.5cm 두께로 동그랗게 썰어요.", "앞뒤로 부침가루를 얇게 묻혀요.", "풀어 둔 달걀물에 담가요.", "약불에서 앞뒤로 천천히 부쳐요.", "키친타월에 올려 기름을 빼요."] },
+      { id: "potato", title: "감자채볶음", d: "d-carrot", kind: "share", src: "캡처", liked: false, dur: "01:05", ings: ["감자", "양파", "당근"],
+        steps: ["감자를 가늘게 채 썰어요.", "찬물에 10분 담가 전분을 빼요.", "양파와 당근도 같은 굵기로 채 썰어요.", "기름 두른 팬에 감자부터 볶아요.", "채소를 넣고 소금 조금으로 싱겁게 간해요."] },
+      { id: "soup", title: "소고기 무국", d: "d-bowl", kind: "hot", liked: false, dur: "01:30", ings: ["소고기", "무", "대파", "국간장"],
+        steps: ["냄비에 참기름을 두르고 소고기를 볶아요.", "나박하게 썬 무를 넣고 함께 볶아요.", "물을 붓고 무가 투명해질 때까지 끓여요.", "국간장으로 싱겁게 간해요.", "대파를 넣고 한소끔 더 끓여요."] },
+      { id: "riceball", title: "멸치 주먹밥", d: "d-riceball", kind: "hot", liked: false, dur: "00:42", ings: ["밥", "잔멸치", "김"],
+        steps: ["잔멸치를 마른 팬에 볶아 비린내를 날려요.", "따뜻한 밥에 멸치를 넣고 섞어요.", "한입 크기로 동글동글 뭉쳐요.", "잘게 부순 김을 겉에 묻혀요.", "접시에 담아 바로 먹어요."] },
+      { id: "broc", title: "브로콜리 치즈전", d: "d-broc", kind: "hot", liked: false, dur: "00:55", ings: ["브로콜리", "치즈", "달걀"],
+        steps: ["브로콜리를 데쳐 잘게 다져요.", "달걀을 풀어 브로콜리와 섞어요.", "잘게 찢은 치즈를 넣어요.", "한 숟갈씩 떠서 팬에 올려요.", "약불에서 앞뒤로 노릇하게 익혀요."] },
+    ];
+    var state = { filter: "all", chosen: null, have: {}, view: "tofu" };
+
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function doodle(id) {
+      var ns = "http://www.w3.org/2000/svg";
+      var s = document.createElementNS(ns, "svg"); s.setAttribute("viewBox", "0 0 100 100"); s.setAttribute("class", "doodle"); s.setAttribute("aria-hidden", "true");
+      var u = document.createElementNS(ns, "use"); u.setAttribute("href", "#" + id); s.appendChild(u); return s;
+    }
+    function heart() {
+      var ns = "http://www.w3.org/2000/svg";
+      var s = document.createElementNS(ns, "svg"); s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("aria-hidden", "true");
+      var p = document.createElementNS(ns, "path"); p.setAttribute("d", "M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10.2-7.5 10.2z");
+      p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "2"); s.appendChild(p); return s;
+    }
+    function anim(node) { if (!reduce) node.classList.add("fade-in"); return node; }
+
+    // 탭
+    var tabs = Array.prototype.slice.call(document.querySelectorAll("#wm-demo .tab"));
+    function selectTab(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById("panel-" + k).hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+      if (i === 1) renderCards();
+      if (i === 2) renderShop();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { selectTab(i); });
+      t.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          e.preventDefault();
+          selectTab((i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length, true);
+        }
+      });
+    });
+
+    // 01 레시피 모으기
+    function renderShares() {
+      var ul = document.getElementById("demo-shares"); ul.textContent = "";
+      R.filter(function (r) { return r.src; }).forEach(function (r) {
+        var li = el("li", "share-row");
+        var t = el("span", "tile"); t.appendChild(doodle(r.d)); li.appendChild(t);
+        var g = el("span", "grow"); g.appendChild(el("span", "src", r.src)); g.appendChild(el("b", null, r.title)); li.appendChild(g);
+        var done = r.kind === "mine";
+        var b = el("button", "sbtn" + (done ? " is-done" : ""), done ? "담겼어요" : "공유하기");
+        b.type = "button"; if (done) b.disabled = true;
+        b.addEventListener("click", function () { r.kind = "mine"; renderShares(); renderMine(r.id); });
+        li.appendChild(b); ul.appendChild(li);
+      });
+    }
+    function renderMine(newId) {
+      var ul = document.getElementById("demo-mine"); ul.textContent = "";
+      var mine = R.filter(function (r) { return r.kind === "mine"; });
+      document.getElementById("demo-mine-count").textContent = mine.length + "개";
+      mine.slice().reverse().forEach(function (r) {
+        var li = el("li", "mini-row");
+        var t = el("span", "tile"); t.appendChild(doodle(r.d)); li.appendChild(t);
+        var g = el("span", "grow"); g.appendChild(el("b", "hand", r.title)); g.lastChild.style.fontSize = "20px";
+        g.appendChild(el("span", "src", "재료 " + r.ings.length + " · 순서 " + r.steps.length)); li.appendChild(g);
+        ul.appendChild(r.id === newId ? anim(li) : li);
+      });
+    }
+
+    // 02 고민될 때 열어 보기
+    document.querySelectorAll("#panel-1 .chip").forEach(function (c) {
+      c.addEventListener("click", function () {
+        state.filter = c.getAttribute("data-filter");
+        document.querySelectorAll("#panel-1 .chip").forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+        renderCards();
+      });
+    });
+    function likeBtn(r, big) {
+      var lk = el("button", "like"); lk.type = "button"; lk.setAttribute("aria-pressed", r.liked ? "true" : "false");
+      lk.setAttribute("aria-label", r.title + " 잘 먹었어요");
+      lk.appendChild(heart()); lk.appendChild(document.createTextNode("잘 먹었어요"));
+      lk.addEventListener("click", function () { r.liked = !r.liked; if (r.kind === "hot" && r.liked) r.kind = "mine"; renderCards(); });
+      return lk;
+    }
+    function pickBtn(r) {
+      var pk = el("button", "pick", "고르기"); pk.type = "button"; pk.setAttribute("aria-label", r.title + " 고르기");
+      pk.addEventListener("click", function () { state.chosen = r.id; state.have = {}; selectTab(2, true); });
+      return pk;
+    }
+    function renderCards() {
+      var box = document.getElementById("demo-cards"); box.textContent = "";
+      var list = R.filter(function (r) {
+        if (r.kind === "share") return false;
+        if (state.filter === "liked") return r.liked;
+        if (state.filter === "hot") return r.kind === "hot";
+        return true;
+      });
+      if (!list.length) { box.appendChild(el("p", "empty-msg", "아직 표시한 반찬이 없어요. 카드의 하트를 눌러 보세요.")); renderDetail(); return; }
+      if (!list.some(function (r) { return r.id === state.view; })) state.view = list[0].id;
+      list.forEach(function (r) {
+        var c = el("article", "rcard" + (r.id === state.view ? " is-sel" : ""));
+        var op = el("button", "open"); op.type = "button"; op.setAttribute("aria-label", r.title + " 레시피 보기");
+        op.setAttribute("aria-pressed", r.id === state.view ? "true" : "false");
+        var th = el("div", "thumb"); th.appendChild(doodle(r.d)); op.appendChild(th);
+        op.appendChild(el("p", "title", r.title));
+        op.addEventListener("click", function () {
+          state.view = r.id; renderCards();
+          if (!window.matchMedia("(min-width: 768px)").matches) {
+            document.getElementById("demo-detail").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+          }
+        });
+        c.appendChild(op);
+        var b = el("div", "body");
+        b.appendChild(el("span", "tag" + (r.kind === "hot" ? " is-hot" : ""), r.kind === "hot" ? "인기 급상승" : "내 레시피"));
+        b.appendChild(el("span", "meta", "재료 " + r.ings.length + " · 순서 " + r.steps.length));
+        var a = el("div", "acts");
+        a.appendChild(likeBtn(r)); a.appendChild(pickBtn(r));
+        b.appendChild(a); c.appendChild(b);
+        box.appendChild(anim(c));
+      });
+      renderDetail();
+    }
+    function renderDetail() {
+      var d = document.getElementById("demo-detail"); d.textContent = "";
+      var r = R.find(function (x) { return x.id === state.view; });
+      if (!r) { d.appendChild(el("p", "empty-msg", "카드를 누르면 레시피가 여기에 보여요.")); return; }
+      var ns = "http://www.w3.org/2000/svg";
+      var v = el("div", "video"); v.setAttribute("aria-label", "원본 영상 미리보기");
+      v.appendChild(doodle(r.d));
+      var pl = el("span", "play"); var ps = document.createElementNS(ns, "svg"); ps.setAttribute("viewBox", "0 0 24 24"); ps.setAttribute("aria-hidden", "true");
+      var pp = document.createElementNS(ns, "path"); pp.setAttribute("d", "M7 4l13 8-13 8z"); pp.setAttribute("fill", "#fff"); ps.appendChild(pp); pl.appendChild(ps); v.appendChild(pl);
+      v.appendChild(el("span", "dur", r.dur));
+      d.appendChild(v);
+      var head = el("div");
+      head.appendChild(el("p", "d-title", r.title));
+      var src = el("p", "d-src");
+      var ig = document.createElementNS(ns, "svg"); ig.setAttribute("viewBox", "0 0 24 24"); ig.setAttribute("aria-hidden", "true");
+      var rr = document.createElementNS(ns, "rect"); rr.setAttribute("x", "3"); rr.setAttribute("y", "3"); rr.setAttribute("width", "18"); rr.setAttribute("height", "18"); rr.setAttribute("rx", "5");
+      var cc = document.createElementNS(ns, "circle"); cc.setAttribute("cx", "12"); cc.setAttribute("cy", "12"); cc.setAttribute("r", "4");
+      [rr, cc].forEach(function (n) { n.setAttribute("fill", "none"); n.setAttribute("stroke", "currentColor"); n.setAttribute("stroke-width", "1.8"); ig.appendChild(n); });
+      src.appendChild(ig); src.appendChild(document.createTextNode(SRC));
+      head.appendChild(src); d.appendChild(head);
+      var s1 = el("div"); s1.appendChild(el("h4", null, "재료"));
+      var ul = el("ul", "d-ings"); r.ings.forEach(function (n) { ul.appendChild(el("li", null, n)); }); s1.appendChild(ul); d.appendChild(s1);
+      var s2 = el("div"); s2.appendChild(el("h4", null, "조리법"));
+      var ol = el("ol", "d-steps"); r.steps.forEach(function (t) { ol.appendChild(el("li", null, t)); }); s2.appendChild(ol); d.appendChild(s2);
+      var a = el("div", "acts"); a.appendChild(likeBtn(r)); a.appendChild(pickBtn(r)); d.appendChild(a);
+    }
+
+    // 03 바로 장 보기
+    document.getElementById("demo-go-pick").addEventListener("click", function () { selectTab(1, true); });
+    function renderShop() {
+      var r = R.find(function (x) { return x.id === state.chosen; });
+      document.getElementById("demo-shop-empty").hidden = !!r;
+      document.getElementById("demo-shop").hidden = !r;
+      if (!r) return;
+      document.getElementById("demo-shop-title").textContent = r.title;
+      var ul = document.getElementById("demo-ings"); ul.textContent = "";
+      r.ings.forEach(function (name, i) {
+        var li = el("li");
+        var lab = el("label", "ing" + (state.have[i] ? " is-have" : ""));
+        var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!state.have[i];
+        var g = el("span", "grow"); g.appendChild(el("b", null, name)); var sm = el("small", null, state.have[i] ? " 집에 있어요" : ""); g.appendChild(sm);
+        cb.addEventListener("change", function () {
+          state.have[i] = cb.checked;
+          lab.classList.toggle("is-have", cb.checked);
+          sm.textContent = cb.checked ? " 집에 있어요" : "";
+          renderCart(r);
+        });
+        lab.appendChild(cb); lab.appendChild(g); li.appendChild(lab); ul.appendChild(li);
+      });
+      renderCart(r);
+    }
+    function renderCart(r) {
+      var cart = document.getElementById("demo-cart"); cart.textContent = "";
+      var need = r.ings.filter(function (_, i) { return !state.have[i]; });
+      document.getElementById("demo-cart-count").textContent = need.length + "개";
+      need.forEach(function (n) { cart.appendChild(el("li", null, n)); });
+    }
+
+    renderShares(); renderMine();
+  })();
+</script>

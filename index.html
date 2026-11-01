@@ -2,10 +2,10 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>Influency - Influencer Website Template</title>
+    <title>매일 하는 아이 반찬 고민, 고르기 쉽게</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
-    <meta content="" name="description" />
+    <meta content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요." name="description" />
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon" />
@@ -65,965 +65,672 @@
 
   <body class="wm-body">
     <style>
-      /* ===== 오늘 뭐 먹지 랜딩 · design.md + Apron Books Club 요소 ===== */
-      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-      @import url("https://fonts.googleapis.com/css2?family=DM+Mono&display=swap");
-      @font-face {
-        font-family: "GmarketSans";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff");
-        font-weight: 700;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "D2Coding";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff") format("woff");
-        font-weight: 400;
-        font-display: swap;
-      }
 
-      /* 1. 토큰 */
-      body.wm-body { margin: 0; background: #fffef9; color: #111111; }
-      html { scroll-behavior: smooth; }
-      .wm {
-        --butter: #f9efb6;
-        --yolk: #f9d949;
-        --yolk-hover: #f2cc2e;
-        --paper: #ffffff;
-        --off: #fffef9;      /* Apron 페이지 바탕 */
-        --pale: #fdf5cf;     /* Apron 등급 카드 */
-        --gray: #f5f4ed;     /* Apron 기능 카드 */
-        --cream-2: #ecebe3;
-        --line: #dfddd3;
-        --ink: #111111;
-        --ink-soft: #5e5a48;
-        --error: #b42318;
-        --ok: #2f6b3a;
-        --f-display: "GmarketSans", "Pretendard", "Apple SD Gothic Neo", sans-serif;
-        --f-body: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-        --f-label: "D2Coding", "DM Mono", ui-monospace, monospace;
-        --f-num: "DM Mono", "D2Coding", ui-monospace, monospace;
-        font-family: var(--f-body);
-        font-size: 16px;
-        line-height: 1.65;
-        color: var(--ink);
-        word-break: keep-all;
-        overflow-wrap: break-word;
-        -webkit-font-smoothing: antialiased;
-      }
-      .wm [hidden] { display: none !important; }
-      .wm h1, .wm h2, .wm h3, .wm p, .wm figure { margin: 0; color: var(--ink); }
-      .wm ol, .wm ul { margin: 0; padding: 0; list-style: none; }
-      .wm a { color: var(--ink); }
-      .wm input, .wm textarea, .wm button { font-family: inherit; color: var(--ink); }
-      .wm .container { max-width: 1180px; padding-left: 20px; padding-right: 20px; }
-      .wm[data-layout="a"] .wm-only-b, .wm[data-layout="b"] .wm-only-a { display: none !important; }
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+  @import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=Gaegu:wght@400;700&family=Gothic+A1:wght@700;800&display=swap");
+  @font-face { font-family: "GmarketSans"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff"); font-weight: 700; font-display: swap; }
+  @font-face { font-family: "D2Coding"; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff") format("woff"); font-weight: 400; font-display: swap; }
 
-      /* 2. 타이포그래피 */
-      .wm-disp { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.03em; }
-      .wm-h1 { font-size: 36px; line-height: 1.12; }
-      .wm-h2 { font-size: 28px; line-height: 1.18; }
-      .wm-h3 { font-size: 20px; line-height: 1.3; }
-      .wm-sub { font-weight: 500; font-size: 17px; line-height: 1.55; max-width: 30em; }
-      .wm-p { font-size: 16px; line-height: 1.65; }
-      .wm-note { font-size: 15px; line-height: 1.6; color: var(--ink-soft) !important; }
-      .wm-eb { font-family: var(--f-label); font-size: 14px; letter-spacing: 0.06em; }
-      .wm-eb.is-soft { color: var(--ink-soft); }
-      .wm-label { font-family: var(--f-label); font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft) !important; }
-      .wm-num { font-family: var(--f-num); font-size: 13px; color: var(--ink-soft); }
-      .wm-num.is-ink { color: var(--ink); }
+  /* 배치: 한 열 흐름. 넓은 화면에서는 히어로·공감·FAQ·신청을 두 칸으로, 이용 방법은 세 칸 + 넓은 예시 패널 */
+  :root {
+    /* index.html 토큰 */
+    --butter: #f9efb6; --yolk: #f9d949; --yolk-hover: #f2cc2e;
+    --paper: #ffffff; --off: #fffef9; --pale: #fdf5cf; --gray: #f5f4ed;
+    --cream-2: #ecebe3; --line: #dfddd3; --ink: #111111; --ink-soft: #5e5a48;
+    --error: #b42318; --ok: #2f6b3a;
+    /* 무드보드: 크레파스 색 (그림에만 사용) */
+    --c-tomato: #d8432f; --c-cobalt: #2c48b5; --c-leaf: #4e9a3a; --c-plum: #7d4fb3; --c-orange: #ef9a1d; --c-pink: #e0569a;
+    --f-display: "GmarketSans", "Gothic A1", "Apple SD Gothic Neo", sans-serif;
+    --f-body: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --f-label: "D2Coding", "DM Mono", ui-monospace, monospace;
+    --f-hand: "Gaegu", "Nanum Pen Script", cursive;
+    color-scheme: light;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--off); color: var(--ink);
+    font-family: var(--f-body); font-size: 16px; line-height: 1.65;
+    word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased;
+  }
+  /* 종이 결: 아주 옅은 노이즈 */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .35; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .4  0 0 0 0 .3  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  h1, h2, h3, p, figure { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  button, input, textarea { font: inherit; color: var(--ink); }
+  [hidden] { display: none !important; }
 
-      /* 3. 섹션 · 배경 (노랑은 히어로와 마지막 버튼 두 곳만) */
-      .wm-section { padding: 72px 0; background: var(--bg, var(--off)); }
-      #wm-hero, #wm-final { --bg: var(--butter); }
-      #wm-hero { padding: 0; overflow: hidden; }
-      .wm[data-layout="a"] #wm-how, .wm[data-layout="a"] #wm-who { padding-top: 0; }
-      .wm[data-layout="b"] #wm-story, .wm[data-layout="b"] #wm-who, .wm[data-layout="b"] #wm-faq { padding-top: 0; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .section { padding-block: 72px; position: relative; overflow-x: clip; }
 
-      /* 상단 메뉴 */
-      .wm-nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-      .wm-brand { font-family: var(--f-display); font-weight: 700; font-size: 19px; letter-spacing: -0.03em; }
-      .wm-navlinks { display: none; gap: 32px; font-weight: 500; }
-      .wm-navlinks a { text-decoration: none; }
-      .wm-navlinks a:hover { color: var(--ink-soft); }
+  .disp { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.03em; text-wrap: balance; }
+  .kb-h1 { font-size: 34px; line-height: 1.16; }
+  .kb-h2 { font-size: 28px; line-height: 1.2; }
+  .sub { font-weight: 500; font-size: 17px; line-height: 1.6; max-width: 30em; color: var(--ink); }
+  .note { font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .eb { font-family: var(--f-label); font-size: 13px; letter-spacing: .06em; color: var(--ink-soft); }
+  .hand { font-family: var(--f-hand); font-weight: 700; letter-spacing: 0; }
 
-      /* 4.1 버튼 — Apron처럼 노랑 버튼은 테두리 없이 */
-      .wm-btns { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 360px; }
-      .wm .wm-btn {
-        display: inline-flex; align-items: center; justify-content: center;
-        width: 100%; height: 56px; padding: 0 36px; border: 0; border-radius: 999px;
-        font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
-        transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
-      }
-      .wm .wm-btn-primary { background: var(--yolk); border: 0; color: var(--ink); }
-      .wm .wm-btn-primary:hover { background: var(--yolk-hover); }
-      .wm .wm-btn-ghost { background: transparent; border: 1px solid rgba(17, 17, 17, 0.2); color: var(--ink); }
-      .wm .wm-btn-ghost:hover { border-color: rgba(17, 17, 17, 0.6); color: var(--ink); }
-      .wm .wm-btn:active { transform: translateY(1px); }
-      .wm .wm-textbtn {
-        min-height: 48px; padding: 12px 8px; border: 0; border-radius: 8px; background: none;
-        color: var(--ink-soft); font-size: 16px; text-decoration: underline; text-underline-offset: 3px;
-      }
-      .wm .wm-btn:focus-visible, .wm .wm-input:focus-visible, .wm .wm-textarea:focus-visible,
-      .wm .wm-chip:focus-visible, .wm .wm-textbtn:focus-visible, .wm .wm-close:focus-visible,
-      .wm summary:focus-visible, .wm-navlinks a:focus-visible {
-        outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: none;
-      }
+  /* 버튼 (index.html 4.1) */
+  .kb-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 56px; padding: 0 36px; border: 0; border-radius: 999px;
+    font-weight: 600; font-size: 16px; line-height: 1; text-decoration: none; cursor: pointer;
+    transition: background-color .15s ease, transform .05s ease;
+  }
+  .kb-btn-primary { background: var(--yolk); color: var(--ink); }
+  .kb-btn-primary:hover { background: var(--yolk-hover); }
+  .kb-btn-ink { background: var(--ink); color: var(--off); }
+  .kb-btn-ink:hover { background: #333; }
+  .kb-btn:active { transform: translateY(1px); }
+  .kb-btn[aria-busy="true"] { opacity: .7; cursor: progress; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-      /* 4.2 종이 · 점선 */
-      .wm-lift { filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.06)) drop-shadow(0 10px 28px rgba(70, 58, 0, 0.1)); }
-      .wm-paper { position: relative; background: var(--paper); border-radius: 2px; }
-      .wm-scallop { margin-bottom: 6px; }
-      .wm-scallop::after {
-        content: ""; position: absolute; left: 4px; right: 4px; bottom: -6px; height: 6px;
-        background: radial-gradient(circle 6px at 9px 0, var(--paper) 5.6px, transparent 6px) 0 0 / 18px 6px repeat-x;
-      }
-      .wm-spiral { padding-top: 38px !important; }
-      .wm-spiral::before {
-        content: ""; position: absolute; top: 12px; left: 16px; right: 16px; height: 8px;
-        background: radial-gradient(circle 4px at 4px 4px, var(--hole, var(--butter)) 3.5px, transparent 4px) 0 0 / 16px 8px repeat-x;
-      }
-      .wm-dots { height: 2px; background: radial-gradient(circle at 1px 1px, var(--ink-soft) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
-      .wm-caption { margin-top: 14px; font-family: var(--f-label); font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft); }
+  /* 종이 카드 (index.html 4.2: 그림자·물결 아랫단·스프링 구멍) + 무드보드: 줄 노트·마스킹 테이프 */
+  .lift { filter: drop-shadow(0 1px 0 rgba(0,0,0,.06)) drop-shadow(0 10px 28px rgba(70,58,0,.1)); }
+  .paper { position: relative; background: var(--paper); border-radius: 2px; }
+  .ruled {
+    background:
+      linear-gradient(90deg, transparent 0 30px, rgba(216,67,47,.28) 30px 31px, transparent 31px),
+      repeating-linear-gradient(180deg, var(--paper) 0 29px, #e9e5d8 29px 30px);
+  }
+  .spiral { padding-top: 38px !important; }
+  .spiral::before {
+    content: ""; position: absolute; top: 12px; left: 16px; right: 16px; height: 8px;
+    background: radial-gradient(circle 4px at 4px 4px, var(--hole, var(--butter)) 3.5px, transparent 4px) 0 0 / 16px 8px repeat-x;
+  }
+  .scallop { margin-bottom: 6px; }
+  .scallop::after {
+    content: ""; position: absolute; left: 4px; right: 4px; bottom: -6px; height: 6px;
+    background: radial-gradient(circle 6px at 9px 0, var(--paper) 5.6px, transparent 6px) 0 0 / 18px 6px repeat-x;
+  }
+  .tape {
+    position: absolute; width: 92px; height: 26px; top: -12px; left: 50%; margin-left: -46px; transform: rotate(-4deg);
+    background: rgba(249,217,73,.62);
+    clip-path: polygon(0 8%, 6% 0, 12% 10%, 20% 2%, 30% 9%, 42% 1%, 55% 8%, 68% 0, 80% 9%, 92% 2%, 100% 10%, 100% 92%, 94% 100%, 84% 90%, 72% 99%, 60% 91%, 47% 100%, 34% 92%, 22% 100%, 10% 91%, 0 98%);
+  }
+  .tape.is-lilac { background: rgba(125,79,179,.28); }
+  .tape.is-pink { background: rgba(224,86,154,.26); }
 
-      /* 식단 메모 */
-      .wm-memo { padding: 38px 22px 20px; text-align: left; }
-      .wm-memo-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; }
-      .wm-memo-row {
-        display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; column-gap: 12px; align-items: center;
-        padding: 11px 0; border-top: 1px dashed var(--line);
-      }
-      .wm-day { font-family: var(--f-label); font-size: 13px; }
-      .wm-dish { font-weight: 600; font-size: 15px; }
-      .wm-empty { font-size: 14px; color: var(--ink-soft); }
-      .wm-dish-sub { display: block; font-weight: 400; font-size: 12px; color: var(--ink-soft); }
-      .wm-tag {
-        display: inline-flex; align-items: center; gap: 4px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px;
-        font-size: 12px; line-height: 1; color: var(--ink-soft); white-space: nowrap;
-      }
-      .wm-tag.is-public { background: var(--cream-2); border-color: var(--cream-2); color: var(--ink); }
-      .wm-trow { display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 10px; padding: 9px 0; font-size: 14px; border-top: 1px dashed var(--line); }
-      .wm-check-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px; }
-      .wm-icon { flex: none; width: 18px; height: 18px; }
+  /* 크레파스 낙서 */
+  .doodle { display: block; overflow: visible; }
+  .doodle use { filter: url(#crayon); }
 
-      /* 히어로 */
-      .wm-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; padding: 28px 0 72px; justify-items: center; text-align: center; }
-      .wm-hero-copy { display: flex; flex-direction: column; align-items: center; }
-      .wm-desk { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; width: 100%; }
-      .wm-desk-mid { width: 100%; max-width: 420px; }
-      .wm-desk-side { display: none; text-align: left; }
+  /* 히어로 */
+  #wm-hero { background: var(--butter); padding-block: 0 56px; }
+  .kb-nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-family: var(--f-display); font-weight: 700; font-size: 18px; letter-spacing: -0.03em; }
+  .navlinks { display: none; gap: 32px; font-weight: 500; }
+  .navlinks a { color: var(--ink); text-decoration: none; }
+  .navlinks a:hover { color: var(--ink-soft); }
+  .hero { display: grid; grid-template-columns: minmax(0,1fr); gap: 36px; padding-top: 20px; text-align: center; justify-items: center; }
+  .hero-copy { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .hero-copy .kb-btn { margin-top: 8px; width: 100%; max-width: 340px; }
+  .collage { position: relative; width: 100%; max-width: 420px; height: 300px; }
+  .collage .card-note { position: absolute; left: 4%; top: 22px; width: 58%; padding: 38px 18px 18px 40px; transform: rotate(-4deg); --hole: var(--butter); }
+  .card-note .hand-title { font-size: 24px; line-height: 1.1; }
+  .card-note ul { margin-top: 8px; font-family: var(--f-hand); font-size: 18px; line-height: 30px; color: #3a3a3a; }
+  .stamp {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; padding: 3px 10px 3px 8px;
+    border: 1.5px solid var(--c-tomato); border-radius: 999px; color: var(--c-tomato);
+    font-family: var(--f-hand); font-weight: 700; font-size: 16px; transform: rotate(-3deg);
+  }
+  .stamp svg { width: 14px; height: 14px; }
+  .collage .card-polar { position: absolute; right: 0; top: 104px; width: 40%; padding: 10px 10px 34px; background: var(--paper); transform: rotate(5deg); }
+  .card-polar .ph { aspect-ratio: 1; background: var(--pale); display: grid; place-items: center; }
+  .card-polar .ph svg { width: 78%; height: 78%; }
+  .card-polar figcaption { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; font-family: var(--f-hand); font-weight: 700; font-size: 19px; }
+  .collage .float { position: absolute; width: 54px; height: 54px; }
+  .collage .f1 { left: -2%; bottom: 8px; transform: rotate(-12deg); }
+  .collage .f2 { right: 4%; top: -2px; width: 46px; height: 46px; }
+  .collage .f3 { left: 46%; bottom: -6px; width: 60px; height: 60px; transform: rotate(10deg); }
 
-      /* 공감 → 관점 전환 */
-      .wm-story { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
-      .wm-story-title { font-size: 20px; line-height: 1.3; }
-      .wm-story .wm-p { margin-top: 12px; }
-      .wm-join { display: flex; align-items: center; justify-content: center; height: 36px; font-family: var(--f-num); font-size: 28px; line-height: 1; }
-      .wm-join .is-row { display: none; }
-      .wm[data-layout="a"] .wm-story-now { background: var(--gray); border-radius: 20px; padding: 28px 22px; }
-      .wm[data-layout="a"] .wm-story-shift { background: var(--pale); border-radius: 20px; padding: 28px 22px; }
-      .wm[data-layout="a"] .wm-story .wm-eb + .wm-story-title { margin-top: 14px; }
-      .wm[data-layout="b"] .wm-story { gap: 40px; align-items: center; }
-      .wm[data-layout="b"] .wm-story-now .wm-story-title { font-size: 28px; line-height: 1.18; }
-      .wm[data-layout="b"] .wm-story-now .wm-p { margin-top: 20px; }
-      .wm[data-layout="b"] .wm-story-shift { background: var(--pale); border-radius: 20px; padding: 40px 20px 36px; }
-      .wm[data-layout="b"] .wm-receipt { margin-top: 12px; padding: 30px 24px; transform: rotate(-2deg); }
-      .wm[data-layout="b"] .wm-receipt::before {
-        content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px;
-        background:
-          linear-gradient(-45deg, var(--paper) 6px, transparent 0) 0 100% / 12px 12px repeat-x,
-          linear-gradient(45deg, var(--paper) 6px, transparent 0) 0 100% / 12px 12px repeat-x;
-      }
-      .wm[data-layout="b"] .wm-receipt .wm-story-title { font-size: 22px; }
-      .wm[data-layout="b"] .wm-receipt .wm-dots { margin: 20px 0; }
-      .wm[data-layout="b"] .wm-receipt .wm-p { margin-top: 0; }
-      .wm[data-layout="a"] .wm-receipt-wrap { filter: none; }
-      .wm[data-layout="a"] .wm-receipt { background: none; }
+  /* 공감 */
+  .story { display: grid; grid-template-columns: minmax(0,1fr); gap: 32px; }
+  .story-notes { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .strip { position: relative; padding: 18px 20px 18px 44px; font-size: 16px; line-height: 1.6; min-width: 0; }
+  .strip::before {
+    content: ""; position: absolute; left: 18px; top: 23px; width: 12px; height: 12px; border-radius: 50%;
+    border: 2px solid var(--c-dot, var(--c-tomato)); filter: url(#crayon);
+  }
+  .strip:nth-child(odd) { transform: rotate(-.8deg); }
+  .strip:nth-child(even) { transform: rotate(.7deg); }
+  .strip:nth-child(2) { --c-dot: var(--c-cobalt); }
+  .strip:nth-child(3) { --c-dot: var(--c-leaf); }
+  .strip:nth-child(4) { --c-dot: var(--c-plum); }
+  .strip:nth-child(5) { --c-dot: var(--c-orange); }
+  .closing { margin-top: 8px; padding: 22px 22px; border-radius: 20px; background: var(--pale); font-weight: 700; font-size: 18px; line-height: 1.5; }
+  .story-head .doodle { width: 72px; height: 72px; margin-top: 20px; }
 
-      /* 4.4 단계 — 안 A: 연노랑 등급 카드 / 안 B: 회색 기능 카드 + 화살표 */
-      .wm-how-title { text-align: center; }
-      .wm-steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 40px !important; }
-      .wm-step { border-radius: 20px; padding: 26px 22px 24px; }
-      .wm-step-txt { display: flex; flex-direction: column; }
-      .wm-step-txt .wm-p { margin-top: 10px; }
-      .wm-step-txt .wm-note { margin-top: 10px; }
-      .wm-step-fig { margin-top: 22px !important; text-align: left; }
-      .wm-mock { padding: 18px; }
-      .wm-step-join { display: none; }
-      .wm[data-layout="a"] .wm-step { background: var(--pale); text-align: center; }
-      .wm[data-layout="a"] .wm-step-txt { align-items: center; }
-      .wm[data-layout="a"] .wm-step-txt .wm-dots { width: 100%; margin: 16px 0 6px; }
-      .wm[data-layout="a"] .wm-mock.wm-spiral { --hole: var(--pale); }
-      .wm[data-layout="b"] .wm-steps { gap: 8px; }
-      .wm[data-layout="b"] .wm-step { background: var(--gray); }
-      .wm[data-layout="b"] .wm-step.is-lead { background: var(--pale); }
-      .wm[data-layout="b"] .wm-step-txt .wm-dots { display: none; }
-      .wm[data-layout="b"] .wm-step-join { display: flex; }
-      .wm[data-layout="b"] .wm-mock-wrap { filter: none; }
-      .wm[data-layout="b"] .wm-mock { margin-bottom: 0; border-radius: 4px; padding: 14px 16px !important; }
-      .wm[data-layout="b"] .wm-mock::before, .wm[data-layout="b"] .wm-mock::after { display: none; }
+  /* 이용 방법 (index.html 4.4: 연노랑 등급 카드 / 회색 기능 카드) */
+  #wm-how { background: var(--paper); }
+  .how-head { text-align: center; }
+  .steps { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; margin-top: 36px; counter-reset: step; }
+  .step { position: relative; border-radius: 20px; padding: 26px 22px 24px; background: var(--gray); min-width: 0; }
+  .step:first-child { background: var(--pale); }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px;
+    border-radius: 999px; background: var(--paper); font-family: var(--f-label); font-size: 15px;
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+  }
+  .step h3 { font-size: 20px; line-height: 1.3; font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; }
+  .step p { margin-top: 10px; font-size: 16px; }
+  .step .doodle { position: absolute; right: 16px; top: 16px; width: 48px; height: 48px; }
 
-      /* 누구 */
-      .wm-who { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-      .wm[data-layout="a"] .wm-who { max-width: 900px; margin: 0 auto; text-align: center; }
-      .wm[data-layout="a"] .wm-who .wm-p { max-width: 36em; margin: 0 auto; }
-      .wm[data-layout="a"] .wm-who .wm-eb + .wm-h2 { margin-top: 16px; }
-      .wm[data-layout="b"] .wm-who .wm-dots { margin-bottom: 20px; }
+  /* 예시 데모 */
+  .demo { position: relative; margin-top: 48px; padding: 22px 16px 20px; border: 1px solid var(--line); border-radius: 24px; background: var(--off); }
+  .demo-badge {
+    position: absolute; top: 16px; right: 16px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px;
+    font-family: var(--f-label); font-size: 12px; color: var(--ink-soft); background: var(--paper);
+  }
+  .tabs { display: flex; gap: 6px; overflow-x: auto; padding: 2px 2px 4px; margin-right: 44px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: none; min-height: 44px; padding: 0 14px; border: 1px solid rgba(17,17,17,.2); border-radius: 999px;
+    background: var(--paper); font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap;
+  }
+  .tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--off); }
+  .tab span { font-family: var(--f-label); font-weight: 400; margin-right: 4px; }
+  .panel { margin-top: 18px; }
+  .panel-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .box { padding: 18px; border-radius: 16px; background: var(--paper); border: 1px solid var(--line); min-width: 0; }
+  .box-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .box-h b { font-family: var(--f-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+  .count { font-family: var(--f-label); font-size: 13px; color: var(--ink-soft); }
 
-      /* 마지막 버튼 */
-      #wm-final { position: relative; overflow: hidden; }
-      .wm-lineart { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .share-row, .mini-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); }
+  .share-row:first-child, .mini-row:first-child { border-top: 0; }
+  .src { font-family: var(--f-label); font-size: 12px; color: var(--ink-soft); }
+  .grow { flex: 1; min-width: 0; }
+  .grow b { display: block; font-weight: 600; }
+  .sbtn {
+    flex: none; min-height: 40px; padding: 0 14px; border: 1.5px solid var(--ink); border-radius: 999px;
+    background: var(--paper); font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+  .sbtn:hover { background: var(--pale); }
+  .sbtn.is-done { border-color: var(--line); color: var(--ink-soft); cursor: default; background: var(--gray); }
+  .tile { flex: none; width: 48px; height: 48px; border-radius: 12px; background: var(--pale); display: grid; place-items: center; }
+  .tile svg { width: 36px; height: 36px; }
+  .tag { display: inline-block; margin-top: 2px; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: var(--cream-2); color: var(--ink); }
+  .tag.is-hot { background: #fde3d6; color: #8a2c1a; }
 
-      /* 4.6 FAQ */
-      .wm-faq-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
-      .wm[data-layout="a"] .wm-faq-grid { gap: 40px; }
-      .wm[data-layout="a"] .wm-faq-grid > .wm-h2 { text-align: center; }
-      .wm[data-layout="a"] .wm-faqbox { width: 100%; max-width: 760px; margin: 0 auto; }
-      .wm-faqbox { background: var(--pale); border-radius: 20px; padding: 6px 24px; }
-      .wm-faqbox details + details { background: radial-gradient(circle at 1px 1px, var(--ink-soft) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
-      .wm-faqbox summary {
-        display: flex; justify-content: space-between; align-items: center; gap: 16px;
-        min-height: 64px; padding: 18px 0; list-style: none; cursor: pointer; font-weight: 600; font-size: 17px; line-height: 1.4;
-      }
-      .wm-faqbox summary::-webkit-details-marker { display: none; }
-      .wm-faqbox .wm-pm { font-family: var(--f-num); font-size: 22px; line-height: 1; }
-      .wm-faqbox .wm-pm .is-minus, .wm-faqbox details[open] .wm-pm .is-plus { display: none; }
-      .wm-faqbox details[open] .wm-pm .is-minus { display: inline; }
-      .wm-faqbox .wm-p { padding-bottom: 20px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip {
+    min-height: 40px; padding: 0 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper);
+    font-weight: 600; font-size: 14px; cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--yolk); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .rcard { position: relative; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); overflow: hidden; min-width: 0; }
+  .rcard .thumb { height: 84px; display: grid; place-items: center; background: var(--pale); }
+  .rcard .thumb svg { width: 64px; height: 64px; }
+  .rcard .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .rcard .title { font-family: var(--f-hand); font-weight: 700; font-size: 21px; line-height: 1.1; }
+  .rcard .meta { font-size: 12px; color: var(--ink-soft); }
+  .rcard .acts { display: flex; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .like {
+    flex: none; white-space: nowrap;
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px; min-height: 36px; padding: 0 10px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--paper); font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink-soft);
+  }
+  .like svg { width: 14px; height: 14px; }
+  .like[aria-pressed="true"] { border-color: var(--c-tomato); color: var(--c-tomato); background: #fff3ef; }
+  .like[aria-pressed="true"] svg path { fill: var(--c-tomato); }
+  .pick { flex: 1; min-width: 0; white-space: nowrap; min-height: 36px; border: 0; border-radius: 999px; background: var(--ink); color: var(--off); font-size: 13px; font-weight: 600; cursor: pointer; }
+  .rcard .tag { align-self: flex-start; }
+  .rcard .acts { flex-wrap: wrap; }
+  .rcard .like { flex: 1 0 auto; }
+  .rcard .pick { flex: 1 0 auto; min-width: 64px; }
+  .rcard .open { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; }
+  .rcard .open .title { padding: 10px 12px 0; }
+  .rcard.is-sel { box-shadow: 0 0 0 2px var(--ink); border-color: var(--ink); }
+  .pick-grid { align-items: start; }
+  .detail { display: flex; flex-direction: column; gap: 14px; }
+  .video { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; background: var(--pale); display: grid; place-items: center; overflow: hidden; }
+  .video > svg { width: 38%; height: auto; max-height: 80%; }
+  .video .play { position: absolute; width: 52px; height: 52px; border-radius: 50%; background: rgba(17,17,17,.72); display: grid; place-items: center; }
+  .video .play svg { width: 20px; height: 20px; margin-left: 3px; }
+  .video .dur { position: absolute; right: 10px; bottom: 10px; padding: 2px 8px; border-radius: 6px; background: rgba(17,17,17,.8); color: #fff; font-family: var(--f-label); font-size: 12px; }
+  .detail .d-title { font-family: var(--f-hand); font-weight: 700; font-size: 28px; line-height: 1.1; }
+  .detail .d-src { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13px; color: var(--ink-soft); }
+  .detail .d-src svg { width: 15px; height: 15px; }
+  .detail h4 { margin: 0 0 8px; font-family: var(--f-label); font-size: 13px; font-weight: 400; letter-spacing: .06em; color: var(--ink-soft); }
+  .d-ings { display: flex; flex-wrap: wrap; gap: 6px; }
+  .d-ings li { padding: 4px 10px; border-radius: 999px; background: var(--gray); font-size: 14px; }
+  .d-steps { counter-reset: st; }
+  .d-steps li { counter-increment: st; display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 8px; padding: 8px 0; border-top: 1px dashed var(--line); font-size: 15px; line-height: 1.5; }
+  .d-steps li:first-child { border-top: 0; }
+  .d-steps li::before { content: counter(st); display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: var(--yolk); font-family: var(--f-label); font-size: 12px; }
+  .detail .acts { display: flex; gap: 8px; }
+  .detail .pick { min-height: 44px; font-size: 14px; }
+  .detail .like { min-height: 44px; padding: 0 14px; }
+  .liked-badge { position: absolute; top: 8px; left: 8px; }
+  .empty-msg { padding: 18px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 14px; }
 
-      /* 푸터 (Apron처럼 검정) */
-      .wm-foot { background: var(--ink); color: var(--off); padding: 40px 0 48px; }
-      .wm-foot .wm-brand, .wm-foot .wm-eb { color: var(--off); }
-      .wm-foot .wm-dots { margin-top: 24px; opacity: 0.6; background-image: radial-gradient(circle at 1px 1px, var(--off) 1px, transparent 1.4px); }
+  .ing { display: flex; align-items: center; gap: 12px; min-height: 48px; border-bottom: 1px dashed var(--line); cursor: pointer; font-size: 15px; }
+  .ing input { width: 20px; height: 20px; margin: 0; accent-color: var(--ink); }
+  .ing .grow small { color: var(--ink-soft); font-size: 12px; }
+  .ing.is-have .grow b { text-decoration: line-through; color: var(--ink-soft); font-weight: 500; }
+  .cart { background: var(--pale); border-color: var(--pale); }
+  .cartlist li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 12px; background: var(--paper); font-size: 15px; }
+  .cartlist li::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--yolk); box-shadow: 0 0 0 1px rgba(17,17,17,.15); }
 
-      /* 4.5 입력 · 안내 창 */
-      .wm .wm-field-label { display: block; margin: 0 0 8px 4px; font-weight: 600; font-size: 16px; }
-      .wm .wm-input {
-        display: block; width: 100%; height: 56px; padding: 0 24px;
-        border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: 16px;
-      }
-      .wm .wm-textarea {
-        display: block; width: 100%; min-height: 96px; padding: 14px 20px;
-        border: 1.5px solid var(--ink); border-radius: 16px; background: var(--paper); font-size: 16px; resize: vertical;
-      }
-      .wm .wm-input::placeholder, .wm .wm-textarea::placeholder { color: var(--ink-soft); opacity: 1; }
-      .wm .wm-input[aria-invalid="true"] { border-color: var(--error); }
-      .wm-error { margin: 8px 0 0 20px !important; font-size: 14px; color: var(--error) !important; }
-      .wm-ok { color: var(--ok) !important; }
-      .wm .wm-chip {
-        height: 48px; padding: 0 24px; border: 1.5px solid var(--ink); border-radius: 999px;
-        background: var(--paper); font-weight: 600; font-size: 16px; cursor: pointer;
-      }
-      .wm .wm-chip:hover { background: var(--off); }
-      .wm .wm-chip[aria-pressed="true"] { background: var(--yolk); }
-      .wm .modal-dialog { max-width: 440px; margin: 20px; }
-      .wm .modal-content { background: transparent; border: 0; filter: drop-shadow(0 8px 24px rgba(70, 58, 0, 0.18)); }
-      .wm-modal-paper { padding: 28px 24px 30px; }
-      .wm .wm-close {
-        position: absolute; top: 6px; right: 6px; display: flex; align-items: center; justify-content: center;
-        width: 48px; height: 48px; padding: 0; border: 0; border-radius: 999px; background: transparent;
-      }
-      .modal-backdrop.show { opacity: 1; background: rgba(17, 17, 17, 0.4); }
+  /* FAQ (index.html 4.6) */
+  .faq-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 28px; }
+  .faqbox { background: var(--pale); border-radius: 20px; padding: 6px 24px; }
+  .faqbox details + details { background: radial-gradient(circle at 1px 1px, var(--ink-soft) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
+  .faqbox summary {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; padding: 18px 0;
+    list-style: none; cursor: pointer; font-weight: 600; font-size: 17px; line-height: 1.4;
+  }
+  .faqbox summary::-webkit-details-marker { display: none; }
+  .pm { flex: none; font-family: var(--f-label); font-size: 22px; line-height: 1; }
+  .pm .is-minus, details[open] .pm .is-plus { display: none; }
+  details[open] .pm .is-minus { display: inline; }
+  .faqbox details p { padding-bottom: 20px; }
 
-      /* 태블릿 768px+ */
-      @media (min-width: 768px) {
-        .wm .container { padding-left: 40px; padding-right: 40px; }
-        .wm-section { padding: 96px 0; }
-        .wm-h1 { font-size: 60px; }
-        .wm-h2 { font-size: 44px; }
-        .wm-h3 { font-size: 22px; }
-        .wm-sub { font-size: 19px; }
-        .wm, .wm-p { font-size: 18px; }
-        .wm-nav { height: 76px; }
-        .wm-navlinks { display: flex; }
-        .wm-btns { flex-direction: row; justify-content: center; width: auto; max-width: none; }
-        .wm .wm-btn { width: auto; min-width: 208px; height: 64px; }
-        .wm .modal-dialog { margin: 1.75rem auto; }
-        .wm .modal-dialog .wm-btn { width: 100%; }
-        .wm-desk-mid { max-width: 460px; }
-        .wm-story-title { font-size: 22px; }
-        .wm[data-layout="a"] .wm-story { grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr); gap: 8px; }
-        .wm[data-layout="a"] .wm-join .is-col { display: none; }
-        .wm[data-layout="a"] .wm-join .is-row { display: inline; }
-        .wm[data-layout="a"] .wm-join { height: auto; }
-        .wm[data-layout="b"] .wm-story-now .wm-story-title { font-size: 44px; }
-        .wm[data-layout="b"] .wm-story-shift { padding: 56px 48px 52px; }
-        .wm[data-layout="b"] .wm-receipt-wrap { max-width: 520px; margin: 0 auto; }
-        .wm[data-layout="b"] .wm-receipt .wm-story-title { font-size: 26px; }
-        .wm-step { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); column-gap: 28px; align-items: center; }
-        .wm-step-fig { margin-top: 0 !important; }
-        .wm[data-layout="a"] .wm-step { text-align: left; }
-        .wm[data-layout="a"] .wm-step-txt { align-items: flex-start; }
-      }
+  /* 신청 (index.html 4.5 입력) */
+  #wm-final { background: var(--butter); }
+  .final { display: grid; grid-template-columns: minmax(0,1fr); gap: 28px; align-items: start; }
+  .final-copy p { margin-top: 14px; }
+  .final-card { padding: 30px 22px 28px; }
+  .field-label { display: block; margin: 0 0 8px 4px; font-weight: 600; font-size: 15px; }
+  .input, .textarea {
+    display: block; width: 100%; box-sizing: border-box; border: 1.5px solid var(--ink); background: var(--paper); font-size: 16px;
+  }
+  .input { height: 56px; padding: 0 24px; border-radius: 999px; }
+  .textarea { min-height: 88px; padding: 14px 20px; border-radius: 16px; resize: vertical; }
+  .input::placeholder, .textarea::placeholder { color: var(--ink-soft); opacity: 1; }
+  .input[aria-invalid="true"] { border-color: var(--error); }
+  .error { margin: 8px 0 0 20px; font-size: 14px; color: var(--error); }
+  .final-card .kb-btn { width: 100%; margin-top: 20px; }
+  .final-card .note { margin-top: 14px; }
+  .done-title { font-family: var(--f-display); font-weight: 700; font-size: 24px; letter-spacing: -0.02em; line-height: 1.3; }
+  .done-title:focus { outline: none; }
+  .hh { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--line); }
+  .hh .chips { margin: 12px 0 0; }
+  .textbtn { min-height: 44px; padding: 10px 6px; border: 0; background: none; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .ok { color: var(--ok); }
 
-      /* 데스크톱 1100px+ */
-      @media (min-width: 1100px) {
-        .wm .container { padding-left: 56px; padding-right: 56px; }
-        .wm-section { padding: 120px 0; }
-        .wm-h1 { font-size: 64px; }
-        .wm-h2 { font-size: 60px; }
-        .wm-h3 { font-size: 24px; }
-        .wm-sub { font-size: 20px; }
-        .wm, .wm-p { font-size: 19px; }
-        .wm-label, .wm-num, .wm-caption { font-size: 14px; }
-        .wm .wm-btn { font-size: 17px; }
-        .wm-story-title { font-size: 24px; }
-        .wm-step { align-items: stretch; }
+  footer { background: var(--ink); color: var(--off); padding-block: 36px 44px; }
+  footer .brand { color: var(--off); }
+  footer .dots { margin-top: 20px; height: 2px; opacity: .6; background: radial-gradient(circle at 1px 1px, var(--off) 1px, transparent 1.4px) 0 0 / 6px 2px repeat-x; }
 
-        /* 안 A: 히어로 문구 | 식단 메모 */
-        .wm[data-layout="a"] .wm-hero { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 72px; align-items: center; justify-items: stretch; text-align: left; padding: 56px 0 120px; }
-        .wm[data-layout="a"] .wm-hero-copy { align-items: flex-start; }
-        .wm[data-layout="a"] .wm-btns { justify-content: flex-start; }
-        .wm[data-layout="a"] #wm-final .wm-btns { justify-content: center; }
-        .wm[data-layout="a"] .wm-desk { justify-items: end; }
-        .wm[data-layout="a"] .wm-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-        .wm[data-layout="a"] .wm-step { display: flex; flex-direction: column; text-align: center; }
-        .wm[data-layout="a"] .wm-step-txt { align-items: center; }
-        .wm[data-layout="a"] .wm-step-fig { margin-top: 24px !important; }
+  /* 스크롤 등장: 첫 화면 아래에 있던 것만, 움직임 줄이기 사용자는 제외 (JS가 .is-pre를 붙임) */
+  .is-pre { opacity: 0; transform: translateY(22px); }
+  .is-pre[data-reveal="left"] { transform: translateX(-26px) rotate(-1deg); }
+  .is-pre[data-reveal="pop"] { transform: scale(.94) rotate(-2deg); }
+  .reveal-on [data-reveal] { transition: opacity .7s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal-on .doodle.draw use { stroke-dasharray: 400; stroke-dashoffset: 0; transition: stroke-dashoffset 1.4s ease .2s; }
+  .reveal-on .is-pre .doodle.draw use { stroke-dashoffset: 400; }
+  .fade-in { animation: rise .45s ease both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-        /* 안 B: 가운데 큰 문구 + 종이 메모 세 장, 단계 가로, 두 칸 */
-        .wm[data-layout="b"] .wm-h1 { font-size: 72px; }
-        .wm[data-layout="b"] .wm-hero { padding: 56px 0 96px; }
-        .wm[data-layout="b"] .wm-desk { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; gap: 24px; margin-top: 16px; }
-        .wm[data-layout="b"] .wm-desk-mid { grid-column: 2; grid-row: 1; max-width: none; }
-        .wm[data-layout="b"] .wm-desk-side { display: block; width: 100%; max-width: 300px; }
-        .wm[data-layout="b"] .wm-desk-left { grid-column: 1; grid-row: 1; justify-self: end; margin-top: 80px !important; transform: rotate(-5deg); }
-        .wm[data-layout="b"] .wm-desk-right { grid-column: 3; grid-row: 1; justify-self: start; margin-top: 120px !important; transform: rotate(4deg); }
-        .wm[data-layout="b"] .wm-steps { grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr) 36px minmax(0, 1fr); align-items: stretch; }
-        .wm[data-layout="b"] .wm-step { display: flex; flex-direction: column; }
-        .wm[data-layout="b"] .wm-step-fig { margin-top: 20px !important; }
-        .wm[data-layout="b"] .wm-step-join .is-col { display: none; }
-        .wm[data-layout="b"] .wm-step-join .is-row { display: inline; }
-        .wm[data-layout="b"] .wm-step-join { height: auto; }
-        .wm[data-layout="b"] .wm-story { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 72px; }
-        .wm[data-layout="b"] .wm-story-now .wm-story-title { font-size: 60px; }
-        .wm[data-layout="b"] .wm-receipt .wm-story-title { font-size: 30px; }
-        .wm[data-layout="b"] .wm-who, .wm[data-layout="b"] .wm-faq-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        .wm *, .wm *::before, .wm *::after { transition: none !important; }
-      }
+  /* 768px 이상 */
+  @media (min-width: 768px) {
+    .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); }
+    .section { padding-block: 96px; }
+    #wm-hero { padding-block: 0 72px; }
+    .kb-h1 { font-size: 52px; }
+    .kb-h2 { font-size: 40px; }
+    .sub { font-size: 19px; }
+    body { font-size: 17px; }
+    .kb-nav { height: 76px; }
+    .navlinks { display: flex; }
+    .hero-copy .kb-btn { width: auto; min-width: 220px; height: 64px; }
+    .collage { max-width: 560px; height: 360px; }
+    .collage .card-polar { right: 2%; top: 64px; width: 44%; }
+    .story-notes { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .story-notes .closing { grid-column: 1 / -1; }
+    .steps { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .demo { padding: 30px 28px; }
+    .panel-grid.two { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); }
+    .pick-grid .cards { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); }
+    .final-card { padding: 36px 32px; }
+  }
+  /* 1100px 이상: 넓은 화면은 두 칸 */
+  @media (min-width: 1100px) {
+    .wrap { padding-left: max(56px, env(safe-area-inset-left, 0px)); padding-right: max(56px, env(safe-area-inset-right, 0px)); }
+    .section { padding-block: 120px; }
+    .kb-h1 { font-size: 66px; }
+    .kb-h2 { font-size: 48px; }
+    .sub { font-size: 20px; }
+    body { font-size: 18px; }
+    .hero { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 56px; align-items: center; text-align: left; justify-items: stretch; padding-top: 48px; }
+    .hero-copy { align-items: flex-start; }
+    .collage { justify-self: end; height: 440px; }
+    .collage .card-note { width: 56%; top: 30px; }
+    .collage .card-polar { top: 96px; }
+    .story { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 64px; align-items: start; }
+    .story-head { position: sticky; top: 48px; }
+    .demo { padding: 40px; margin-top: 64px; }
+    .faq-grid { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 64px; align-items: start; }
+    .final { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 72px; align-items: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
 
-      /* ===== 단계 흐름 · 휴대폰 목업 · 예시 데모 · 스크롤 등장 ===== */
-      .wm .wm-btn-ink { background: var(--ink); color: var(--off); border: 0; }
-      .wm .wm-btn-ink:hover { background: #333333; color: var(--off); }
-
-      .wm-section { overflow-x: clip; }
-      .wm-flow { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 40px; }
-      .wm-flow-stage { order: -1; position: relative; padding: 16px 0 0; --s: 0.74; }
-      .wm-flow-blob { position: absolute; left: 50%; top: 0; width: calc(640px * var(--s)); height: calc(980px * var(--s)); transform: translateX(-50%); }
-      .wm-phone-wrap { position: relative; width: calc(414px * var(--s)); height: calc(868px * var(--s)); margin: calc(56px * var(--s)) auto 0; }
-      .wm-phone {
-        position: absolute; left: 0; top: 0; width: 414px; height: 868px; padding: 12px; box-sizing: border-box;
-        border-radius: 56px; background: var(--paper); transform: scale(var(--s)); transform-origin: top left;
-        box-shadow: 0 30px 60px rgba(70, 58, 0, 0.18), 0 2px 0 rgba(0, 0, 0, 0.04);
-      }
-      .wm-phone-view { position: relative; width: 390px; height: 844px; border-radius: 44px; overflow: hidden; }
-      .wm-track { display: flex; width: 1170px; height: 844px; transform: translateX(calc(var(--i, 0) * -390px)); transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
-      .wm-flow-pills { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
-      .wm .wm-flow-pills button {
-        min-height: 44px; padding: 0 16px; border: 1px solid rgba(17, 17, 17, 0.2); border-radius: 999px;
-        background: var(--paper); font-size: 14px; font-weight: 600; color: var(--ink); cursor: pointer;
-      }
-      .wm .wm-flow-pills button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--off); }
-      .wm .wm-flow-pills button:focus-visible, .wm .wm-fstep-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-
-      /* 앱 화면 (휴대폰 안) */
-      .wm-app { flex: none; position: relative; width: 390px; height: 844px; background: #ffffff; font-size: 15px; line-height: 1.4; color: var(--ink); text-align: left; }
-      .wm-app svg { width: 20px; height: 20px; }
-      .wm-app-head { display: flex; align-items: center; justify-content: space-between; padding: 52px 20px 14px; }
-      .wm-app-title { font-family: var(--f-display); font-weight: 700; font-size: 28px; letter-spacing: -0.03em; }
-      .wm-app-ibtn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 999px; background: var(--gray); }
-      .wm-app-pad { padding: 0 20px; }
-      .wm-app-band { height: 10px; margin: 16px 0 14px; background: var(--gray); }
-      .wm-app-add { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 8px 0 18px; border: 1.5px solid var(--ink); border-radius: 999px; color: var(--ink-soft); }
-      .wm-app-add > span:first-of-type { flex: 1; }
-      .wm-app-plus { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 999px; background: var(--yolk); color: var(--ink); }
-      .wm-app-chips { display: flex; gap: 8px; margin-top: 14px; }
-      .wm-app-chips span { height: 34px; padding: 0 14px; display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
-      .wm-app-chips .is-on { background: var(--ink); border-color: var(--ink); color: var(--off); font-weight: 600; }
-      .wm-app-lab { margin: 0 0 4px !important; font-family: var(--f-label); font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft) !important; }
-      .wm-app-sub { margin: 0 0 12px !important; font-weight: 600; }
-      .wm-app-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--cream-2); }
-      .wm-app-row.is-plain { border-bottom: 0; padding: 6px 0 2px; }
-      .wm-app-tile { flex: none; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 14px; }
-      .wm-app-tile svg { width: 26px; height: 26px; }
-      .wm-app-txt { flex: 1; min-width: 0; }
-      .wm-app-txt b, .wm-app-check b { display: block; font-weight: 600; font-size: 16px; }
-      .wm-app-txt small, .wm-app-check small, .wm-app-week small, .wm-app-cards small { display: block; margin-top: 2px; font-size: 13px; color: var(--ink-soft); }
-      .wm-app .is-flow { position: relative; margin: 0 -10px; padding-left: 10px; padding-right: 10px; border-radius: 14px; border-bottom-color: transparent; background: var(--pale); box-shadow: inset 0 0 0 2px var(--yolk); }
-      .wm-app-week { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; text-align: center; }
-      .wm-app-week b { display: block; font-size: 16px; }
-      .wm-app-day { padding: 0 20px 12px; margin-bottom: 12px; border-bottom: 6px solid var(--gray); }
-      .wm-app-day > p { margin: 0 0 4px !important; font-weight: 600; font-size: 14px; color: var(--ink-soft) !important; }
-      .wm-app-day em { font-style: normal; display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 999px; background: var(--yolk); color: var(--ink); font-size: 12px; }
-      .wm-app-empty { padding: 10px 14px; border: 1px dashed var(--line); border-radius: 12px; font-size: 14px; color: var(--ink-soft); }
-      .wm-app-cards { display: flex; gap: 10px; overflow: hidden; }
-      .wm-app-cards > span { flex: none; width: 132px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; padding-bottom: 10px; }
-      .wm-app-cards > span.is-flow { margin: 0; border-color: var(--yolk); }
-      .wm-app-cards i { display: flex; align-items: center; justify-content: center; height: 64px; margin-bottom: 8px; }
-      .wm-app-cards i svg { width: 28px; height: 28px; }
-      .wm-app-cards b, .wm-app-cards small { padding: 0 10px; }
-      .wm-app-cards b { display: block; font-size: 14px; }
-      .wm-app-check { display: flex; align-items: center; justify-content: space-between; min-height: 52px; border-bottom: 1px solid var(--cream-2); }
-      .wm-app-check i { width: 22px; height: 22px; border: 1.5px solid var(--ink); border-radius: 6px; }
-      .wm-app-check.is-done b { text-decoration: line-through; color: var(--ink-soft); }
-      .wm-app-check.is-done i { background: var(--ink); box-shadow: inset 0 0 0 4px var(--paper); }
-      .wm-app-cta { position: absolute; left: 20px; right: 20px; bottom: 96px; }
-      .wm-app-cta span { display: flex; align-items: center; justify-content: center; gap: 8px; height: 56px; border-radius: 999px; background: var(--yolk); font-weight: 600; font-size: 16px; }
-      .wm-app-tabs { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); height: 84px; padding: 8px 12px 22px; box-sizing: border-box; border-top: 1px solid var(--cream-2); background: #ffffff; }
-      .wm-app-tabs > span { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--ink-soft); }
-      .wm-app-tabs i { display: flex; align-items: center; justify-content: center; width: 52px; height: 30px; border-radius: 999px; }
-      .wm-app-tabs .is-on { color: var(--ink); font-weight: 600; }
-      .wm-app-tabs .is-on i { background: var(--yolk); }
-
-      /* 단계 카드 — 안 A: 연노랑 / 안 B: 회색 + 화살표 */
-      .wm-flow-steps { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
-      .wm-fstep { border-radius: 20px; padding: 22px; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
-      .wm-fstep-h { margin: 0; }
-      .wm .wm-fstep-btn {
-        display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 100%; padding: 0; margin: 0 0 10px;
-        border: 0; border-radius: 8px; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer;
-      }
-      .wm[data-layout="a"] .wm-fstep { background: var(--pale); }
-      .wm[data-layout="a"] .wm-fstep.is-active { box-shadow: inset 0 0 0 2px var(--ink); }
-      .wm[data-layout="b"] .wm-fstep { background: var(--gray); }
-      .wm[data-layout="b"] .wm-fstep.is-active { background: var(--pale); }
-      .wm-fjoin { display: flex; align-items: center; justify-content: center; height: 24px; font-family: var(--f-num); font-size: 24px; line-height: 1; }
-
-      /* 예시 데모 */
-      .wm-demo { position: relative; margin-top: 64px; padding: 24px 20px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); }
-      .wm-demo-badge { position: absolute; top: 18px; right: 18px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; font-family: var(--f-label); font-size: 12px; color: var(--ink-soft); }
-      .wm-demo-form { margin-top: 18px; }
-      .wm-demo-row { display: flex; flex-direction: column; gap: 10px; }
-      .wm-demo-row .wm-input { min-width: 0; font-size: 15px; }
-      .wm .wm-demo-row .wm-btn { width: 100%; }
-      .wm .wm-btn-ink[aria-busy="true"] { opacity: 0.7; cursor: progress; }
-      .wm-demo-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 24px; }
-      .wm-demo-card { overflow: hidden; border-radius: 16px; background: var(--off); border: 1px solid var(--line); }
-      .wm-demo-thumb { position: relative; aspect-ratio: 16 / 9; }
-      .wm-demo-thumb svg { display: block; width: 100%; height: 100%; }
-      .wm-demo-dur { position: absolute; right: 10px; bottom: 10px; padding: 2px 8px; border-radius: 6px; background: rgba(17, 17, 17, 0.8); color: #ffffff; font-family: var(--f-num); font-size: 12px; }
-      .wm-demo-body { padding: 18px 18px 20px; }
-      .wm-demo-title { margin: 4px 0 0; font-family: var(--f-display); font-weight: 700; font-size: 22px; letter-spacing: -0.03em; }
-      .wm-demo-ings, .wm-demo-steps { margin: 6px 0 0 !important; padding: 0 !important; list-style: none; }
-      .wm-demo-ings label { display: flex; align-items: center; gap: 12px; min-height: 44px; border-bottom: 1px dashed var(--line); font-size: 16px; cursor: pointer; }
-      .wm-demo-ings input { width: 20px; height: 20px; margin: 0; padding: 0; accent-color: var(--ink); }
-      .wm-demo-ings input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-      .wm-demo-steps li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 8px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
-      .wm-demo-cart { align-self: start; padding: 20px; border-radius: 16px; background: var(--pale); }
-      .wm-demo-cart-title { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 20px; letter-spacing: -0.03em; }
-      .wm-demo-empty { font-size: 15px; color: var(--ink-soft) !important; }
-      .wm-demo-cartlist { margin: 0 !important; padding: 0 !important; list-style: none; }
-      .wm-demo-cartlist li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 12px; background: var(--paper); font-size: 15px; }
-      .wm-demo-cartlist li::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--yolk); }
-      .wm-motion .wm-demo-cartlist li { animation: wm-slide-in 0.35s ease both; }
-      .wm-motion .wm-demo-grid:not([hidden]) { animation: wm-rise 0.5s ease both; }
-
-      /* 스크롤 등장 (움직임 줄이기 사용자에게는 적용 안 함: JS가 .wm-motion을 붙이지 않음) */
-      .wm-motion [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-      .wm-motion [data-reveal="left"] { transform: translateX(-28px); }
-      .wm-motion [data-reveal="right"] { transform: translateX(28px); }
-      .wm-motion [data-reveal].is-in { opacity: 1; transform: none; }
-      @keyframes wm-slide-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
-      @keyframes wm-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-
-      @media (min-width: 768px) {
-        .wm-flow-stage { --s: 0.82; }
-        .wm-demo { padding: 32px; }
-        .wm-demo-row { flex-direction: row; }
-        .wm .wm-demo-row .wm-btn { width: auto; flex: none; }
-        .wm-demo-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; }
-      }
-      @media (min-width: 1100px) {
-        .wm-flow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; margin-top: 56px; }
-        .wm-flow-stage { order: 0; position: sticky; top: 24px; --s: 0.84; padding-top: 0; }
-        .wm-flow-pills { display: none; }
-        .wm-flow-steps { gap: 20px; padding: 14vh 0 22vh; }
-        .wm[data-layout="b"] .wm-flow-stage { order: -1; }
-        .wm-demo { margin-top: 96px; padding: 40px; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .wm-track, .wm-fstep { transition: none !important; }
-      }
-      .wm-app .wm-tag svg { width: 9px; height: 9px; }
+  /* index.html 템플릿 기본값(head의 input·button 스타일, bootstrap) 덮기 */
+  .ing input { padding: 0; }
+  .pick { padding: 0 10px; }
+  body.wm-body { margin: 0; }
+  /* 안내 창 (index.html 4.5) */
+  .modal-dialog { max-width: 440px; margin: 20px; }
+  .modal-content { background: transparent; border: 0; filter: drop-shadow(0 8px 24px rgba(70,58,0,.18)); }
+  .modal-paper { padding: 34px 24px 30px; }
+  .modal-paper .done-title { font-size: 22px; }
+  .modal-paper .sub { font-size: 16px; margin-top: 8px; }
+  .x-close { position: absolute; top: 6px; right: 6px; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+  .modal-backdrop.show { opacity: 1; background: rgba(17,17,17,.4); }
+  .final-cta { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; padding: 34px 22px 30px; }
+  .final-cta .doodles { display: flex; gap: 10px; }
+  .final-cta .doodles svg { width: 52px; height: 52px; }
+  .final-cta .kb-btn { width: 100%; max-width: 340px; }
+  @media (min-width: 768px) { .modal-dialog { margin: 1.75rem auto; } .final-cta .kb-btn { width: auto; min-width: 220px; height: 64px; } }
     </style>
 
-    <!-- ===== 랜딩 본문 · 섹션 순서는 아래 스크립트가 안(A/B)에 맞게 정렬 ===== -->
-    <main id="wm-main" class="wm" data-layout="a" data-hero="a">
-      <!-- 1. 히어로 -->
-      <section id="wm-hero" class="wm-section" aria-labelledby="wm-hero-title">
-        <div class="container">
-          <nav class="wm-nav" aria-label="페이지 안 이동">
-            <span class="wm-brand">[서비스 이름]</span>
-            <div class="wm-navlinks"><a href="#wm-how">사용법</a><a href="#wm-faq">자주 묻는 질문</a></div>
-          </nav>
-          <div class="wm-hero">
-            <div class="wm-hero-copy">
-              <h1 id="wm-hero-title" class="wm-disp wm-h1">오늘 뭐 먹지,<br />미리 정해 두기</h1>
-              <p id="wm-hero-sub" class="wm-sub mt-3">새로 찾지 말고, 이미 저장해 둔 레시피 중에서 고르게 해 드릴게요</p>
-              <div class="wm-btns mt-4">
-                <button id="cta_primary" type="button" class="wm-btn wm-btn-primary" data-bs-toggle="modal" data-bs-target="#wm-modal">출시 알림 받기</button>
-                <a class="wm-btn wm-btn-ghost" href="#wm-how">사용법 보기</a>
-              </div>
-            </div>
+<!-- 크레파스 질감 필터와 직접 그린 반찬 낙서 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="crayon" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="1" seed="9" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.25" result="mask"/>
+      <feComposite in="d" in2="mask" operator="in"/>
+    </filter>
+    <symbol id="d-egg" viewBox="0 0 100 100">
+      <path d="M22 54c-4-14 8-28 24-30 12-2 20 4 30 2 10 6 8 22 2 32-8 14-30 18-44 12-8-4-10-10-12-16z" fill="#fffdf6" stroke="#d9c79a" stroke-width="3"/>
+      <circle cx="50" cy="50" r="14" fill="var(--c-orange)" stroke="var(--c-orange)" stroke-width="3"/>
+    </symbol>
+    <symbol id="d-carrot" viewBox="0 0 100 100">
+      <path d="M28 76 70 32c6-5 12 2 7 8L36 82c-7 5-13 0-8-6z" fill="var(--c-orange)" stroke="var(--c-orange)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M46 62l6 6M56 52l6 6M38 72l5 5" stroke="#c46f0f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M74 34c2-10 8-16 14-18M76 36c8-4 14-4 18 0M73 33c-2-8 0-14 4-18" fill="none" stroke="var(--c-leaf)" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-broc" viewBox="0 0 100 100">
+      <path d="M44 88c2-12 2-20-2-30M56 88c-1-12 1-22 6-30" fill="none" stroke="#7fb36a" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="34" cy="44" r="15" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="3"/>
+      <circle cx="56" cy="34" r="17" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="3"/>
+      <circle cx="70" cy="50" r="13" fill="#3f8a2e" stroke="#3f8a2e" stroke-width="3"/>
+    </symbol>
+    <symbol id="d-bowl" viewBox="0 0 100 100">
+      <path d="M30 46c6-12 34-12 40 0" fill="#fffdf6" stroke="#cfc7b0" stroke-width="3"/>
+      <path d="M38 40c4-4 8-4 10 0M52 38c4-4 8-3 10 1" fill="none" stroke="#bdb59f" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M16 48h68c-2 20-16 32-34 32S18 68 16 48z" fill="var(--c-cobalt)" stroke="var(--c-cobalt)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 58c8 4 40 4 48 0" fill="none" stroke="#fffdf6" stroke-width="3" stroke-linecap="round"/>
+      <path d="M40 82h20" stroke="var(--c-cobalt)" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-tofu" viewBox="0 0 100 100">
+      <path d="M22 40 50 26l30 12v30L50 82 22 68z" fill="#fffaf0" stroke="#cbbf9f" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M22 40 50 54l30-16M50 54v28" fill="none" stroke="#cbbf9f" stroke-width="3"/>
+      <path d="M30 60l12 6M58 66l12-6" stroke="var(--c-orange)" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-leaf" viewBox="0 0 100 100">
+      <path d="M20 82C34 60 52 40 82 18" fill="none" stroke="#2f6b24" stroke-width="4" stroke-linecap="round"/>
+      <path d="M40 60c-12-2-18-12-16-22 10 0 18 8 16 22zM54 46c-2-12 4-22 14-24 2 10-4 20-14 24zM60 40c10-6 20-4 26 2-8 6-18 6-26-2zM34 68c10-6 20-4 24 4-10 4-18 2-24-4z" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="d-riceball" viewBox="0 0 100 100">
+      <path d="M50 18c14 10 30 34 30 50 0 10-12 16-30 16S20 78 20 68c0-16 16-40 30-50z" fill="#fffdf6" stroke="#cfc7b0" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M28 62h44v20c-8 3-14 3-22 3s-16-1-22-4z" fill="#2c2a26" stroke="#2c2a26" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="44" cy="44" r="2.5" fill="#bdb59f"/><circle cx="56" cy="38" r="2.5" fill="#bdb59f"/><circle cx="52" cy="50" r="2.5" fill="#bdb59f"/>
+    </symbol>
+    <symbol id="d-spoon" viewBox="0 0 100 100">
+      <ellipse cx="34" cy="28" rx="11" ry="15" fill="none" stroke="var(--c-plum)" stroke-width="4" transform="rotate(-30 34 28)"/>
+      <path d="M40 40 76 86" stroke="var(--c-plum)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M62 14v20c0 6 8 6 8 0V14M66 36l-6 50" fill="none" stroke="var(--c-pink)" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="d-burst" viewBox="0 0 100 100">
+      <g stroke="var(--c-tomato)" stroke-width="5" stroke-linecap="round" fill="none">
+        <path d="M50 14v18M50 68v18M14 50h18M68 50h18M25 25l12 12M63 63l12 12M75 25 63 37M37 63 25 75"/>
+      </g>
+      <circle cx="50" cy="50" r="5" fill="var(--c-tomato)"/>
+    </symbol>
+    <symbol id="d-heart" viewBox="0 0 24 24">
+      <path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
 
-            <div class="wm-desk">
-              <figure class="wm-desk-side wm-desk-left">
-                <div class="wm-lift">
-                  <div class="wm-paper wm-scallop wm-mock" role="img" aria-label="화면 예시: 공개 레시피 닭볶음탕의 영상 요약 쪽지">
-                    <span class="wm-label">공개 레시피 · 영상 요약</span>
-                    <p class="fw-bold mt-2 mb-1" style="font-size: 15px">닭볶음탕</p>
-                    <div class="wm-trow"><span class="wm-num is-ink">01:05</span><span>닭을 한 번 데치기</span></div>
-                    <div class="wm-trow"><span class="wm-num is-ink">03:20</span><span>양념을 넣고 끓이기</span></div>
-                  </div>
-                </div>
-              </figure>
+<main id="wm-main" class="wm" data-layout="kids" data-hero="b">
 
-              <figure class="wm-desk-mid">
-                <div class="wm-lift">
-                  <div
-                    class="wm-paper wm-spiral wm-scallop wm-memo"
-                    role="img"
-                    aria-label="화면 예시: 이번 주 식단 메모. 일곱 칸 중 네 칸만 채워져 있고 세 칸은 내가 저장한 레시피, 한 칸은 공개 레시피 영상 요약이다."
-                  >
-                    <div class="wm-memo-head"><span class="wm-label">이번 주</span><span class="wm-num">4 / 7</span></div>
-                    <div class="wm-memo-row"><span class="wm-day">월</span><span class="wm-dish">된장찌개</span><span class="wm-tag">내 레시피</span></div>
-                    <div class="wm-memo-row"><span class="wm-day">화</span><span class="wm-empty">비어 있음</span><span></span></div>
-                    <div class="wm-memo-row"><span class="wm-day">수</span><span class="wm-dish">간장 계란밥</span><span class="wm-tag">내 레시피</span></div>
-                    <div class="wm-memo-row"><span class="wm-day">목</span><span class="wm-empty">비어 있음</span><span></span></div>
-                    <div class="wm-memo-row">
-                      <span class="wm-day">금</span>
-                      <span class="wm-dish">닭볶음탕<span class="wm-dish-sub">영상 요약 · 단계별 장면</span></span>
-                      <span class="wm-tag is-public"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>공개 레시피</span>
-                    </div>
-                    <div class="wm-memo-row"><span class="wm-day">토</span><span class="wm-dish">김치볶음밥</span><span class="wm-tag">내 레시피</span></div>
-                    <div class="wm-memo-row pb-1"><span class="wm-day">일</span><span class="wm-empty">비어 있음</span><span></span></div>
-                  </div>
-                </div>
-              </figure>
-
-              <figure class="wm-desk-side wm-desk-right">
-                <div class="wm-lift">
-                  <div class="wm-paper wm-scallop wm-mock" role="img" aria-label="화면 예시: 장보기 체크리스트 쪽지">
-                    <span class="wm-label">장보기</span>
-                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M7 12l3.5 3.5L17 9" /></svg><span class="text-decoration-line-through" style="color: var(--ink-soft)">닭 한 마리</span></div>
-                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /></svg>감자</div>
-                    <div class="wm-check-row"><svg class="wm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" /></svg>대파</div>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
+  <!-- 1. 히어로 (B 버전) -->
+  <section id="wm-hero" aria-labelledby="wm-hero-title">
+    <div class="wrap">
+      <nav class="kb-nav" aria-label="페이지 안 이동">
+        <span class="brand">[서비스 이름]</span>
+        <div class="navlinks"><a href="#wm-how">사용법</a><a href="#wm-faq">자주 묻는 질문</a></div>
+      </nav>
+      <div class="hero">
+        <div class="hero-copy">
+          <h1 id="wm-hero-title" class="disp kb-h1">매일 하는 아이 반찬 고민,<br>고르기 쉽게</h1>
+          <p id="wm-hero-sub" class="sub">마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요.</p>
+          <button id="cta_primary" type="button" class="kb-btn kb-btn-primary" data-bs-toggle="modal" data-bs-target="#wm-modal">먼저 만나 보기</button>
         </div>
-      </section>
 
-      <!-- 2·3. 공감 → 관점 전환 -->
-      <section id="wm-story" class="wm-section" aria-labelledby="wm-story-title">
-        <div class="container">
-          <div class="wm-story">
-            <div class="wm-story-now" data-reveal="left">
-              <p class="wm-eb is-soft wm-only-a">** 지금 **</p>
-              <h2 id="wm-story-title" class="wm-disp wm-story-title">끼니마다 그 자리에서 메뉴를 정하고 있다면</h2>
-              <p class="wm-p">
-                냉장고를 열었다 닫았다 하다가, 결국 늘 먹던 메뉴로 돌아가는 날이 있죠. 해 보고 싶은 레시피를 분명
-                어딘가 저장해 뒀는데, 막상 끼니 앞에서는 잘 떠오르지 않고요.
-              </p>
-            </div>
-            <div class="wm-join wm-only-a" aria-hidden="true"><span class="is-col">↓</span><span class="is-row">→</span></div>
-            <div class="wm-story-shift" data-reveal="right">
-              <div class="wm-lift wm-receipt-wrap">
-                <div class="wm-paper wm-receipt">
-                  <p class="wm-eb is-soft wm-only-a">** 이렇게 **</p>
-                  <h2 class="wm-disp wm-story-title">해 보고 싶던 레시피, 이미 저장해 두셨잖아요</h2>
-                  <div class="wm-dots wm-only-b" aria-hidden="true"></div>
-                  <p class="wm-p">
-                    저장해 둔 레시피는 한 번 마음에 들어 고른 메뉴예요. 새로 검색하는 대신 그 안에서 고를 수 있게
-                    만들고 있어요. 저장한 게 적거나 지겨울 때는 유튜브 등에 공개된 레시피를 둘러보며 채울 수 있게 할
-                    거예요.
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div class="collage" aria-hidden="true">
+          <div class="card-note paper ruled spiral lift">
+            <span class="tape"></span>
+            <p class="hand hand-title">두부 스테이크</p>
+            <ul><li>두부 한 모</li><li>다진 소고기</li><li>양파, 달걀</li></ul>
+            <span class="stamp"><svg viewBox="0 0 24 24"><use href="#d-heart"/></svg>잘 먹었어요</span>
           </div>
+          <figure class="card-polar lift">
+            <span class="tape is-lilac" style="left:60%"></span>
+            <div class="ph"><svg class="doodle" viewBox="0 0 100 100"><use href="#d-egg"/></svg></div>
+            <figcaption>애호박 달걀전</figcaption>
+          </figure>
+          <svg class="doodle float f1" viewBox="0 0 100 100"><use href="#d-carrot"/></svg>
+          <svg class="doodle float f2" viewBox="0 0 100 100"><use href="#d-burst"/></svg>
+          <svg class="doodle float f3" viewBox="0 0 100 100"><use href="#d-broc"/></svg>
         </div>
-      </section>
-
-      <!-- 4. 이렇게 쓰게 될 거예요: 단계 카드 + 휴대폰 목업(같은 레시피가 단계마다 옆으로 넘어감) + 예시 데모 -->
-      <section id="wm-how" class="wm-section" aria-labelledby="wm-how-title">
-        <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
-          <defs>
-            <symbol id="wm-i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z" /><path d="M5 17a3 3 0 0 1 3-3h11" /></g></symbol>
-            <symbol id="wm-i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M4 10h16M9 3v4M15 3v4" /></g></symbol>
-            <symbol id="wm-i-play" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3" /><path d="M10 9.5l4.5 2.5-4.5 2.5z" /></g></symbol>
-            <symbol id="wm-i-basket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.5 10a2 2 0 0 1-2 1.7h-9a2 2 0 0 1-2-1.7z" /><path d="M9 9l2-5M15 9l-2-5" /></g></symbol>
-            <symbol id="wm-i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4 4" /></g></symbol>
-            <symbol id="wm-i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5" /><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" /></g></symbol>
-            <symbol id="wm-i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></symbol>
-            <symbol id="wm-i-dots" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="6" cy="12" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="18" cy="12" r="1.6" /></g></symbol>
-            <symbol id="wm-i-tri" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></symbol>
-            <symbol id="wm-i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
-            <symbol id="wm-i-chl" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
-            <symbol id="wm-i-chr" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
-            <symbol id="wm-i-bowl" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18a9 9 0 0 1-18 0z" /><circle cx="12" cy="8.5" r="2.5" /></g></symbol>
-            <symbol id="wm-i-pot" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" /><path d="M3 10h18M9 6v2M15 6v2" /></g></symbol>
-            <symbol id="wm-i-stew" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h14v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" /><path d="M3 10h18M10 6c0-1 1-1.5 1-2.5M14 6c0-1 1-1.5 1-2.5" /></g></symbol>
-            <symbol id="wm-i-pan" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="13" r="6" /><path d="M16 13h6" /></g></symbol>
-          </defs>
-        </svg>
-
-        <div class="container">
-          <h2 id="wm-how-title" class="wm-disp wm-h2 wm-how-title" data-reveal>이렇게 쓰게 될 거예요</h2>
-
-          <div class="wm-flow" id="wm-flow">
-            <ol class="wm-flow-steps">
-              <li class="wm-fstep is-active" data-step="0" data-reveal>
-                <h3 class="wm-fstep-h">
-                  <button type="button" class="wm-fstep-btn" aria-controls="wm-flow-stage" aria-pressed="true">
-                    <span class="wm-eb is-soft">** 01 **</span>
-                    <span class="wm-disp wm-h3">담아 두기</span>
-                  </button>
-                </h3>
-                <p class="wm-p">레시피를 링크나 글, 캡처로 담으면 재료와 조리 순서로 정리해 드릴 예정이에요.</p>
-              </li>
-              <li class="wm-fjoin wm-only-b" aria-hidden="true">↓</li>
-              <li class="wm-fstep" data-step="1" data-reveal>
-                <h3 class="wm-fstep-h">
-                  <button type="button" class="wm-fstep-btn" aria-controls="wm-flow-stage" aria-pressed="false">
-                    <span class="wm-eb is-soft">** 02 **</span>
-                    <span class="wm-disp wm-h3">이번 주 메뉴 정하기</span>
-                  </button>
-                </h3>
-                <p class="wm-p">저장한 레시피 중에서 몇 끼만 골라 요일에 넣어 둘 수 있게 할 거예요.</p>
-                <p class="wm-note mt-2">유튜브 등에 공개된 레시피는 영상 요약처럼 정리되고, 단계마다 원본 영상의 그 장면으로 바로 갈 수 있게 할 거예요.</p>
-              </li>
-              <li class="wm-fjoin wm-only-b" aria-hidden="true">↓</li>
-              <li class="wm-fstep" data-step="2" data-reveal>
-                <h3 class="wm-fstep-h">
-                  <button type="button" class="wm-fstep-btn" aria-controls="wm-flow-stage" aria-pressed="false">
-                    <span class="wm-eb is-soft">** 03 **</span>
-                    <span class="wm-disp wm-h3">장보기</span>
-                  </button>
-                </h3>
-                <p class="wm-p">정한 메뉴의 재료는 체크리스트로 정리되고, 필요한 재료는 장바구니로 이어지도록 준비하고 있어요.</p>
-              </li>
-            </ol>
-
-            <div class="wm-flow-stage" id="wm-flow-stage" data-reveal>
-              <svg class="wm-flow-blob" viewBox="0 0 640 980" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                <circle cx="330" cy="500" r="320" fill="#f9d949" />
-                <g fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="34" stroke-linecap="round"><path d="M40 340 C 220 280, 420 310, 640 250" /><path d="M20 690 C 240 630, 460 680, 660 600" /></g>
-              </svg>
-              <div class="wm-phone-wrap">
-                <div class="wm-phone">
-                  <div class="wm-phone-view" role="img" id="wm-phone-view" aria-label="앱 화면: 보관함. 담아 둔 레시피 목록에 닭볶음탕이 있다.">
-                    <div class="wm-track" aria-hidden="true">
-                      <!-- 화면 1: 보관함 -->
-                      <div class="wm-app">
-                        <div class="wm-app-head"><span class="wm-app-title">보관함</span><span class="wm-app-ibtn"><svg><use href="#wm-i-search" /></svg></span></div>
-                        <div class="wm-app-pad">
-                          <div class="wm-app-add"><svg><use href="#wm-i-link" /></svg><span>링크나 글, 캡처로 담기</span><span class="wm-app-plus"><svg><use href="#wm-i-plus" /></svg></span></div>
-                          <div class="wm-app-chips"><span class="is-on">전체</span><span>내 레시피</span><span>공개 레시피</span></div>
-                        </div>
-                        <div class="wm-app-band"></div>
-                        <div class="wm-app-pad">
-                          <p class="wm-app-lab">** 최근 담은 레시피 **</p>
-                          <div class="wm-app-row is-flow"><span class="wm-app-tile" style="background: #ecebe3"><svg><use href="#wm-i-pot" /></svg></span><span class="wm-app-txt"><b>닭볶음탕</b><small>영상 요약 · 단계 3</small></span><span class="wm-tag is-public"><svg width="9" height="9"><use href="#wm-i-tri" /></svg>공개 레시피</span></div>
-                          <div class="wm-app-row"><span class="wm-app-tile" style="background: #fdf5cf"><svg><use href="#wm-i-bowl" /></svg></span><span class="wm-app-txt"><b>간장 계란밥</b><small>재료 5 · 순서 3</small></span><span class="wm-tag">내 레시피</span></div>
-                          <div class="wm-app-row"><span class="wm-app-tile" style="background: #f9efb6"><svg><use href="#wm-i-stew" /></svg></span><span class="wm-app-txt"><b>된장찌개</b><small>재료 7 · 순서 4</small></span><span class="wm-tag">내 레시피</span></div>
-                          <div class="wm-app-row"><span class="wm-app-tile" style="background: #f5f4ed"><svg><use href="#wm-i-pan" /></svg></span><span class="wm-app-txt"><b>김치볶음밥</b><small>재료 6 · 순서 3</small></span><span class="wm-tag">내 레시피</span></div>
-                        </div>
-                        <div class="wm-app-tabs"><span class="is-on"><i><svg><use href="#wm-i-book" /></svg></i>보관함</span><span><i><svg><use href="#wm-i-cal" /></svg></i>이번 주</span><span><i><svg><use href="#wm-i-play" /></svg></i>둘러보기</span><span><i><svg><use href="#wm-i-basket" /></svg></i>장보기</span></div>
-                      </div>
-
-                      <!-- 화면 2: 이번 주 -->
-                      <div class="wm-app">
-                        <div class="wm-app-head"><span class="wm-app-title">이번 주</span><span class="wm-app-ibtn"><svg><use href="#wm-i-dots" /></svg></span></div>
-                        <div class="wm-app-week"><svg><use href="#wm-i-chl" /></svg><span><b>11월 2일 – 8일</b><small>4 / 7</small></span><svg><use href="#wm-i-chr" /></svg></div>
-                        <div class="wm-app-band"></div>
-                        <div class="wm-app-day"><p>월요일 2일</p><div class="wm-app-row is-plain"><span class="wm-app-tile" style="background: #f9efb6"><svg><use href="#wm-i-stew" /></svg></span><span class="wm-app-txt"><b>된장찌개</b></span><span class="wm-tag">내 레시피</span></div></div>
-                        <div class="wm-app-day"><p>화요일 3일</p><div class="wm-app-empty">비어 있음</div></div>
-                        <div class="wm-app-day"><p><em>오늘</em>수요일 4일</p><div class="wm-app-row is-plain"><span class="wm-app-tile" style="background: #fdf5cf"><svg><use href="#wm-i-bowl" /></svg></span><span class="wm-app-txt"><b>간장 계란밥</b></span><span class="wm-tag">내 레시피</span></div></div>
-                        <div class="wm-app-day"><p>목요일 5일</p><div class="wm-app-empty">비어 있음</div></div>
-                        <div class="wm-app-day"><p>금요일 6일</p><div class="wm-app-row is-flow"><span class="wm-app-tile" style="background: #ecebe3"><svg><use href="#wm-i-pot" /></svg></span><span class="wm-app-txt"><b>닭볶음탕</b><small>영상 요약 · 단계 3</small></span><span class="wm-tag is-public"><svg width="9" height="9"><use href="#wm-i-tri" /></svg>공개 레시피</span></div></div>
-                        <div class="wm-app-tabs"><span><i><svg><use href="#wm-i-book" /></svg></i>보관함</span><span class="is-on"><i><svg><use href="#wm-i-cal" /></svg></i>이번 주</span><span><i><svg><use href="#wm-i-play" /></svg></i>둘러보기</span><span><i><svg><use href="#wm-i-basket" /></svg></i>장보기</span></div>
-                      </div>
-
-                      <!-- 화면 3: 장보기 -->
-                      <div class="wm-app">
-                        <div class="wm-app-head"><span class="wm-app-title">장보기</span><span class="wm-app-ibtn"><svg><use href="#wm-i-dots" /></svg></span></div>
-                        <div class="wm-app-band"></div>
-                        <div class="wm-app-pad" style="padding-right: 0">
-                          <p class="wm-app-sub">이번 주 메뉴</p>
-                          <div class="wm-app-cards">
-                            <span class="is-flow"><i style="background: #ecebe3"><svg><use href="#wm-i-pot" /></svg></i><b>닭볶음탕</b><small>금요일</small></span>
-                            <span><i style="background: #f9efb6"><svg><use href="#wm-i-stew" /></svg></i><b>된장찌개</b><small>월요일</small></span>
-                            <span><i style="background: #fdf5cf"><svg><use href="#wm-i-bowl" /></svg></i><b>간장 계란밥</b><small>수요일</small></span>
-                          </div>
-                        </div>
-                        <div class="wm-app-band"></div>
-                        <div class="wm-app-pad">
-                          <p class="wm-app-lab">** 채소 **</p>
-                          <div class="wm-app-check"><span><b>감자</b><small>닭볶음탕</small></span><i></i></div>
-                          <div class="wm-app-check"><span><b>대파</b><small>된장찌개 · 닭볶음탕</small></span><i></i></div>
-                          <p class="wm-app-lab mt-2">** 육류 · 달걀 **</p>
-                          <div class="wm-app-check is-done"><span><b>닭 한 마리</b><small>닭볶음탕</small></span><i></i></div>
-                          <div class="wm-app-check"><span><b>달걀</b><small>간장 계란밥</small></span><i></i></div>
-                        </div>
-                        <div class="wm-app-cta"><span>장바구니로 이어 담기<svg><use href="#wm-i-arrow" /></svg></span></div>
-                        <div class="wm-app-tabs"><span><i><svg><use href="#wm-i-book" /></svg></i>보관함</span><span><i><svg><use href="#wm-i-cal" /></svg></i>이번 주</span><span><i><svg><use href="#wm-i-play" /></svg></i>둘러보기</span><span class="is-on"><i><svg><use href="#wm-i-basket" /></svg></i>장보기</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="wm-flow-pills" role="group" aria-label="단계별 화면 보기">
-                <button type="button" data-go="0" aria-pressed="true">01 담아 두기</button>
-                <button type="button" data-go="1" aria-pressed="false">02 메뉴 정하기</button>
-                <button type="button" data-go="2" aria-pressed="false">03 장보기</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- 예시 데모: 영상 링크 → 레시피 카드 → 체크한 재료가 장바구니 패널로 -->
-          <div class="wm-demo" id="wm-demo" data-reveal>
-            <span class="wm-demo-badge">예시</span>
-            <h3 class="wm-disp wm-h3">직접 해 보기</h3>
-            <form class="wm-demo-form" id="wm-demo-form" novalidate>
-              <label for="wm-demo-url" class="wm-field-label">요리 영상 링크</label>
-              <div class="wm-demo-row">
-                <input id="wm-demo-url" class="wm-input" type="url" value="https://video.example.com/shorts/tomato-egg" autocomplete="off" />
-                <button type="submit" class="wm-btn wm-btn-ink" id="wm-demo-go">정리하기</button>
-              </div>
-            </form>
-
-            <div class="wm-demo-grid" id="wm-demo-result" hidden>
-              <article class="wm-demo-card" aria-labelledby="wm-demo-title">
-                <div class="wm-demo-thumb" aria-hidden="true">
-                  <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#fdf5cf" /><circle cx="250" cy="150" r="90" fill="#f9d949" /><circle cx="70" cy="40" r="46" fill="#f9efb6" /><circle cx="160" cy="90" r="26" fill="#111111" /><path d="M153 78l20 12-20 12z" fill="#fdf5cf" /></svg>
-                  <span class="wm-demo-dur">00:58</span>
-                </div>
-                <div class="wm-demo-body">
-                  <p class="wm-label">영상 요약 · 단계 3</p>
-                  <h4 id="wm-demo-title" class="wm-demo-title" tabindex="-1">토마토 달걀볶음</h4>
-                  <p class="wm-label mt-3">재료</p>
-                  <ul class="wm-demo-ings" id="wm-demo-ings">
-                    <li><label><input type="checkbox" value="토마토 2개" /> 토마토 2개</label></li>
-                    <li><label><input type="checkbox" value="달걀 3개" /> 달걀 3개</label></li>
-                    <li><label><input type="checkbox" value="대파 1대" /> 대파 1대</label></li>
-                    <li><label><input type="checkbox" value="굴소스 1큰술" /> 굴소스 1큰술</label></li>
-                    <li><label><input type="checkbox" value="설탕 조금" /> 설탕 조금</label></li>
-                  </ul>
-                  <p class="wm-label mt-3">순서</p>
-                  <ol class="wm-demo-steps">
-                    <li><span class="wm-num is-ink">00:08</span>달걀을 부드럽게 익혀 덜어 두기</li>
-                    <li><span class="wm-num is-ink">00:21</span>토마토를 볶아 즙이 나오게 하기</li>
-                    <li><span class="wm-num is-ink">00:40</span>달걀을 다시 넣고 굴소스로 간하기</li>
-                  </ol>
-                </div>
-              </article>
-
-              <aside class="wm-demo-cart" aria-labelledby="wm-demo-cart-title">
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <h4 id="wm-demo-cart-title" class="wm-demo-cart-title">장바구니</h4>
-                  <span class="wm-num is-ink" id="wm-demo-count">0</span>
-                </div>
-                <div class="wm-dots my-3" aria-hidden="true"></div>
-                <p class="wm-demo-empty" id="wm-demo-empty">필요한 재료를 체크해 보세요.</p>
-                <ul class="wm-demo-cartlist" id="wm-demo-cartlist" aria-live="polite"></ul>
-              </aside>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. 누구를 위한 서비스인가 -->
-      <section id="wm-who" class="wm-section" aria-labelledby="wm-who-title">
-        <div class="container">
-          <div class="wm-who" data-reveal>
-            <div>
-              <p class="wm-eb is-soft wm-only-a">** 혼자 · 가족과 **</p>
-              <h2 id="wm-who-title" class="wm-disp wm-h2">혼자 먹든, 가족과 먹든</h2>
-            </div>
-            <div>
-              <div class="wm-dots wm-only-b" aria-hidden="true"></div>
-              <p class="wm-p">
-                집에서 직접 해 먹고 싶은 날을 위한 서비스예요. 요리를 대신해 주지는 않아요. 줄여 드리려는 건 ‘뭘 할지
-                정하는 수고’예요.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. 마지막 버튼 -->
-      <section id="wm-final" class="wm-section" aria-labelledby="wm-final-title">
-        <svg class="wm-lineart" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="56" stroke-linecap="round">
-            <path d="M-80 330 h440 a220 220 0 0 1 -440 0" />
-            <path d="M60 230 c0 -50 40 -60 40 -110" />
-            <path d="M180 230 c0 -50 40 -60 40 -110" />
-            <path d="M900 -40 l-120 520" />
-            <path d="M1010 -40 l-60 300 a70 70 0 1 1 -40 0" />
-          </g>
-        </svg>
-        <div class="container text-center position-relative" data-reveal>
-          <p class="wm-eb">** 아직 준비 중이에요 **</p>
-          <h2 id="wm-final-title" class="wm-disp wm-h2 mt-3">출시되면 알려 드릴게요</h2>
-          <p class="wm-p mt-3">이메일을 남겨 주시면 출시 소식을 보내 드릴게요.</p>
-          <div class="wm-btns mx-auto mt-4">
-            <button id="cta_final" type="button" class="wm-btn wm-btn-primary" data-bs-toggle="modal" data-bs-target="#wm-modal">출시 알림 받기</button>
-          </div>
-          <p class="wm-label mt-3">이메일은 출시 알림에만 써요.</p>
-        </div>
-      </section>
-
-      <!-- 7. FAQ -->
-      <section id="wm-faq" class="wm-section" aria-labelledby="wm-faq-title">
-        <div class="container">
-          <div class="wm-faq-grid" data-reveal>
-            <h2 id="wm-faq-title" class="wm-disp wm-h2">자주 묻는 질문</h2>
-            <div class="wm-faqbox">
-              <details>
-                <summary>지금 바로 쓸 수 있나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
-                <p class="wm-p">아직은 준비 중이에요. 이메일을 남겨 주시면 출시할 때 알려 드릴게요.</p>
-              </details>
-              <details>
-                <summary>저장해 둔 레시피가 없어도 쓸 수 있나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
-                <p class="wm-p">네. 유튜브 등에 공개된 레시피를 둘러보며 시작할 수 있게 준비하고 있어요. 마음에 드는 레시피는 바로 이번 주 메뉴에 넣을 수 있게 할 거예요.</p>
-              </details>
-              <details>
-                <summary>어떤 레시피를 담을 수 있나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
-                <p class="wm-p">영상, 블로그, SNS 게시물 속 레시피를 링크나 글, 캡처로 담을 수 있게 준비하고 있어요.</p>
-              </details>
-              <details>
-                <summary>남긴 이메일은 어디에 쓰이나요?<span class="wm-pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
-                <p class="wm-p">출시 소식을 보내는 데만 써요. 원하지 않으면 언제든 수신을 그만둘 수 있어요.</p>
-              </details>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="wm wm-foot">
-      <div class="container">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-          <span class="wm-brand">[서비스 이름]</span>
-        </div>
-        <div class="wm-dots" aria-hidden="true"></div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- 안내 창: 버튼 클릭 뒤 → 이메일 제출(waitlist_submit) → 가구 질문(household_select) -->
-    <div class="modal fade wm" id="wm-modal" tabindex="-1" aria-labelledby="wm-modal-title" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="wm-paper wm-scallop wm-modal-paper">
-            <button type="button" class="wm-close" data-bs-dismiss="modal" aria-label="닫기">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
-            </button>
+  <!-- 2. 공감 -->
+  <section id="wm-story" class="section" aria-labelledby="wm-story-title">
+    <div class="wrap story">
+      <div class="story-head" data-reveal="left">
+        <h2 id="wm-story-title" class="disp kb-h2">아이와 같은 밥상에 앉기 시작하면서</h2>
+        <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-spoon"/></svg>
+      </div>
+      <ul class="story-notes">
+        <li class="strip paper scallop lift" data-reveal>아이랑 같이 밥을 먹기 시작하면서, 메뉴 걱정이 매일의 고민이 됐어요.</li>
+        <li class="strip paper scallop lift" data-reveal>냉장고 문을 한참 열어 두고 봐도, 오늘 저녁에 뭘 할지 쉽게 정해지지 않아요.</li>
+        <li class="strip paper scallop lift" data-reveal>반찬을 할 때마다 고민이에요. 맵지 않으면서 아이와 같이 먹을 수 있는 게 뭐가 있을지.</li>
+        <li class="strip paper scallop lift" data-reveal>하다 보면 결국 같은 반찬을 돌려막기 하게 돼요.</li>
+        <li class="strip paper scallop lift" data-reveal>이유식이 끝나고 나니, 아이 식사 챙기는 게 이렇게 부담일 줄 몰랐어요.</li>
+        <li class="closing" data-reveal>오늘 뭐 해 줄지, 모아 둔 레시피를 보고 고르기만 하면 돼요.</li>
+      </ul>
+    </div>
+  </section>
 
-            <div data-wm-state="form">
-              <p class="wm-eb is-soft mb-2">** 출시 준비 중 **</p>
-              <h2 id="wm-modal-title" class="wm-h3 mb-2" style="font-family: var(--f-body); font-weight: 700; font-size: 18px">아직 준비 중인 서비스예요.</h2>
-              <p class="mb-4">이메일을 남겨 주시면 출시할 때 알려 드릴게요.</p>
-              <label for="submit-email" class="wm-field-label">이메일 주소</label>
-              <input
-                id="submit-email"
-                class="wm-input"
-                type="email"
-                inputmode="email"
-                autocomplete="email"
-                placeholder="이메일 주소"
-                aria-describedby="wm-email-note"
-              />
-              <p id="wm-email-error" class="wm-error" role="alert" hidden>이메일 주소를 다시 확인해 주세요.</p>
-              <label for="submit-advice" class="wm-field-label mt-3">서비스에 바라는 점 (선택)</label>
-              <textarea id="submit-advice" class="wm-textarea" rows="3" placeholder="자유롭게 남겨 주세요"></textarea>
-              <button id="submit" type="button" class="wm-btn wm-btn-primary w-100 mt-4">알림 신청</button>
-              <p id="wm-email-note" class="wm-label mt-3 mb-0">이메일은 출시 알림에만 써요.</p>
+  <!-- 3. 이용 방법 + 예시 데모 -->
+  <section id="wm-how" class="section" aria-labelledby="wm-how-title">
+    <div class="wrap">
+      <div class="how-head" data-reveal>
+        <h2 id="wm-how-title" class="disp kb-h2">이용 방법</h2>
+      </div>
+      <ol class="steps">
+        <li class="step" data-reveal>
+          <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-leaf"/></svg>
+          <span class="step-num" aria-hidden="true">01</span>
+          <h3>레시피 모으기</h3>
+          <p>어디에서든 마음에 드는 레시피를 보면 공유만 하세요. 나중에 다시 볼 때 재료와 순서가 보기 좋게 정리돼 있어요.</p>
+        </li>
+        <li class="step" data-reveal>
+          <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-burst"/></svg>
+          <span class="step-num" aria-hidden="true">02</span>
+          <h3>고민될 때 열어 보기</h3>
+          <p>오늘 뭐 해 줄지 고민될 때 열면, 모아 둔 레시피와 아이가 잘 먹었던 반찬, 요즘 많이 찾는 아이 반찬이 한눈에 보여요. 아이가 잘 먹은 날엔 표시해 두세요. 다음에 고민될 때 먼저 찾을 수 있어요.</p>
+        </li>
+        <li class="step" data-reveal>
+          <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-carrot"/></svg>
+          <span class="step-num" aria-hidden="true">03</span>
+          <h3>바로 장 보기</h3>
+          <p>메뉴를 정하면 필요한 재료를 한눈에 확인하고 바로 주문할 수 있어요.</p>
+        </li>
+      </ol>
+
+      <div id="wm-demo" class="demo" data-reveal="pop" aria-label="예시 데모">
+        <span class="demo-badge">예시</span>
+        <div class="tabs" role="tablist" aria-label="예시 단계">
+          <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"><span>01</span>레시피 모으기</button>
+          <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1"><span>02</span>고민될 때 열어 보기</button>
+          <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span>03</span>바로 장 보기</button>
+        </div>
+
+        <div id="panel-0" class="panel" role="tabpanel" aria-labelledby="tab-0">
+          <div class="panel-grid two">
+            <div class="box">
+              <div class="box-h"><b>공유한 레시피</b></div>
+              <ul id="demo-shares"></ul>
             </div>
+            <div class="box">
+              <div class="box-h"><b>내 레시피</b><span class="count" id="demo-mine-count"></span></div>
+              <ul id="demo-mine" aria-live="polite"></ul>
+            </div>
+          </div>
+        </div>
 
-            <div data-wm-state="done" hidden>
-              <p class="wm-label wm-ok mb-2">신청 완료</p>
-              <h2 id="wm-done-title" class="mb-2" style="font-weight: 700; font-size: 18px; line-height: 1.4" tabindex="-1">신청해 주셔서 고마워요.</h2>
-              <p class="mb-4">출시되면 이 주소로 알려 드릴게요.</p>
-              <div role="group" aria-labelledby="wm-q-label" class="pt-3" style="border-top: 1px dashed var(--line)">
-                <p id="wm-q-label" class="fw-semibold mb-3">주로 누구와 식사하세요?</p>
-                <div class="d-flex flex-wrap gap-2">
-                  <button type="button" class="wm-chip" data-household="solo" aria-pressed="false">혼자</button>
-                  <button type="button" class="wm-chip" data-household="family" aria-pressed="false">가족과</button>
-                </div>
-                <button type="button" class="wm-textbtn mt-2" data-bs-dismiss="modal">건너뛰기</button>
-              </div>
-              <p class="wm-q-thanks mt-2 mb-0" aria-live="polite" hidden>답해 주셔서 고마워요.</p>
+        <div id="panel-1" class="panel" role="tabpanel" aria-labelledby="tab-1" hidden>
+          <div class="chips" role="group" aria-label="보기">
+            <button class="chip" data-filter="all" aria-pressed="true">전체</button>
+            <button class="chip" data-filter="liked" aria-pressed="false">잘 먹었어요</button>
+            <button class="chip" data-filter="hot" aria-pressed="false">인기 급상승</button>
+          </div>
+          <div class="panel-grid two pick-grid">
+            <div class="cards" id="demo-cards"></div>
+            <aside class="box detail" id="demo-detail" aria-live="polite" aria-label="레시피 보기"></aside>
+          </div>
+        </div>
+
+        <div id="panel-2" class="panel" role="tabpanel" aria-labelledby="tab-2" hidden>
+          <div id="demo-shop-empty" class="empty-msg">
+            02에서 오늘 메뉴를 골라 보세요.
+            <div style="margin-top:12px"><button class="sbtn" id="demo-go-pick" type="button">메뉴 고르러 가기</button></div>
+          </div>
+          <div id="demo-shop" class="panel-grid two" hidden>
+            <div class="box">
+              <div class="box-h"><b id="demo-shop-title"></b><span class="count">집에 있는 건 체크</span></div>
+              <ul id="demo-ings"></ul>
+            </div>
+            <div class="box cart">
+              <div class="box-h"><b>장 볼 재료</b><span class="count" id="demo-cart-count"></span></div>
+              <ul class="cartlist" id="demo-cart" aria-live="polite"></ul>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
+  <!-- 4. FAQ -->
+  <section id="wm-faq" class="section" aria-labelledby="wm-faq-title">
+    <div class="wrap faq-grid">
+      <div data-reveal="left">
+        <h2 id="wm-faq-title" class="disp kb-h2">자주 묻는 질문</h2>
+      </div>
+      <div class="faqbox" data-reveal>
+        <details>
+          <summary>저장해 둔 레시피가 없어도 쓸 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>네. 인기 급상승 아이 반찬 레시피를 둘러보며 시작할 수 있어요. 마음에 드는 레시피는 바로 내 레시피에 담으면 돼요.</p>
+        </details>
+        <details>
+          <summary>어디서 본 레시피든 담을 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>네. 보던 앱에서 공유 버튼을 누르거나 캡처를 올리면 바로 담겨요. 담긴 레시피는 재료와 순서로 보기 좋게 정리돼요.</p>
+        </details>
+        <details>
+          <summary>아이가 잘 먹은 메뉴는 어떻게 기록하나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>해 먹은 뒤 레시피에서 "잘 먹었어요"를 한 번 누르면 돼요. 다음에 메뉴를 고를 때 아이가 잘 먹었던 레시피만 모아 볼 수 있어요.</p>
+        </details>
+        <details>
+          <summary>장보기도 같이 할 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
+          <p>네. 메뉴를 고르면 필요한 재료가 한눈에 정리되고, 바로 살 수 있는 곳으로 이어져요.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-    <!-- 안(A/B) 정하기 · 섹션 순서 · 이벤트 함수 -->
+  <!-- 5. 이메일 신청 · 6. 신청 뒤 안내 -->
+  <section id="wm-final" class="section" aria-labelledby="wm-final-title">
+    <div class="wrap final">
+      <div class="final-copy" data-reveal="left">
+        <h2 id="wm-final-title" class="disp kb-h2">지금 출시를 준비하고 있어요</h2>
+        <p class="sub">이메일을 남겨 주시면 출시 소식을 가장 먼저 보내 드릴게요.</p>
+      </div>
+      <div class="final-cta paper scallop lift" data-reveal>
+        <span class="tape is-pink"></span>
+        <div class="doodles" aria-hidden="true">
+          <svg class="doodle" viewBox="0 0 100 100"><use href="#d-riceball"/></svg>
+          <svg class="doodle" viewBox="0 0 100 100"><use href="#d-egg"/></svg>
+          <svg class="doodle" viewBox="0 0 100 100"><use href="#d-broc"/></svg>
+        </div>
+        <button id="cta_final" type="button" class="kb-btn kb-btn-primary" data-bs-toggle="modal" data-bs-target="#wm-modal">출시 알림 신청</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">[서비스 이름]</span>
+    <div class="dots"></div>
+  </div>
+</footer>
+
+<!-- 안내 창: 버튼 클릭 뒤 → 이메일 제출(waitlist_submit) → 가구 질문(household_select) -->
+<div class="modal fade" id="wm-modal" tabindex="-1" aria-labelledby="wm-modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="paper scallop modal-paper">
+        <button type="button" class="x-close" data-bs-dismiss="modal" aria-label="닫기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+        <div data-wm-state="form">
+          <h2 id="wm-modal-title" class="done-title">지금 출시를 준비하고 있어요</h2>
+          <p class="sub" style="margin-bottom:20px">이메일을 남겨 주시면 출시 소식을 가장 먼저 보내 드릴게요.</p>
+          <label for="submit-email" class="field-label">이메일 주소</label>
+          <input id="submit-email" class="input" type="email" inputmode="email" autocomplete="email" placeholder="이메일 주소" aria-describedby="wm-email-note" />
+          <p id="wm-email-error" class="error" role="alert" hidden>이메일 주소를 다시 확인해 주세요.</p>
+          <label for="submit-advice" class="field-label" style="margin-top:16px">서비스에 바라는 점 (선택)</label>
+          <textarea id="submit-advice" class="textarea" rows="3" placeholder="자유롭게 남겨 주세요"></textarea>
+          <button id="submit" type="button" class="kb-btn kb-btn-primary" style="width:100%;margin-top:20px">출시 알림 신청</button>
+          <p id="wm-email-note" class="note" style="margin-top:14px">이메일은 출시 소식을 보내는 데만 써요. 원하지 않으면 언제든 수신을 그만둘 수 있어요.</p>
+        </div>
+        <div data-wm-state="done" hidden>
+          <h2 id="wm-done-title" class="done-title" tabindex="-1">신청이 완료됐어요</h2>
+          <p style="margin-top:10px">지금 출시를 준비하고 있어요. 출시되면 남겨 주신 주소로 가장 먼저 알려 드릴게요.</p>
+          <div class="hh" role="group" aria-labelledby="wm-q-label">
+            <p id="wm-q-label" style="font-weight:600">주로 누구와 식사하세요?</p>
+            <div class="chips">
+              <button type="button" class="chip wm-chip" data-household="solo" aria-pressed="false">혼자</button>
+              <button type="button" class="chip wm-chip" data-household="family" aria-pressed="false">가족과</button>
+            </div>
+            <button type="button" class="textbtn" data-bs-dismiss="modal">건너뛰기</button>
+          </div>
+          <p class="wm-q-thanks ok" aria-live="polite" hidden style="margin-top:8px">답해 주셔서 고마워요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- 이벤트 함수 (A/B 배정 없음) -->
     <script>
       (function () {
         // 이메일·이벤트를 받는 Google Apps Script 주소 (한 곳에서만 관리)
         var ENDPOINT =
           "https://script.google.com/macros/s/AKfycbxJKXlJcpuN4F3jTYEl0fzspwziUp8y2Qd7rTvMeh8ShW93nJjHslVtiLq2T45cbTGdEg/exec";
-        // true면 URL 파라미터가 없을 때 50:50으로 무작위 배정(쿠키로 180일 유지)
-        var SPLIT = { layout: true, hero: false };
-
         var params = new URLSearchParams(location.search);
-        function readCookie(name) {
-          var m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([ab])"));
-          return m ? m[1] : null;
-        }
-        function saveCookie(name, value) {
-          document.cookie = name + "=" + value + "; path=/; max-age=" + 60 * 60 * 24 * 180;
-        }
-        function pick(param, cookie, split) {
-          var v = (params.get(param) || "").toLowerCase();
-          if (v === "a" || v === "b") {
-            saveCookie(cookie, v);
-            return v;
-          }
-          if (!split) return "a";
-          v = readCookie(cookie);
-          if (v) return v;
-          v = Math.random() < 0.5 ? "a" : "b";
-          saveCookie(cookie, v);
-          return v;
-        }
-
-        var layout = pick("layout", "wm_layout", SPLIT.layout);
-        var hero = pick("hero", "wm_hero", SPLIT.hero);
-
-        // 섹션 순서: 화면 순서와 DOM 순서를 같게 맞춰 스크린리더·키보드 순서도 일치
-        var ORDER = {
-          a: ["wm-hero", "wm-story", "wm-how", "wm-who", "wm-final", "wm-faq"],
-          b: ["wm-hero", "wm-how", "wm-story", "wm-who", "wm-faq", "wm-final"],
-        };
-        var main = document.getElementById("wm-main");
-        ORDER[layout].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (el) main.appendChild(el);
-        });
-        main.setAttribute("data-layout", layout);
-        main.setAttribute("data-hero", hero);
-
-        // 히어로 카피 2버전
-        var HERO = {
-          a: {
-            title: "오늘 뭐 먹지,<br />미리 정해 두기",
-            sub: "새로 찾지 말고, 이미 저장해 둔 레시피 중에서 고르게 해 드릴게요",
-          },
-          b: {
-            title: "오늘 메뉴는<br />저장해 둔 레시피로",
-            sub: "내가 저장한 레시피에 유튜브 공개 레시피를 더해 이번 주 식단을 짤 수 있게 돼요",
-          },
-        };
-        document.getElementById("wm-hero-title").innerHTML = HERO[hero].title;
-        document.getElementById("wm-hero-sub").textContent = HERO[hero].sub;
+        // A/B 배정 종료: 이번 디자인(kids) + 확정 히어로(b)로 고정
+        var layout = "kids";
+        var hero = "b";
 
         var WM = {
           endpoint: ENDPOINT,
@@ -1296,137 +1003,232 @@
         });
       });
     </script>
-    <!-- 스크롤 등장 · 단계 흐름 · 예시 데모 -->
+    <!-- 스크롤 등장 · 예시 데모 (고르기 → demo_pick) -->
     <script>
-      (function () {
-        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var hasIO = "IntersectionObserver" in window;
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        // 1) 스크롤 등장: 움직임 줄이기를 켠 사용자에게는 적용하지 않음
-        if (!reduce && hasIO) {
-          document.documentElement.classList.add("wm-motion");
-          var revealIO = new IntersectionObserver(
-            function (entries) {
-              entries.forEach(function (e) {
-                if (e.isIntersecting) {
-                  e.target.classList.add("is-in");
-                  revealIO.unobserve(e.target);
-                }
-              });
-            },
-            { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
-          );
-          document.querySelectorAll("[data-reveal]").forEach(function (el) {
-            revealIO.observe(el);
-          });
+    // 1) 스크롤 등장: 첫 화면 아래에 있는 것만 숨겼다가 보여 줌
+    if (!reduce && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.remove("is-pre"); io.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
+      var items = document.querySelectorAll("[data-reveal]");
+      items.forEach(function (el) {
+        if (el.getBoundingClientRect().top > window.innerHeight) {
+          el.classList.add("is-pre");
+          io.observe(el);
         }
+      });
+      // 형제 카드는 조금씩 늦게
+      document.querySelectorAll(".story-notes, .steps").forEach(function (g) {
+        Array.prototype.forEach.call(g.children, function (c, i) { c.style.transitionDelay = (i * 80) + "ms"; });
+      });
+      requestAnimationFrame(function () { document.documentElement.classList.add("reveal-on"); });
+    }
 
-        // 2) 단계 흐름: 같은 레시피(닭볶음탕)가 보관함 → 이번 주 → 장보기로 옆으로 넘어감
-        var flow = document.getElementById("wm-flow");
-        if (flow) {
-          var track = flow.querySelector(".wm-track");
-          var view = document.getElementById("wm-phone-view");
-          var steps = flow.querySelectorAll(".wm-fstep");
-          var pills = flow.querySelectorAll(".wm-flow-pills button");
-          var labels = [
-            "앱 화면: 보관함. 담아 둔 레시피 목록에 닭볶음탕이 있다.",
-            "앱 화면: 이번 주. 금요일 칸에 닭볶음탕이 들어가 있다.",
-            "앱 화면: 장보기. 닭볶음탕에 필요한 감자, 대파, 닭 한 마리가 체크리스트에 있다.",
-          ];
-          var current = 0;
-          var wide = window.matchMedia("(min-width: 1100px)");
+    // 2) 예시 데모 (가상의 레시피)
+    var SRC = "인스타그램 @kids_banchan";
+    var R = [
+      { id: "tofu", title: "두부 스테이크", d: "d-tofu", kind: "mine", liked: true, dur: "01:12", ings: ["두부 한 모", "다진 소고기", "양파", "달걀"],
+        steps: ["두부를 면포로 감싸 물기를 꼭 짜요.", "다진 소고기, 다진 양파, 달걀을 넣고 고루 섞어요.", "아이 손바닥만 하게 동그랗게 빚어요.", "약불에서 앞뒤로 노릇하게 구워요.", "한 김 식혀 먹기 좋게 잘라 담아요."] },
+      { id: "spinach", title: "시금치 무침", d: "d-leaf", kind: "mine", liked: false, dur: "00:48", ings: ["시금치", "참기름", "깨"],
+        steps: ["시금치를 뿌리째 깨끗이 씻어요.", "끓는 물에 30초만 데쳐요.", "찬물에 헹궈 물기를 꼭 짜요.", "아이가 먹기 좋게 짧게 잘라요.", "참기름과 깨를 넣고 조물조물 무쳐요."] },
+      { id: "zucchini", title: "애호박 달걀전", d: "d-egg", kind: "share", src: "영상 링크", liked: false, dur: "00:58", ings: ["애호박", "달걀", "부침가루"],
+        steps: ["애호박을 0.5cm 두께로 동그랗게 썰어요.", "앞뒤로 부침가루를 얇게 묻혀요.", "풀어 둔 달걀물에 담가요.", "약불에서 앞뒤로 천천히 부쳐요.", "키친타월에 올려 기름을 빼요."] },
+      { id: "potato", title: "감자채볶음", d: "d-carrot", kind: "share", src: "캡처", liked: false, dur: "01:05", ings: ["감자", "양파", "당근"],
+        steps: ["감자를 가늘게 채 썰어요.", "찬물에 10분 담가 전분을 빼요.", "양파와 당근도 같은 굵기로 채 썰어요.", "기름 두른 팬에 감자부터 볶아요.", "채소를 넣고 소금 조금으로 싱겁게 간해요."] },
+      { id: "soup", title: "소고기 무국", d: "d-bowl", kind: "hot", liked: false, dur: "01:30", ings: ["소고기", "무", "대파", "국간장"],
+        steps: ["냄비에 참기름을 두르고 소고기를 볶아요.", "나박하게 썬 무를 넣고 함께 볶아요.", "물을 붓고 무가 투명해질 때까지 끓여요.", "국간장으로 싱겁게 간해요.", "대파를 넣고 한소끔 더 끓여요."] },
+      { id: "riceball", title: "멸치 주먹밥", d: "d-riceball", kind: "hot", liked: false, dur: "00:42", ings: ["밥", "잔멸치", "김"],
+        steps: ["잔멸치를 마른 팬에 볶아 비린내를 날려요.", "따뜻한 밥에 멸치를 넣고 섞어요.", "한입 크기로 동글동글 뭉쳐요.", "잘게 부순 김을 겉에 묻혀요.", "접시에 담아 바로 먹어요."] },
+      { id: "broc", title: "브로콜리 치즈전", d: "d-broc", kind: "hot", liked: false, dur: "00:55", ings: ["브로콜리", "치즈", "달걀"],
+        steps: ["브로콜리를 데쳐 잘게 다져요.", "달걀을 풀어 브로콜리와 섞어요.", "잘게 찢은 치즈를 넣어요.", "한 숟갈씩 떠서 팬에 올려요.", "약불에서 앞뒤로 노릇하게 익혀요."] },
+    ];
+    var state = { filter: "all", chosen: null, have: {}, view: "tofu" };
 
-          function setStep(i) {
-            current = i;
-            track.style.setProperty("--i", i);
-            view.setAttribute("aria-label", labels[i]);
-            steps.forEach(function (s) {
-              var on = Number(s.getAttribute("data-step")) === i;
-              s.classList.toggle("is-active", on);
-              s.querySelector(".wm-fstep-btn").setAttribute("aria-pressed", on ? "true" : "false");
-            });
-            pills.forEach(function (p) {
-              p.setAttribute("aria-pressed", Number(p.getAttribute("data-go")) === i ? "true" : "false");
-            });
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function doodle(id) {
+      var ns = "http://www.w3.org/2000/svg";
+      var s = document.createElementNS(ns, "svg"); s.setAttribute("viewBox", "0 0 100 100"); s.setAttribute("class", "doodle"); s.setAttribute("aria-hidden", "true");
+      var u = document.createElementNS(ns, "use"); u.setAttribute("href", "#" + id); s.appendChild(u); return s;
+    }
+    function heart() {
+      var ns = "http://www.w3.org/2000/svg";
+      var s = document.createElementNS(ns, "svg"); s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("aria-hidden", "true");
+      var p = document.createElementNS(ns, "path"); p.setAttribute("d", "M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10.2-7.5 10.2z");
+      p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "2"); s.appendChild(p); return s;
+    }
+    function anim(node) { if (!reduce) node.classList.add("fade-in"); return node; }
+
+    // 탭
+    var tabs = Array.prototype.slice.call(document.querySelectorAll("#wm-demo .tab"));
+    function selectTab(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById("panel-" + k).hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+      if (i === 1) renderCards();
+      if (i === 2) renderShop();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { selectTab(i); });
+      t.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          e.preventDefault();
+          selectTab((i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length, true);
+        }
+      });
+    });
+
+    // 01 레시피 모으기
+    function renderShares() {
+      var ul = document.getElementById("demo-shares"); ul.textContent = "";
+      R.filter(function (r) { return r.src; }).forEach(function (r) {
+        var li = el("li", "share-row");
+        var t = el("span", "tile"); t.appendChild(doodle(r.d)); li.appendChild(t);
+        var g = el("span", "grow"); g.appendChild(el("span", "src", r.src)); g.appendChild(el("b", null, r.title)); li.appendChild(g);
+        var done = r.kind === "mine";
+        var b = el("button", "sbtn" + (done ? " is-done" : ""), done ? "담겼어요" : "공유하기");
+        b.type = "button"; if (done) b.disabled = true;
+        b.addEventListener("click", function () { r.kind = "mine"; renderShares(); renderMine(r.id); });
+        li.appendChild(b); ul.appendChild(li);
+      });
+    }
+    function renderMine(newId) {
+      var ul = document.getElementById("demo-mine"); ul.textContent = "";
+      var mine = R.filter(function (r) { return r.kind === "mine"; });
+      document.getElementById("demo-mine-count").textContent = mine.length + "개";
+      mine.slice().reverse().forEach(function (r) {
+        var li = el("li", "mini-row");
+        var t = el("span", "tile"); t.appendChild(doodle(r.d)); li.appendChild(t);
+        var g = el("span", "grow"); g.appendChild(el("b", "hand", r.title)); g.lastChild.style.fontSize = "20px";
+        g.appendChild(el("span", "src", "재료 " + r.ings.length + " · 순서 " + r.steps.length)); li.appendChild(g);
+        ul.appendChild(r.id === newId ? anim(li) : li);
+      });
+    }
+
+    // 02 고민될 때 열어 보기
+    document.querySelectorAll("#panel-1 .chip").forEach(function (c) {
+      c.addEventListener("click", function () {
+        state.filter = c.getAttribute("data-filter");
+        document.querySelectorAll("#panel-1 .chip").forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+        renderCards();
+      });
+    });
+    function likeBtn(r, big) {
+      var lk = el("button", "like"); lk.type = "button"; lk.setAttribute("aria-pressed", r.liked ? "true" : "false");
+      lk.setAttribute("aria-label", r.title + " 잘 먹었어요");
+      lk.appendChild(heart()); lk.appendChild(document.createTextNode("잘 먹었어요"));
+      lk.addEventListener("click", function () { r.liked = !r.liked; if (r.kind === "hot" && r.liked) r.kind = "mine"; renderCards(); });
+      return lk;
+    }
+    function pickBtn(r) {
+      var pk = el("button", "pick", "고르기"); pk.type = "button"; pk.setAttribute("aria-label", r.title + " 고르기");
+      pk.addEventListener("click", function () {
+          if (window.WM) WM.track("demo_pick", { recipe: r.id, filter: state.filter });
+          state.chosen = r.id; state.have = {}; selectTab(2, true);
+        });
+      return pk;
+    }
+    function renderCards() {
+      var box = document.getElementById("demo-cards"); box.textContent = "";
+      var list = R.filter(function (r) {
+        if (r.kind === "share") return false;
+        if (state.filter === "liked") return r.liked;
+        if (state.filter === "hot") return r.kind === "hot";
+        return true;
+      });
+      if (!list.length) { box.appendChild(el("p", "empty-msg", "아직 표시한 반찬이 없어요. 카드의 하트를 눌러 보세요.")); renderDetail(); return; }
+      if (!list.some(function (r) { return r.id === state.view; })) state.view = list[0].id;
+      list.forEach(function (r) {
+        var c = el("article", "rcard" + (r.id === state.view ? " is-sel" : ""));
+        var op = el("button", "open"); op.type = "button"; op.setAttribute("aria-label", r.title + " 레시피 보기");
+        op.setAttribute("aria-pressed", r.id === state.view ? "true" : "false");
+        var th = el("div", "thumb"); th.appendChild(doodle(r.d)); op.appendChild(th);
+        op.appendChild(el("p", "title", r.title));
+        op.addEventListener("click", function () {
+          state.view = r.id; renderCards();
+          if (!window.matchMedia("(min-width: 768px)").matches) {
+            document.getElementById("demo-detail").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
           }
+        });
+        c.appendChild(op);
+        var b = el("div", "body");
+        b.appendChild(el("span", "tag" + (r.kind === "hot" ? " is-hot" : ""), r.kind === "hot" ? "인기 급상승" : "내 레시피"));
+        b.appendChild(el("span", "meta", "재료 " + r.ings.length + " · 순서 " + r.steps.length));
+        var a = el("div", "acts");
+        a.appendChild(likeBtn(r)); a.appendChild(pickBtn(r));
+        b.appendChild(a); c.appendChild(b);
+        box.appendChild(anim(c));
+      });
+      renderDetail();
+    }
+    function renderDetail() {
+      var d = document.getElementById("demo-detail"); d.textContent = "";
+      var r = R.find(function (x) { return x.id === state.view; });
+      if (!r) { d.appendChild(el("p", "empty-msg", "카드를 누르면 레시피가 여기에 보여요.")); return; }
+      var ns = "http://www.w3.org/2000/svg";
+      var v = el("div", "video"); v.setAttribute("aria-label", "원본 영상 미리보기");
+      v.appendChild(doodle(r.d));
+      var pl = el("span", "play"); var ps = document.createElementNS(ns, "svg"); ps.setAttribute("viewBox", "0 0 24 24"); ps.setAttribute("aria-hidden", "true");
+      var pp = document.createElementNS(ns, "path"); pp.setAttribute("d", "M7 4l13 8-13 8z"); pp.setAttribute("fill", "#fff"); ps.appendChild(pp); pl.appendChild(ps); v.appendChild(pl);
+      v.appendChild(el("span", "dur", r.dur));
+      d.appendChild(v);
+      var head = el("div");
+      head.appendChild(el("p", "d-title", r.title));
+      var src = el("p", "d-src");
+      var ig = document.createElementNS(ns, "svg"); ig.setAttribute("viewBox", "0 0 24 24"); ig.setAttribute("aria-hidden", "true");
+      var rr = document.createElementNS(ns, "rect"); rr.setAttribute("x", "3"); rr.setAttribute("y", "3"); rr.setAttribute("width", "18"); rr.setAttribute("height", "18"); rr.setAttribute("rx", "5");
+      var cc = document.createElementNS(ns, "circle"); cc.setAttribute("cx", "12"); cc.setAttribute("cy", "12"); cc.setAttribute("r", "4");
+      [rr, cc].forEach(function (n) { n.setAttribute("fill", "none"); n.setAttribute("stroke", "currentColor"); n.setAttribute("stroke-width", "1.8"); ig.appendChild(n); });
+      src.appendChild(ig); src.appendChild(document.createTextNode(SRC));
+      head.appendChild(src); d.appendChild(head);
+      var s1 = el("div"); s1.appendChild(el("h4", null, "재료"));
+      var ul = el("ul", "d-ings"); r.ings.forEach(function (n) { ul.appendChild(el("li", null, n)); }); s1.appendChild(ul); d.appendChild(s1);
+      var s2 = el("div"); s2.appendChild(el("h4", null, "조리법"));
+      var ol = el("ol", "d-steps"); r.steps.forEach(function (t) { ol.appendChild(el("li", null, t)); }); s2.appendChild(ol); d.appendChild(s2);
+      var a = el("div", "acts"); a.appendChild(likeBtn(r)); a.appendChild(pickBtn(r)); d.appendChild(a);
+    }
 
-          steps.forEach(function (s) {
-            s.querySelector(".wm-fstep-btn").addEventListener("click", function () {
-              setStep(Number(s.getAttribute("data-step")));
-              // 좁은 화면에서는 휴대폰이 위에 있으므로 화면이 바뀌는 걸 볼 수 있게 올려 줌
-              if (!wide.matches) {
-                document.getElementById("wm-flow-stage").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-              }
-            });
-          });
-          pills.forEach(function (p) {
-            p.addEventListener("click", function () {
-              setStep(Number(p.getAttribute("data-go")));
-            });
-          });
+    // 03 바로 장 보기
+    document.getElementById("demo-go-pick").addEventListener("click", function () { selectTab(1, true); });
+    function renderShop() {
+      var r = R.find(function (x) { return x.id === state.chosen; });
+      document.getElementById("demo-shop-empty").hidden = !!r;
+      document.getElementById("demo-shop").hidden = !r;
+      if (!r) return;
+      document.getElementById("demo-shop-title").textContent = r.title;
+      var ul = document.getElementById("demo-ings"); ul.textContent = "";
+      r.ings.forEach(function (name, i) {
+        var li = el("li");
+        var lab = el("label", "ing" + (state.have[i] ? " is-have" : ""));
+        var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!state.have[i];
+        var g = el("span", "grow"); g.appendChild(el("b", null, name)); var sm = el("small", null, state.have[i] ? " 집에 있어요" : ""); g.appendChild(sm);
+        cb.addEventListener("change", function () {
+          state.have[i] = cb.checked;
+          lab.classList.toggle("is-have", cb.checked);
+          sm.textContent = cb.checked ? " 집에 있어요" : "";
+          renderCart(r);
+        });
+        lab.appendChild(cb); lab.appendChild(g); li.appendChild(lab); ul.appendChild(li);
+      });
+      renderCart(r);
+    }
+    function renderCart(r) {
+      var cart = document.getElementById("demo-cart"); cart.textContent = "";
+      var need = r.ings.filter(function (_, i) { return !state.have[i]; });
+      document.getElementById("demo-cart-count").textContent = need.length + "개";
+      need.forEach(function (n) { cart.appendChild(el("li", null, n)); });
+    }
 
-          // 넓은 화면: 스크롤로 단계 카드가 화면 가운데를 지나면 화면이 넘어감
-          if (hasIO) {
-            var stepIO = new IntersectionObserver(
-              function (entries) {
-                if (!wide.matches) return;
-                entries.forEach(function (e) {
-                  if (e.isIntersecting) setStep(Number(e.target.getAttribute("data-step")));
-                });
-              },
-              { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-            );
-            steps.forEach(function (s) {
-              stepIO.observe(s);
-            });
-          }
-          setStep(0);
-        }
-
-        // 3) 예시 데모: 링크 → 레시피 카드, 체크한 재료 → 장바구니 패널
-        var form = document.getElementById("wm-demo-form");
-        if (form) {
-          var go = document.getElementById("wm-demo-go");
-          var result = document.getElementById("wm-demo-result");
-          var list = document.getElementById("wm-demo-cartlist");
-          var empty = document.getElementById("wm-demo-empty");
-          var count = document.getElementById("wm-demo-count");
-          var boxes = document.querySelectorAll("#wm-demo-ings input[type=checkbox]");
-
-          form.addEventListener("submit", function (e) {
-            e.preventDefault();
-            go.setAttribute("aria-busy", "true");
-            go.textContent = "정리하는 중…";
-            setTimeout(
-              function () {
-                go.removeAttribute("aria-busy");
-                go.textContent = "정리하기";
-                result.hidden = false;
-                document.getElementById("wm-demo-title").focus({ preventScroll: true });
-              },
-              reduce ? 0 : 600
-            );
-          });
-
-          boxes.forEach(function (b, idx) {
-            b.addEventListener("change", function () {
-              var key = "ing-" + idx;
-              var existing = list.querySelector('[data-key="' + key + '"]');
-              if (b.checked && !existing) {
-                var li = document.createElement("li");
-                li.setAttribute("data-key", key);
-                li.textContent = b.value;
-                list.appendChild(li);
-              } else if (!b.checked && existing) {
-                existing.remove();
-              }
-              var n = list.children.length;
-              count.textContent = String(n);
-              empty.hidden = n > 0;
-            });
-          });
-        }
-      })();
-    </script>
+    renderShares(); renderMine();
+  })();
+</script>
   </body>
 </html>
