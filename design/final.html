@@ -268,7 +268,12 @@
   .cook { display: flex; flex-direction: column; gap: 14px; }
   .cook-bar { height: 8px; border-radius: 999px; background: var(--gray); overflow: hidden; }
   .cook-bar span { display: block; height: 100%; background: var(--yolk); border-radius: 999px; transition: width .35s ease; }
-  .cook-step { min-height: 7.5em; padding: 20px; border-radius: 16px; background: var(--pale); font-size: 20px; font-weight: 600; line-height: 1.5; }
+  .cook-pic { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; background: var(--paper); border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+  .cook-pic > svg { width: 46%; height: auto; max-height: 86%; }
+  .cook-time { position: absolute; left: 10px; top: 10px; display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: var(--ink); color: var(--off); font-size: 13px; font-weight: 600; }
+  .cook-time svg { width: 15px; height: 15px; }
+  .st-time { margin-left: 4px; color: var(--ink-soft); font-size: 12px; white-space: nowrap; }
+  .cook-step { min-height: 4.5em; padding: 20px; border-radius: 16px; background: var(--pale); font-size: 20px; font-weight: 600; line-height: 1.5; }
   .cook-step b { display: block; margin-bottom: 6px; font-family: var(--f-label); font-weight: 400; font-size: 13px; color: var(--ink-soft); }
   .cook .acts { display: flex; gap: 8px; }
   .cook .ghost { flex: 1; min-height: 48px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); font-weight: 600; font-size: 15px; cursor: pointer; }
@@ -290,10 +295,13 @@
   .basket-total { font-family: var(--f-hand); font-weight: 700; font-size: 22px; }
   .cart-group + .cart-group { margin-top: 14px; }
   .cart-group h5 { margin: 0 0 6px; font-family: var(--f-hand); font-weight: 700; font-size: 20px; }
-  .cart-item { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 4px 4px 4px 12px; margin-bottom: 6px; border-radius: 12px; background: var(--paper); border: 1px solid var(--line); font-size: 15px; }
+  .cart-item { display: flex; align-items: center; gap: 4px; min-height: 48px; padding: 2px 2px 2px 4px; border-bottom: 1px dashed var(--line); font-size: 15px; }
+  .cart-item::before { content: ""; flex: none; width: 8px; height: 8px; margin-right: 8px; border-radius: 999px; background: var(--yolk); box-shadow: 0 0 0 1px rgba(17,17,17,.15); }
   .cart-item .grow b { font-weight: 600; }
-  .shop { display: inline-flex; align-items: center; min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; }
-  .shop:hover { background: var(--pale); }
+  .buy { flex: none; display: inline-flex; align-items: center; }
+  .shop { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; font-size: 13px; white-space: nowrap; }
+  .shop:hover { color: var(--ink); text-decoration-color: var(--ink); }
+  .sep { width: 1px; height: 12px; background: var(--line); }
   .rm { flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 999px; background: none; color: var(--ink-soft); font-size: 20px; line-height: 1; cursor: pointer; }
   .rm:hover { background: var(--gray); }
   .shop-note { margin-top: 10px; font-size: 12px; color: var(--ink-soft); }
@@ -306,8 +314,6 @@
     .rcard .open .title { padding: 0; }
     .rcard .acts { flex-wrap: nowrap; }
     .rcard .like, .rcard .pick { flex: 1 1 auto; }
-    .cart-item { flex-wrap: wrap; }
-    .cart-item .grow { flex-basis: 40%; }
   }
   .empty-msg { padding: 18px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); font-size: 14px; }
 
@@ -496,6 +502,61 @@
       <path d="M62 58l8 80M100 58v80M138 58l-8 80" stroke="#b97a3b" stroke-width="4" stroke-linecap="round"/>
       <path d="M12 50h176v12H12z" fill="#c4874a" stroke="#a5652a" stroke-width="4" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="s-cut" viewBox="0 0 100 100">
+      <rect x="14" y="44" width="72" height="38" rx="8" fill="#e6c08c" stroke="#b98a52" stroke-width="3"/>
+      <path d="M30 58h12M48 62h10M64 56h8" stroke="var(--c-leaf)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40 20 74 46" stroke="#9aa3ad" stroke-width="9" stroke-linecap="round"/>
+      <path d="M74 46l10 8" stroke="#6b4a2b" stroke-width="7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="s-mix" viewBox="0 0 100 100">
+      <path d="M14 50h72c-2 20-16 32-36 32S16 70 14 50z" fill="var(--c-cobalt)" stroke="var(--c-cobalt)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M22 50c8-8 48-8 56 0" fill="#f3d58a" stroke="#d9b45a" stroke-width="3"/>
+      <path d="M58 16 46 50" stroke="var(--c-plum)" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="44" cy="52" rx="7" ry="4" fill="var(--c-plum)"/>
+      <path d="M26 30c4-4 8 4 12 0M64 26c4-4 8 4 12 0" fill="none" stroke="var(--c-orange)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="s-pan" viewBox="0 0 100 100">
+      <ellipse cx="42" cy="58" rx="30" ry="20" fill="#3a3a3a" stroke="#222" stroke-width="3"/>
+      <path d="M70 54h24" stroke="#6b4a2b" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="34" cy="56" rx="9" ry="6" fill="#e9b25b"/><ellipse cx="50" cy="60" rx="9" ry="6" fill="#e9b25b"/>
+      <path d="M30 30c-4-6 4-8 0-14M44 30c-4-6 4-8 0-14M58 30c-4-6 4-8 0-14" fill="none" stroke="var(--c-tomato)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="s-pot" viewBox="0 0 100 100">
+      <path d="M20 44h60v28c0 8-6 14-14 14H34c-8 0-14-6-14-14z" fill="var(--c-tomato)" stroke="var(--c-tomato)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M14 46h10M76 46h10" stroke="#8a2c1a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M22 40h56" stroke="#8a2c1a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M36 30c-5-6 5-9 0-16M50 30c-5-6 5-9 0-16M64 30c-5-6 5-9 0-16" fill="none" stroke="#9aa3ad" stroke-width="3.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="s-shape" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="72" rx="38" ry="12" fill="#fffdf6" stroke="#cfc7b0" stroke-width="3"/>
+      <circle cx="34" cy="64" r="10" fill="#e9c58e" stroke="#c99a5a" stroke-width="3"/>
+      <circle cx="56" cy="62" r="10" fill="#e9c58e" stroke="#c99a5a" stroke-width="3"/>
+      <circle cx="72" cy="40" r="10" fill="#e9c58e" stroke="#c99a5a" stroke-width="3"/>
+      <path d="M58 30c6-6 18-6 24 2M84 50c2 6-2 12-8 14" fill="none" stroke="var(--c-orange)" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 6"/>
+    </symbol>
+    <symbol id="s-plate" viewBox="0 0 100 100">
+      <circle cx="50" cy="56" r="32" fill="#fffdf6" stroke="#cfc7b0" stroke-width="3"/>
+      <circle cx="50" cy="56" r="20" fill="none" stroke="#e7e1cf" stroke-width="3"/>
+      <path d="M40 52h20v10H40z" fill="#e9b25b" stroke="#c4874a" stroke-width="2.5"/>
+      <path d="M44 48c4-4 8 2 12-2" fill="none" stroke="var(--c-leaf)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M88 26v44M84 26v14c0 4 8 4 8 0V26" fill="none" stroke="var(--c-plum)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="s-rinse" viewBox="0 0 100 100">
+      <path d="M30 12h20v10H30z" fill="#9aa3ad" stroke="#7d8690" stroke-width="2.5"/>
+      <path d="M40 22v6" stroke="#7d8690" stroke-width="4"/>
+      <path d="M38 34c-4 6-4 10 2 10s6-4 2-10l-2-4zM30 48c-3 5-3 8 1 8s5-3 1-8l-1-3zM48 46c-3 5-3 8 1 8s5-3 1-8l-1-3z" fill="#8cc2f0" stroke="#4a8fd0" stroke-width="2"/>
+      <path d="M22 84C34 70 52 62 80 56" fill="none" stroke="#2f6b24" stroke-width="3" stroke-linecap="round"/>
+      <path d="M40 76c-8-2-12-10-10-16 8 0 12 8 10 16zM58 68c-2-8 2-16 10-18 2 8-2 14-10 18z" fill="var(--c-leaf)" stroke="var(--c-leaf)" stroke-width="2"/>
+    </symbol>
+    <symbol id="s-squeeze" viewBox="0 0 100 100">
+      <path d="M24 30c10-8 42-8 52 0l-6 34c-2 10-38 10-40 0z" fill="#f4f0e4" stroke="#bdb59f" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M36 40c8 4 20 4 28 0M38 52c8 4 18 4 24 0" fill="none" stroke="#bdb59f" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M44 76c-3 5-3 8 1 8s5-3 1-8l-1-3zM58 80c-3 5-3 8 1 8s5-3 1-8l-1-3z" fill="#8cc2f0" stroke="#4a8fd0" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 9v4l3 2M9 2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
     <symbol id="d-heart" viewBox="0 0 24 24">
       <path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10.2-7.5 10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
     </symbol>
@@ -594,7 +655,7 @@
         <div id="panel-0" class="panel" role="tabpanel" aria-labelledby="tab-0">
           <div class="panel-grid two">
             <div class="box">
-              <div class="box-h"><b>공유한 레시피</b></div>
+              <div class="box-h"><b>다른 앱에서 본 레시피</b></div>
               <ul id="demo-shares"></ul>
             </div>
             <div class="box">
@@ -832,9 +893,6 @@
     // 메인 버튼: 기록 후 신청 칸으로 이동
     $("#cta_primary").on("click", function () {
       WM.track("hero_cta_click", { position: "hero" });
-      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      document.getElementById("wm-final").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-      setTimeout(function () { document.getElementById("submit-email").focus({ preventScroll: true }); }, reduce ? 0 : 500);
     });
 
     // 이메일 제출 (tab_final) → waitlist_submit
@@ -918,19 +976,19 @@
     var SRC = "인스타그램 @kids_banchan";
     var R = [
       { id: "tofu", title: "두부 스테이크", d: "d-tofu", kind: "mine", liked: true, dur: "01:12", ings: ["두부 한 모", "다진 소고기", "양파", "달걀"],
-        steps: ["두부를 면포로 감싸 물기를 꼭 짜요.", "다진 소고기, 다진 양파, 달걀을 넣고 고루 섞어요.", "아이 손바닥만 하게 동그랗게 빚어요.", "약불에서 앞뒤로 노릇하게 구워요.", "한 김 식혀 먹기 좋게 잘라 담아요."] },
+        steps: [{ t: "두부를 면포로 감싸 물기를 꼭 짜요.", sec: 60, ic: "s-squeeze" }, { t: "다진 소고기, 다진 양파, 달걀을 넣고 고루 섞어요.", sec: 120, ic: "s-mix" }, { t: "아이 손바닥만 하게 동그랗게 빚어요.", sec: 180, ic: "s-shape" }, { t: "약불에서 앞뒤로 노릇하게 구워요.", sec: 480, ic: "s-pan" }, { t: "한 김 식혀 먹기 좋게 잘라 담아요.", sec: 120, ic: "s-plate" }] },
       { id: "spinach", title: "시금치 무침", d: "d-leaf", kind: "mine", liked: false, dur: "00:48", ings: ["시금치", "참기름", "깨"],
-        steps: ["시금치를 뿌리째 깨끗이 씻어요.", "끓는 물에 30초만 데쳐요.", "찬물에 헹궈 물기를 꼭 짜요.", "아이가 먹기 좋게 짧게 잘라요.", "참기름과 깨를 넣고 조물조물 무쳐요."] },
+        steps: [{ t: "시금치를 뿌리째 깨끗이 씻어요.", sec: 120, ic: "s-rinse" }, { t: "끓는 물에 30초만 데쳐요.", sec: 30, ic: "s-pot" }, { t: "찬물에 헹궈 물기를 꼭 짜요.", sec: 60, ic: "s-squeeze" }, { t: "아이가 먹기 좋게 짧게 잘라요.", sec: 30, ic: "s-cut" }, { t: "참기름과 깨를 넣고 조물조물 무쳐요.", sec: 60, ic: "s-mix" }] },
       { id: "zucchini", title: "애호박 달걀전", d: "d-egg", kind: "share", src: "영상 링크", liked: false, dur: "00:58", ings: ["애호박", "달걀", "부침가루"],
-        steps: ["애호박을 0.5cm 두께로 동그랗게 썰어요.", "앞뒤로 부침가루를 얇게 묻혀요.", "풀어 둔 달걀물에 담가요.", "약불에서 앞뒤로 천천히 부쳐요.", "키친타월에 올려 기름을 빼요."] },
+        steps: [{ t: "애호박을 0.5cm 두께로 동그랗게 썰어요.", sec: 120, ic: "s-cut" }, { t: "앞뒤로 부침가루를 얇게 묻혀요.", sec: 60, ic: "s-mix" }, { t: "풀어 둔 달걀물에 담가요.", sec: 60, ic: "s-mix" }, { t: "약불에서 앞뒤로 천천히 부쳐요.", sec: 360, ic: "s-pan" }, { t: "키친타월에 올려 기름을 빼요.", sec: 30, ic: "s-plate" }] },
       { id: "potato", title: "감자채볶음", d: "d-carrot", kind: "share", src: "캡처", liked: false, dur: "01:05", ings: ["감자", "양파", "당근"],
-        steps: ["감자를 가늘게 채 썰어요.", "찬물에 10분 담가 전분을 빼요.", "양파와 당근도 같은 굵기로 채 썰어요.", "기름 두른 팬에 감자부터 볶아요.", "채소를 넣고 소금 조금으로 싱겁게 간해요."] },
+        steps: [{ t: "감자를 가늘게 채 썰어요.", sec: 180, ic: "s-cut" }, { t: "찬물에 10분 담가 전분을 빼요.", sec: 600, ic: "s-rinse" }, { t: "양파와 당근도 같은 굵기로 채 썰어요.", sec: 120, ic: "s-cut" }, { t: "기름 두른 팬에 감자부터 볶아요.", sec: 240, ic: "s-pan" }, { t: "채소를 넣고 소금 조금으로 싱겁게 간해요.", sec: 120, ic: "s-pan" }] },
       { id: "soup", title: "소고기 무국", d: "d-bowl", kind: "hot", liked: false, dur: "01:30", ings: ["소고기", "무", "대파", "국간장"],
-        steps: ["냄비에 참기름을 두르고 소고기를 볶아요.", "나박하게 썬 무를 넣고 함께 볶아요.", "물을 붓고 무가 투명해질 때까지 끓여요.", "국간장으로 싱겁게 간해요.", "대파를 넣고 한소끔 더 끓여요."] },
+        steps: [{ t: "냄비에 참기름을 두르고 소고기를 볶아요.", sec: 120, ic: "s-pot" }, { t: "나박하게 썬 무를 넣고 함께 볶아요.", sec: 120, ic: "s-pot" }, { t: "물을 붓고 무가 투명해질 때까지 끓여요.", sec: 900, ic: "s-pot" }, { t: "국간장으로 싱겁게 간해요.", sec: 30, ic: "s-mix" }, { t: "대파를 넣고 한소끔 더 끓여요.", sec: 120, ic: "s-pot" }] },
       { id: "riceball", title: "멸치 주먹밥", d: "d-riceball", kind: "hot", liked: false, dur: "00:42", ings: ["밥", "잔멸치", "김"],
-        steps: ["잔멸치를 마른 팬에 볶아 비린내를 날려요.", "따뜻한 밥에 멸치를 넣고 섞어요.", "한입 크기로 동글동글 뭉쳐요.", "잘게 부순 김을 겉에 묻혀요.", "접시에 담아 바로 먹어요."] },
+        steps: [{ t: "잔멸치를 마른 팬에 볶아 비린내를 날려요.", sec: 120, ic: "s-pan" }, { t: "따뜻한 밥에 멸치를 넣고 섞어요.", sec: 60, ic: "s-mix" }, { t: "한입 크기로 동글동글 뭉쳐요.", sec: 180, ic: "s-shape" }, { t: "잘게 부순 김을 겉에 묻혀요.", sec: 60, ic: "s-shape" }, { t: "접시에 담아 바로 먹어요.", sec: 30, ic: "s-plate" }] },
       { id: "broc", title: "브로콜리 치즈전", d: "d-broc", kind: "hot", liked: false, dur: "00:55", ings: ["브로콜리", "치즈", "달걀"],
-        steps: ["브로콜리를 데쳐 잘게 다져요.", "달걀을 풀어 브로콜리와 섞어요.", "잘게 찢은 치즈를 넣어요.", "한 숟갈씩 떠서 팬에 올려요.", "약불에서 앞뒤로 노릇하게 익혀요."] },
+        steps: [{ t: "브로콜리를 데쳐 잘게 다져요.", sec: 180, ic: "s-pot" }, { t: "달걀을 풀어 브로콜리와 섞어요.", sec: 60, ic: "s-mix" }, { t: "잘게 찢은 치즈를 넣어요.", sec: 30, ic: "s-mix" }, { t: "한 숟갈씩 떠서 팬에 올려요.", sec: 60, ic: "s-pan" }, { t: "약불에서 앞뒤로 노릇하게 익혀요.", sec: 300, ic: "s-pan" }] },
     ];
     var state = { filter: "all", view: "tofu", cook: null, cart: [] };
 
@@ -1125,7 +1183,7 @@
       });
       s1.appendChild(ul); d.appendChild(s1);
       var s2 = el("div"); s2.appendChild(el("h4", null, "조리법"));
-      var ol = el("ol", "d-steps"); r.steps.forEach(function (t) { ol.appendChild(el("li", null, t)); }); s2.appendChild(ol); d.appendChild(s2);
+      var ol = el("ol", "d-steps"); r.steps.forEach(function (st) { var li = el("li"); var sp = el("span", null, st.t + " "); sp.appendChild(el("small", "st-time", fmtSec(st.sec))); li.appendChild(sp); ol.appendChild(li); }); s2.appendChild(ol); d.appendChild(s2);
       var a = el("div", "acts"); a.appendChild(likeBtn(r));
       var ck = el("button", "cook-btn"); ck.type = "button";
       var cs = svgEl("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" });
@@ -1134,6 +1192,7 @@
       ck.addEventListener("click", function () { state.cook = { rid: r.id, i: 0 }; renderDetail(); focusIn(".next"); });
       a.appendChild(ck); d.appendChild(a);
     }
+    function fmtSec(sec) { return sec < 60 ? "약 " + sec + "초" : "약 " + Math.round(sec / 60) + "분"; }
     function focusIn(sel) { var n = document.querySelector("#demo-detail " + sel); if (n) n.focus({ preventScroll: true }); }
     function renderCook(d, r) {
       var i = state.cook.i, total = r.steps.length;
@@ -1141,7 +1200,12 @@
       c.appendChild(el("p", "eb", "요리 모드 · " + (i + 1) + " / " + total));
       c.appendChild(el("p", "d-title", r.title));
       var bar = el("div", "cook-bar"); var fill = el("span"); fill.style.width = ((i + 1) / total * 100) + "%"; bar.appendChild(fill); c.appendChild(bar);
-      var st = el("p", "cook-step"); st.appendChild(el("b", null, (i + 1) + "단계")); st.appendChild(document.createTextNode(r.steps[i]));
+      var step = r.steps[i];
+      var pic = el("div", "cook-pic"); pic.appendChild(doodle(step.ic));
+      var tm = el("span", "cook-time"); var cl = svgEl("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }); cl.appendChild(svgEl("use", { href: "#i-clock" }));
+      tm.appendChild(cl); tm.appendChild(document.createTextNode(fmtSec(step.sec))); pic.appendChild(tm);
+      c.appendChild(pic);
+      var st = el("p", "cook-step"); st.appendChild(el("b", null, (i + 1) + "단계")); st.appendChild(document.createTextNode(step.t));
       st.setAttribute("aria-live", "polite"); c.appendChild(st);
       var a = el("div", "acts");
       var prev = el("button", "ghost", "이전"); prev.type = "button"; prev.disabled = i === 0;
@@ -1191,16 +1255,25 @@
           var row = el("div", "cart-item");
           var gr = el("span", "grow"); gr.appendChild(el("b", null, c.ing)); row.appendChild(gr);
           var q = encodeURIComponent(c.ing);
+          var buy = el("span", "buy");
           var a1 = el("a", "shop", "쿠팡"); a1.href = "https://www.coupang.com/np/search?q=" + q; a1.target = "_blank"; a1.rel = "noopener"; a1.setAttribute("aria-label", c.ing + " 쿠팡에서 찾기");
           var a2 = el("a", "shop", "컬리"); a2.href = "https://www.kurly.com/search?sword=" + q; a2.target = "_blank"; a2.rel = "noopener"; a2.setAttribute("aria-label", c.ing + " 컬리에서 찾기");
           var rm = el("button", "rm", "×"); rm.type = "button"; rm.setAttribute("aria-label", c.ing + " 빼기");
           rm.addEventListener("click", function () { removeCart(c.rid, c.ing); updateCount(false); renderShop(); });
-          row.appendChild(a1); row.appendChild(a2); row.appendChild(rm); g.appendChild(row);
+          buy.appendChild(a1); buy.appendChild(el("span", "sep", "")); buy.appendChild(a2);
+          row.appendChild(buy); row.appendChild(rm); g.appendChild(row);
         });
         box.appendChild(g);
       });
       state.cart.forEach(function (c) { c.fresh = false; });
     }
+
+    // 메인 버튼: 페이지 안 신청 칸으로 이동
+    var cta = document.getElementById("cta_primary");
+    if (cta) cta.addEventListener("click", function () {
+      document.getElementById("wm-final").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      setTimeout(function () { document.getElementById("submit-email").focus({ preventScroll: true }); }, reduce ? 0 : 500);
+    });
 
     // 개인정보 동의 체크 시 오류 숨김
     var consent = document.getElementById("wm-consent");
