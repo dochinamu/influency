@@ -5,12 +5,12 @@
     <title>얌얌픽 | 매일 하는 아이 반찬 고민, 고르기 쉽게</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
-    <meta content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요." name="description" />
+    <meta content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 오늘 해 줄 반찬도 쉽게 고를 수 있어요." name="description" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:url" content="https://lively-platypus-e38b4c.netlify.app/" />
     <meta property="og:title" content="얌얌픽 | 매일 하는 아이 반찬 고민, 고르기 쉽게" />
-    <meta property="og:description" content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요." />
+    <meta property="og:description" content="마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 오늘 해 줄 반찬도 쉽게 고를 수 있어요." />
     <meta property="og:image" content="https://lively-platypus-e38b4c.netlify.app/img/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -667,7 +667,7 @@
       <div class="hero">
         <div class="hero-copy">
           <h1 id="wm-hero-title" class="disp kb-h1">매일 하는 아이 반찬 고민,<br>고르기 쉽게</h1>
-          <p id="wm-hero-sub" class="sub">마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 메뉴를 정한 뒤 장보기까지 한 번에 끝낼 수 있어요.</p>
+          <p id="wm-hero-sub" class="sub">마음에 들었던 레시피를 한곳에 모아 두세요. 공유만 하면 보기 좋게 정리되고, 오늘 해 줄 반찬도 쉽게 고를 수 있어요.</p>
           <button id="cta_primary" type="button" class="kb-btn kb-btn-primary">먼저 만나 보기</button>
         </div>
 
@@ -731,8 +731,8 @@
         <li class="step" data-reveal>
           <svg class="doodle draw" viewBox="0 0 100 100" aria-hidden="true"><use href="#d-carrot"/></svg>
           <span class="step-num" aria-hidden="true">03</span>
-          <h3>바로 장 보기</h3>
-          <p>메뉴를 정하면 필요한 재료를 한눈에 확인하고 바로 주문할 수 있어요.</p>
+          <h3>요리 모드로 만들기</h3>
+          <p>고른 반찬은 단계마다 그림과 걸리는 시간을 보며 차근차근 따라 만들 수 있어요.</p>
         </li>
       </ol>
 
@@ -741,7 +741,6 @@
         <div class="tabs" role="tablist" aria-label="예시 단계">
           <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"><span>01</span>레시피 모으기</button>
           <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1"><span>02</span>고민될 때 열어 보기</button>
-          <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span>03</span>바로 장 보기<b class="tcount" id="demo-tcount" aria-label="장바구니 재료 수"></b></button>
         </div>
 
         <div id="panel-0" class="panel" role="tabpanel" aria-labelledby="tab-0">
@@ -767,32 +766,6 @@
             <div class="cards" id="demo-cards"></div>
             <aside class="box detail" id="demo-detail" aria-live="polite" aria-label="레시피 보기"></aside>
           </div>
-          <div class="cart-bar">
-            <button type="button" class="cart-open" id="demo-open-cart">
-              <svg class="doodle" viewBox="0 0 200 150" aria-hidden="true"><use href="#d-basket"/></svg>
-              장바구니 열기 <b id="demo-bar-count">0</b>
-            </button>
-          </div>
-        </div>
-
-        <div id="panel-2" class="panel" role="tabpanel" aria-labelledby="tab-2" hidden>
-          <div id="demo-shop-empty" class="empty-msg">
-            02에서 재료를 체크하거나 메뉴를 고르면 여기 장바구니에 담겨요.
-            <div style="margin-top:12px"><button class="sbtn" id="demo-go-pick" type="button">메뉴 보러 가기</button></div>
-          </div>
-          <div id="demo-shop" class="panel-grid two" hidden>
-            <div class="box basket-box">
-              <div class="basket-stage" aria-hidden="true">
-                <div class="basket-items" id="basket-items"></div>
-                <svg class="doodle basket" viewBox="0 0 200 150" preserveAspectRatio="xMidYMax meet"><use href="#d-basket"/></svg>
-              </div>
-              <p class="basket-total" id="basket-total"></p>
-            </div>
-            <div class="box">
-              <div class="box-h"><b>장 볼 재료</b><span class="count" id="demo-cart-count"></span></div>
-              <div id="demo-cart" aria-live="polite"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -816,10 +789,6 @@
         <details>
           <summary>아이가 잘 먹은 메뉴는 어떻게 기록하나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
           <p>해 먹은 뒤 레시피에서 "잘 먹었어요"를 한 번 누르면 돼요. 다음에 메뉴를 고를 때 아이가 잘 먹었던 레시피만 모아 볼 수 있어요.</p>
-        </details>
-        <details>
-          <summary>장보기도 같이 할 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
-          <p>네. 메뉴를 고르면 필요한 재료가 장바구니에 한눈에 정리돼요.</p>
         </details>
         <details>
           <summary>서비스는 언제 출시되나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
@@ -1259,7 +1228,6 @@
       });
       if (focus) tabs[i].focus();
       if (i === 1) renderCards();
-      if (i === 2) renderShop();
     }
     tabs.forEach(function (t, i) {
       t.addEventListener("click", function () { selectTab(i); });
@@ -1326,25 +1294,16 @@
       return lk;
     }
     function pickBtn(r) {
-      var pk = el("button", "pick", "고르기"); pk.type = "button"; pk.setAttribute("aria-label", r.title + " 고르기");
+      var on = state.picked === r.id;
+      var pk = el("button", "pick", on ? "골랐어요" : "고르기"); pk.type = "button"; pk.setAttribute("aria-label", r.title + " 고르기"); pk.setAttribute("aria-pressed", on ? "true" : "false");
       pk.addEventListener("click", function () {
         if (window.WM) WM.track("demo_pick", { recipe: r.id, filter: state.filter });
-        r.ings.forEach(function (n) { addCart(r.id, n); });
-        updateCount(true); selectTab(2, true);
+        state.picked = r.id; state.view = r.id; state.cook = null; renderCards();
+        if (!window.matchMedia("(min-width: 768px)").matches) {
+          document.getElementById("demo-detail").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+        }
       });
       return pk;
-    }
-    // 장바구니
-    function inCart(rid, ing) { return state.cart.some(function (c) { return c.rid === rid && c.ing === ing; }); }
-    function addCart(rid, ing) { if (!inCart(rid, ing)) state.cart.push({ rid: rid, ing: ing, fresh: true }); }
-    function removeCart(rid, ing) { state.cart = state.cart.filter(function (c) { return !(c.rid === rid && c.ing === ing); }); }
-    function updateCount(bump) {
-      var n = state.cart.length;
-      document.getElementById("demo-tcount").textContent = n ? String(n) : "";
-      document.getElementById("demo-bar-count").textContent = String(n);
-      if (bump && !reduce) {
-        ["tab-2", "demo-open-cart"].forEach(function (id) { var t = document.getElementById(id); t.classList.remove("bump"); void t.offsetWidth; t.classList.add("bump"); });
-      }
     }
     function findR(id) { return R.find(function (x) { return x.id === id; }); }
     function renderCards() {
@@ -1403,25 +1362,11 @@
       ig.appendChild(svgEl("circle", { cx: 12, cy: 12, r: 4, fill: "none", stroke: "currentColor", "stroke-width": 1.8 }));
       src.appendChild(ig); src.appendChild(document.createTextNode(SRC));
       head.appendChild(src); d.appendChild(head);
-      var s1 = el("div"); var hr = el("div", "h4row"); hr.appendChild(el("h4", null, "재료"));
-      var all = el("button", "add-all", "모두 담기"); all.type = "button";
-      all.addEventListener("click", function () { r.ings.forEach(function (n) { addCart(r.id, n); }); updateCount(true); renderDetail(); });
-      hr.appendChild(all); s1.appendChild(hr);
+      var s1 = el("div"); var hr = el("div", "h4row"); hr.appendChild(el("h4", null, "재료")); s1.appendChild(hr);
       var ul = el("ul", "d-ing-list");
       r.ings.forEach(function (n) {
         var li = el("li", "ing-row"); li.appendChild(el("span", null, n));
-        var bt = el("button", "ing-add"); bt.type = "button";
-        function paint() {
-          var on = inCart(r.id, n);
-          bt.setAttribute("aria-pressed", on ? "true" : "false");
-          bt.setAttribute("aria-label", n + (on ? " 장바구니에서 빼기" : " 장바구니에 담기"));
-          bt.textContent = on ? "담았어요" : "+ 담기";
-        }
-        bt.addEventListener("click", function () {
-          if (inCart(r.id, n)) { removeCart(r.id, n); updateCount(false); } else { addCart(r.id, n); updateCount(true); }
-          paint();
-        });
-        paint(); li.appendChild(bt); ul.appendChild(li);
+        ul.appendChild(li);
       });
       s1.appendChild(ul); d.appendChild(s1);
       var s2 = el("div"); s2.appendChild(el("h4", null, "조리법"));
@@ -1465,45 +1410,6 @@
       d.appendChild(c);
     }
 
-    // 03 바로 장 보기
-    document.getElementById("demo-go-pick").addEventListener("click", function () { selectTab(1, true); });
-    document.getElementById("demo-open-cart").addEventListener("click", function () {
-      selectTab(2, true);
-      document.getElementById("wm-demo").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    });
-    function renderShop() {
-      var has = state.cart.length > 0;
-      document.getElementById("demo-shop-empty").hidden = has;
-      document.getElementById("demo-shop").hidden = !has;
-      if (!has) return;
-      // 손그림 장바구니 안의 재료
-      var bi = document.getElementById("basket-items"); bi.textContent = "";
-      state.cart.slice(-10).forEach(function (c, k) {
-        var t = el("span", "bitem" + (c.fresh && !reduce ? " drop" : ""), c.ing);
-        t.style.setProperty("--r", ((k * 37) % 13 - 6) + "deg");
-        if (c.fresh && !reduce) t.style.animationDelay = (k % 4) * 60 + "ms";
-        bi.appendChild(t);
-      });
-      document.getElementById("basket-total").textContent = "재료 " + state.cart.length + "개 담김";
-      document.getElementById("demo-cart-count").textContent = state.cart.length + "개";
-      // 요리별 목록
-      var box = document.getElementById("demo-cart"); box.textContent = "";
-      var order = [];
-      state.cart.forEach(function (c) { if (order.indexOf(c.rid) < 0) order.push(c.rid); });
-      order.forEach(function (rid) {
-        var r = findR(rid); var g = el("div", "cart-group");
-        g.appendChild(el("h5", null, r.title));
-        state.cart.filter(function (c) { return c.rid === rid; }).forEach(function (c) {
-          var row = el("div", "cart-item");
-          var gr = el("span", "grow"); gr.appendChild(el("b", null, c.ing)); row.appendChild(gr);
-          var rm = el("button", "rm", "×"); rm.type = "button"; rm.setAttribute("aria-label", c.ing + " 빼기");
-          rm.addEventListener("click", function () { removeCart(c.rid, c.ing); updateCount(false); renderShop(); });
-          row.appendChild(rm); g.appendChild(row);
-        });
-        box.appendChild(g);
-      });
-      state.cart.forEach(function (c) { c.fresh = false; });
-    }
 
     // 메인 버튼: 페이지 안 신청 칸으로 이동
     var cta = document.getElementById("cta_primary");
