@@ -819,7 +819,7 @@
         </details>
         <details>
           <summary>장보기도 같이 할 수 있나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
-          <p>네. 메뉴를 고르면 필요한 재료가 한눈에 정리되고, 바로 살 수 있는 곳으로 이어져요.</p>
+          <p>네. 메뉴를 고르면 필요한 재료가 장바구니에 한눈에 정리돼요.</p>
         </details>
         <details>
           <summary>서비스는 언제 출시되나요?<span class="pm" aria-hidden="true"><span class="is-plus">+</span><span class="is-minus">−</span></span></summary>
@@ -1496,14 +1496,9 @@
         state.cart.filter(function (c) { return c.rid === rid; }).forEach(function (c) {
           var row = el("div", "cart-item");
           var gr = el("span", "grow"); gr.appendChild(el("b", null, c.ing)); row.appendChild(gr);
-          var q = encodeURIComponent(c.ing);
-          var buy = el("span", "buy");
-          var a1 = el("a", "shop", "쿠팡"); a1.href = "https://www.coupang.com/np/search?q=" + q; a1.target = "_blank"; a1.rel = "noopener"; a1.setAttribute("aria-label", c.ing + " 쿠팡에서 찾기");
-          var a2 = el("a", "shop", "컬리"); a2.href = "https://www.kurly.com/search?sword=" + q; a2.target = "_blank"; a2.rel = "noopener"; a2.setAttribute("aria-label", c.ing + " 컬리에서 찾기");
           var rm = el("button", "rm", "×"); rm.type = "button"; rm.setAttribute("aria-label", c.ing + " 빼기");
           rm.addEventListener("click", function () { removeCart(c.rid, c.ing); updateCount(false); renderShop(); });
-          buy.appendChild(a1); buy.appendChild(el("span", "sep", "")); buy.appendChild(a2);
-          row.appendChild(buy); row.appendChild(rm); g.appendChild(row);
+          row.appendChild(rm); g.appendChild(row);
         });
         box.appendChild(g);
       });
